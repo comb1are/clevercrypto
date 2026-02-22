@@ -1,0 +1,38 @@
+import IMG from "../../assets/images";
+import MainBtn from "../../components/UI/MainBtn";
+
+export default function PayingFaild () {
+    return (<div className="wrapper pt-0 d-flex flex-column">
+        {/* <!-- Payment result --> */}
+        <section className="payment-result h-full d-flex">
+            <div className="container h-full d-flex flex-column align-items-center justify-content-center gap-3 position-relative">
+                <div className="circle-bg position-absolute rounded-circle"></div>
+                <img src={IMG.paymentFaildCard} width="48" alt="" />
+                <h2 className="fw-medium lh-1 text-center">Ошибка при оплате</h2>
+                <p className="fs-6 text-center">Произошла неизвестная ошибка при оплате. Попробуйте вернуться позже или написать в тех.поддержку</p>
+                <div className="btns position-absolute start-0 bottom-0 w-100 px-3 d-flex flex-column">
+                    <MainBtn theme="secondary" className="text-center">
+                        <img src={IMG.supportLogo} alt="" className="flex-shrink-0" />
+                        <span>Написать в поддержку</span>
+                    </MainBtn>
+                    <MainBtn to="#" theme="neutral" className="fw-medium">
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.2119 6.34854C11.8214 5.95805 11.1884 5.95803 10.7979 6.34854L5.85352 11.2929C5.46312 11.6834 5.46307 12.3164 5.85352 12.7069L10.7979 17.6513C11.1883 18.0417 11.8214 18.0417 12.2119 17.6513C12.6024 17.2608 12.6024 16.6277 12.2119 16.2372L8.97461 12.9999H18.4375C18.9898 12.9999 19.4375 12.5522 19.4375 11.9999C19.4375 11.4476 18.9898 10.9999 18.4375 10.9999H8.97461L12.2119 7.7626L12.2803 7.68643C12.6007 7.29365 12.578 6.71467 12.2119 6.34854Z" fill="#E7E7E7" />
+                        </svg>
+                        <span>Вернуться в магазин</span>
+                    </MainBtn>
+                </div>
+            </div>
+        </section>
+        {/* <!-- Payment result end --> */}
+
+        <section className="payment-result__foot">
+            <div className="container">
+                <MainBtn theme="space" className="gap-3">
+                    <img src={IMG.warningSpace} alt="" className="flex-shrink-0" />
+                    <span>Открыть спор</span>
+                </MainBtn>
+            </div>
+        </section>
+    </div>)
+}
