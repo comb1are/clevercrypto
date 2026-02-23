@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --font-helvetica: "HelveticaNeue", sans-serif;
+    --font-nagel: "Nagel", sans-serif;
+    --font-nebulas: "Nebulas", sans-serif;
+    --font-sf-compact: "SF Compact Display", sans-serif;
+    --font-sf-display: "SF Pro Display", sans-serif;
+    --font-sf-text: "SFProText", sans-serif;
+}

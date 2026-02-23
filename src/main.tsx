@@ -11,7 +11,8 @@ import "./assets/fonts/SFProDisplay/stylesheet.css";
 import "./assets/fonts/HelveticaNeue/stylesheet.css";
 import "./assets/fonts/SFProText/stylesheet.css";
 
-import "./assets/scss/style.scss"
+import "./index.css";
+import "./assets/scss/style.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
