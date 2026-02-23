@@ -3,6 +3,10 @@ import Header from "../../components/Header";
 import PriceSwp from "../../components/PriceSwp";
 import Alert from "../../components/UI/Alert";
 import MainBtn from "../../components/UI/MainBtn";
+import IconAML32 from "../../components/Icons/IconAML32";
+import IconAML33 from "../../components/Icons/IconAML33";
+import IconAML34 from "../../components/Icons/IconAML34";
+import IconAML35 from "../../components/Icons/IconAML35";
 
 export default function AML () {
     return (<div className="wrapper d-flex flex-column justify-content-between">
@@ -45,27 +49,7 @@ export default function AML () {
                                     </div>
                                     <div className="d-flex align-items-center gap-2 flex-shrink-0">
                                         <b className="fw-medium fs-6">14%</b>
-                                        <svg className="flex-shrink-0" width="22" height="22" viewBox="0 0 44 44">
-                                            <circle
-                                                strokeWidth="8"
-                                                stroke="#E9ECEF"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"/>
-                                            <circle
-                                                strokeWidth="8"
-                                                strokeLinecap="round"
-                                                stroke="#38C793"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"
-                                                transform="rotate(-90 22 22)"
-                                                strokeDasharray="100.48"
-                                                strokeDashoffset="86.36"
-                                            />
-                                        </svg>
+                                        <IconAML35 />
                                     </div>
                                 </li>
                                 <li className="history-card d-flex align-items-center justify-content-between">
@@ -81,27 +65,7 @@ export default function AML () {
                                     </div>
                                     <div className="d-flex align-items-center gap-2 flex-shrink-0">
                                         <b className="fw-medium fs-6">42%</b>
-                                        <svg className="flex-shrink-0" width="22" height="22" viewBox="0 0 44 44">
-                                            <circle
-                                                strokeWidth="8"
-                                                stroke="#E9ECEF"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"/>
-                                            <circle
-                                                strokeWidth="8"
-                                                strokeLinecap="round"
-                                                stroke="#FFC107"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"
-                                                transform="rotate(-90 22 22)"
-                                                strokeDasharray="100.48"
-                                                strokeDashoffset="58.36"
-                                            />
-                                        </svg>
+                                        <IconAML34 />
                                     </div>
                                 </li>
                                 <li className="history-card d-flex align-items-center justify-content-between">
@@ -117,27 +81,7 @@ export default function AML () {
                                     </div>
                                     <div className="d-flex align-items-center gap-2 flex-shrink-0">
                                         <b className="fw-medium fs-6">36%</b>
-                                        <svg className="flex-shrink-0" width="22" height="22" viewBox="0 0 44 44">
-                                            <circle
-                                                strokeWidth="8"
-                                                stroke="#E9ECEF"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"/>
-                                            <circle
-                                                strokeWidth="8"
-                                                strokeLinecap="round"
-                                                stroke="#FFC107"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"
-                                                transform="rotate(-90 22 22)"
-                                                strokeDasharray="100.48"
-                                                strokeDashoffset="64.36"
-                                            />
-                                        </svg>
+                                        <IconAML33 />
                                     </div>
                                 </li>
                                 <li className="history-card d-flex align-items-center justify-content-between">
@@ -153,27 +97,7 @@ export default function AML () {
                                     </div>
                                     <div className="d-flex align-items-center gap-2 flex-shrink-0">
                                         <b className="fw-medium fs-6">75%</b>
-                                        <svg className="flex-shrink-0" width="22" height="22" viewBox="0 0 44 44">
-                                            <circle
-                                                strokeWidth="8"
-                                                stroke="#E9ECEF"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"/>
-                                            <circle
-                                                strokeWidth="8"
-                                                strokeLinecap="round"
-                                                stroke="#DC3545"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"
-                                                transform="rotate(-90 22 22)"
-                                                strokeDasharray="100.48"
-                                                strokeDashoffset="15.36"
-                                            />
-                                        </svg>
+                                        <IconAML32 />
                                     </div>
                                 </li>
                             </ul>

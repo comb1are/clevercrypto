@@ -2,6 +2,7 @@ import IMG from "../../../assets/images";
 import Header from "../../../components/Header";
 import Alert from "../../../components/UI/Alert";
 import MainBtn from "../../../components/UI/MainBtn";
+import IconOverview70 from "../../../components/Icons/IconOverview70";
 
 export default function BusinessPlatformOverview () {
     return (<div className="wrapper">
@@ -44,27 +45,7 @@ export default function BusinessPlatformOverview () {
                     <div className="w-100 statistica-card d-flex align-items-center justify-content-between gap-3 p-3">
                         <p className="fs-6 ps-2 ms-1">Общ. конверсия</p>
                         <div className="d-flex align-items-center gap-2">
-                            <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                <circle
-                                    strokeWidth="8"
-                                    stroke="#E9ECEF"
-                                    fill="transparent"
-                                    r="17"
-                                    cx="22"
-                                    cy="22"/>
-                                <circle
-                                    strokeWidth="8"
-                                    strokeLinecap="round"
-                                    stroke="#38C793"
-                                    fill="transparent"
-                                    r="17"
-                                    cx="22"
-                                    cy="22"
-                                    transform="rotate(-90 22 22)"
-                                    strokeDasharray="100.48"
-                                    strokeDashoffset="30.36"
-                                />
-                            </svg>
+                            <IconOverview70 />
                             <b className="fw-medium">70%</b>
                         </div>
                     </div>

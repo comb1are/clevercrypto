@@ -1,5 +1,13 @@
 import IMG from "../../../assets/images";
 import Header from "../../../components/Header";
+import IconList62 from "../../../components/Icons/IconList62";
+import IconList63 from "../../../components/Icons/IconList63";
+import IconList64 from "../../../components/Icons/IconList64";
+import IconList65 from "../../../components/Icons/IconList65";
+import IconList66 from "../../../components/Icons/IconList66";
+import IconList67 from "../../../components/Icons/IconList67";
+import IconList68 from "../../../components/Icons/IconList68";
+import IconList69 from "../../../components/Icons/IconList69";
 
 export default function BusinessPlatformList () {
     return (<div className="wrapper">
@@ -38,34 +46,12 @@ export default function BusinessPlatformList () {
                                 kupikod.com
                             </div>
                             <div className="business-link__dagree d-flex align-items-center gap-2">
-                                <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                    <circle
-                                        strokeWidth="8"
-                                        stroke="#E9ECEF"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"/>
-                                    <circle
-                                        strokeWidth="8"
-                                        strokeLinecap="round"
-                                        stroke="#38C793"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"
-                                        transform="rotate(-90 22 22)"
-                                        strokeDasharray="100.48"
-                                        strokeDashoffset="30.36"
-                                    />
-                                </svg>
+                                <IconList69 />
                                 <b className="fs-6 fw-medium pr-1">70%</b>
                                 <span className="fs-6">Выдач</span>
                             </div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList68 />
                     </a>
                     <a href="#" className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -75,34 +61,12 @@ export default function BusinessPlatformList () {
                                 kupikod.com
                             </div>
                             <div className="business-link__dagree d-flex align-items-center gap-2">
-                                <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                    <circle
-                                        strokeWidth="8"
-                                        stroke="#E9ECEF"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"/>
-                                    <circle
-                                        strokeWidth="8"
-                                        strokeLinecap="round"
-                                        stroke="#38C793"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"
-                                        transform="rotate(-90 22 22)"
-                                        strokeDasharray="100.48"
-                                        strokeDashoffset="30.36"
-                                    />
-                                </svg>
+                                <IconList67 />
                                 <b className="fs-6 fw-medium pr-1">70%</b>
                                 <span className="fs-6">Выдач</span>
                             </div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList66 />
                     </a>
                     <a href="#" className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -116,9 +80,7 @@ export default function BusinessPlatformList () {
                                 <span className="fw-normal">Заявка одобрена</span>
                             </div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList65 />
                     </a>
                     <a href="#" className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -132,9 +94,7 @@ export default function BusinessPlatformList () {
                                 <span className="fw-normal">Заявка одобрена</span>
                             </div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList64 />
                     </a>
                     <a href="#" className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -145,9 +105,7 @@ export default function BusinessPlatformList () {
                             </div>
                             <div className="alert-gray rounded-pill">Ожидает проверки</div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList63 />
                     </a>
                     <a href="#" className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -158,9 +116,7 @@ export default function BusinessPlatformList () {
                             </div>
                             <div className="alert-gray rounded-pill">Ожидает проверки</div>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList62 />
                     </a>
                 </div>
             </div>

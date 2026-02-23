@@ -1,47 +1,49 @@
 import { Navigate, Outlet, type RouteObject } from "react-router-dom";
 
-import Intro from "../pages/Intro";
-import Login from "../auth/Login";
-import Register from "../auth/Register";
-import Anons from "../pages/Anons";
-import Home from "../pages/Home";
-import Wallet from "../pages/wallet/Index";
-import Funds from "../pages/Funds";
-import Withdraw from "../pages/Withdraw";
-import AML from "../pages/check/AML";
-import Pay from "../pages/check/Pay";
-import Load from "../pages/check/Load";
-import Result from "../pages/check/Result";
-import My from "../pages/wallet/My";
-import Import from "../pages/wallet/Import";
-import WalletId from "../pages/wallet/Id";
-import WalletExport from "../pages/wallet/Export";
-import Profile from "../pages/profile/Index";
-import ProfileSettings from "../pages/profile/Settings.tsx";
-import ProfileSecurity from "../pages/profile/Security";
-import ProfileDevices from "../pages/profile/Devices.tsx";
-import ProfileTarifs from "../pages/profile/Tarifs.tsx";
-import ProfilePayment from "../pages/profile/Payment.tsx";
-import Business from "../pages/business/Index.tsx";
-import BusinessStore from "../pages/business/store/Index.tsx";
-import BusinessInvoicing from "../pages/business/Invoicing.tsx";
-import BusinessCreated from "../pages/business/Created.tsx";
-import BusinessSettings from "../pages/business/Settings.tsx";
-import BusinessIncluded from "../pages/business/included.tsx";
-import BusinessPlatformSettings from "../pages/business/platform/Settings.tsx";
-import BusinessPlatformAdd from "../pages/business/platform/Add.tsx";
-import BusinessStoreList from "../pages/business/store/List.tsx";
-import BusinessStoreOverview from "../pages/business/store/Overview.tsx";
-import BusinessPlatformList from "../pages/business/platform/List.tsx";
-import BusinessPlatformOverview from "../pages/business/platform/Overview.tsx";
-import BusinessPayments from "../pages/business/Payments.tsx";
-import Paying from "../pages/paying/Index.tsx";
-import PayingByCard from "../pages/paying/ByCard.tsx";
-import PayingByCrypto from "../pages/paying/ByCrypto.tsx";
-import PayingSelect from "../pages/paying/Select.tsx";
-import PayingSend from "../pages/paying/Send.tsx";
-import PayingSuccess from "../pages/paying/Success.tsx";
-import PayingFaild from "../pages/paying/Faild.tsx";
+import { lazy } from "react";
+
+const Intro = lazy(() => import("../pages/Intro"));
+const Login = lazy(() => import("../auth/Login"));
+const Register = lazy(() => import("../auth/Register"));
+const Anons = lazy(() => import("../pages/Anons"));
+const Home = lazy(() => import("../pages/Home"));
+const Wallet = lazy(() => import("../pages/wallet/Index"));
+const Funds = lazy(() => import("../pages/Funds"));
+const Withdraw = lazy(() => import("../pages/Withdraw"));
+const AML = lazy(() => import("../pages/check/AML"));
+const Pay = lazy(() => import("../pages/check/Pay"));
+const Load = lazy(() => import("../pages/check/Load"));
+const Result = lazy(() => import("../pages/check/Result"));
+const My = lazy(() => import("../pages/wallet/My"));
+const Import = lazy(() => import("../pages/wallet/Import"));
+const WalletId = lazy(() => import("../pages/wallet/Id"));
+const WalletExport = lazy(() => import("../pages/wallet/Export"));
+const Profile = lazy(() => import("../pages/profile/Index"));
+const ProfileSettings = lazy(() => import("../pages/profile/Settings.tsx"));
+const ProfileSecurity = lazy(() => import("../pages/profile/Security"));
+const ProfileDevices = lazy(() => import("../pages/profile/Devices.tsx"));
+const ProfileTarifs = lazy(() => import("../pages/profile/Tarifs.tsx"));
+const ProfilePayment = lazy(() => import("../pages/profile/Payment.tsx"));
+const Business = lazy(() => import("../pages/business/Index.tsx"));
+const BusinessStore = lazy(() => import("../pages/business/store/Index.tsx"));
+const BusinessInvoicing = lazy(() => import("../pages/business/Invoicing.tsx"));
+const BusinessCreated = lazy(() => import("../pages/business/Created.tsx"));
+const BusinessSettings = lazy(() => import("../pages/business/Settings.tsx"));
+const BusinessIncluded = lazy(() => import("../pages/business/included.tsx"));
+const BusinessPlatformSettings = lazy(() => import("../pages/business/platform/Settings.tsx"));
+const BusinessPlatformAdd = lazy(() => import("../pages/business/platform/Add.tsx"));
+const BusinessStoreList = lazy(() => import("../pages/business/store/List.tsx"));
+const BusinessStoreOverview = lazy(() => import("../pages/business/store/Overview.tsx"));
+const BusinessPlatformList = lazy(() => import("../pages/business/platform/List.tsx"));
+const BusinessPlatformOverview = lazy(() => import("../pages/business/platform/Overview.tsx"));
+const BusinessPayments = lazy(() => import("../pages/business/Payments.tsx"));
+const Paying = lazy(() => import("../pages/paying/Index.tsx"));
+const PayingByCard = lazy(() => import("../pages/paying/ByCard.tsx"));
+const PayingByCrypto = lazy(() => import("../pages/paying/ByCrypto.tsx"));
+const PayingSelect = lazy(() => import("../pages/paying/Select.tsx"));
+const PayingSend = lazy(() => import("../pages/paying/Send.tsx"));
+const PayingSuccess = lazy(() => import("../pages/paying/Success.tsx"));
+const PayingFaild = lazy(() => import("../pages/paying/Faild.tsx"));
 
 const routes: RouteObject[] = [
     { path: '/', element: <Intro /> },
@@ -51,7 +53,7 @@ const routes: RouteObject[] = [
     { path: "/home", element: <Home /> },
     { path: "/funds", element: <Funds /> },
     { path: "/withdraw", element: <Withdraw /> },
-    { 
+    {
         path: '/check',
         element: <div><Outlet /></div>,
         children: [
@@ -90,8 +92,8 @@ const routes: RouteObject[] = [
         element: <div><Outlet /></div>,
         children: [
             { index: true, element: <Business /> },
-            { 
-                path: "store", 
+            {
+                path: "store",
                 element: <div><Outlet /></div>,
                 children: [
                     { index: true, element: <BusinessStore /> },
@@ -107,11 +109,11 @@ const routes: RouteObject[] = [
                 path: 'platform',
                 element: <div><Outlet /></div>,
                 children: [
-                    { index: true, element: <Navigate to="settings" replace/> },
-                    { path: 'settings', element: <BusinessPlatformSettings/> },
-                    { path: 'add', element: <BusinessPlatformAdd/> },
-                    { path: 'list', element: <BusinessPlatformList/> },
-                    { path: 'overview', element: <BusinessPlatformOverview/> },
+                    { index: true, element: <Navigate to="settings" replace /> },
+                    { path: 'settings', element: <BusinessPlatformSettings /> },
+                    { path: 'add', element: <BusinessPlatformAdd /> },
+                    { path: 'list', element: <BusinessPlatformList /> },
+                    { path: 'overview', element: <BusinessPlatformOverview /> },
                 ]
             },
             { path: "payments", element: <BusinessPayments /> },

@@ -4,6 +4,7 @@ import BottomNav from "../../components/BottomNav";
 import MainBtn from "../../components/UI/MainBtn";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import IconIndex50 from "../../components/Icons/IconIndex50";
 
 interface LinkInterface {
     id: number,
@@ -64,9 +65,7 @@ export default function Profile () {
                                     <img src={data.icon} alt="" className="flex-shrink-0" />
                                     {data.title}
                                 </span>
-                                <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <IconIndex50 />
                             </Link>
                             <div className={clsx(
                                 'link-line w-100 flex-shrink-0',

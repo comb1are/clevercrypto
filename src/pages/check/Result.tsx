@@ -1,6 +1,10 @@
 import IMG from "../../assets/images";
 import Header from "../../components/Header";
 import MainBtn from "../../components/UI/MainBtn";
+import IconResult36 from "../../components/Icons/IconResult36";
+import IconResult37 from "../../components/Icons/IconResult37";
+import IconResult38 from "../../components/Icons/IconResult38";
+import IconResult39 from "../../components/Icons/IconResult39";
 
 export default function () {
     return (<div className="wrapper d-flex flex-column justify-content-between">
@@ -11,24 +15,7 @@ export default function () {
             <div className="container h-full d-flex flex-column justify-content-between gap-2">
                 <div className="pt-4 d-flex flex-column gap-3 w-100">
                     <div className="d-flex align-items-center flex-column position-relative">
-                        <svg className="guade-chart" width="220" height="121" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path
-                                d="M 0 105 A 83 80 0 0 1 200 105"
-                                fill="none"
-                                stroke="#E9ECEF"
-                                strokeWidth="17"
-                                strokeLinecap="round"
-                            />
-                            <path
-                                d="M 0 105 A 83 80 0 0 1 200 105"
-                                fill="none"
-                                stroke="#FFC107"
-                                strokeWidth="17"
-                                strokeLinecap="round"
-                                pathLength="100"
-                                strokeDasharray="42 100"
-                            />
-                        </svg>
+                        <IconResult39 />
                         <div className="chart-text text-center position-absolute bottom-0 start-50 translate-middle-x">
                             <h3 className="fw-medium lh-1">42%</h3>
                             <p>Средний риск</p>
@@ -42,10 +29,7 @@ export default function () {
                     <ul className="d-flex flex-column gap-2 w-100">
                         <li className="px-3 result-card d-flex flex-column gap-3 w-100">
                             <p className="d-flex align-items-center">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="18" height="18" rx="9" fill="#20C997" />
-                                    <path d="M13.4259 6.51481C13.8017 6.91972 13.778 7.55266 13.3729 7.92831L8.40842 12.5325C8.02491 12.8882 7.43209 12.8882 7.04852 12.5326L4.62704 10.2875C4.22197 9.91192 4.19814 9.27908 4.5738 8.8741L4.77806 8.65391C5.1536 8.24906 5.78622 8.22524 6.19114 8.60072L7.72754 10.0254L11.8091 6.24189C12.2139 5.86661 12.8463 5.89037 13.2218 6.29498L13.4259 6.51481Z" fill="white" />
-                                </svg>
+                                <IconResult38 />
                                 <span>Минимальный риск</span>
                             </p>
                             <div>
@@ -75,11 +59,7 @@ export default function () {
                         </li>
                         <li className="px-3 result-card d-flex flex-column gap-3 w-100">
                             <p className="d-flex align-items-center">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="18" height="18" rx="9" fill="#FFC107" />
-                                    <rect x="10.5" y="3.99219" width="6.06055" height="3" rx="1" transform="rotate(90 10.5 3.99219)" fill="white" />
-                                    <rect x="10.5" y="11.0078" width="3" height="3" rx="1" transform="rotate(90 10.5 11.0078)" fill="white" />
-                                </svg>
+                                <IconResult37 />
                                 <span>Средний риск</span>
                             </p>
                             <div>
@@ -97,10 +77,7 @@ export default function () {
                         </li>
                         <li className="px-3 result-card d-flex flex-column gap-3 w-100">
                             <p className="d-flex align-items-center">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="18" height="18" rx="9" fill="#DC3545" />
-                                    <rect x="4.57324" y="7.5" width="8.85352" height="3" rx="1" fill="white" />
-                                </svg>
+                                <IconResult36 />
                                 <span>Высокий риск</span>
                             </p>
                             <div>

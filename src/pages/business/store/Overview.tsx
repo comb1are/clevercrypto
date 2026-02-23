@@ -2,6 +2,10 @@ import IMG from "../../../assets/images";
 import Header from "../../../components/Header";
 import Alert from "../../../components/UI/Alert";
 import MainBtn from "../../../components/UI/MainBtn";
+import IconOverview83 from "../../../components/Icons/IconOverview83";
+import IconOverview84 from "../../../components/Icons/IconOverview84";
+import IconOverview85 from "../../../components/Icons/IconOverview85";
+import IconOverview86 from "../../../components/Icons/IconOverview86";
 
 export default function BusinessStoreOverview () {
     return (<div className="wrapper">
@@ -52,27 +56,7 @@ export default function BusinessStoreOverview () {
                                     <p className="fs-6 ps-2 ms-1">Общ. конверсия</p>
                                 </div>
                                 <div className="d-flex align-items-center gap-2">
-                                    <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                        <circle
-                                            strokeWidth="8"
-                                            stroke="#E9ECEF"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"/>
-                                        <circle
-                                            strokeWidth="8"
-                                            strokeLinecap="round"
-                                            stroke="#38C793"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"
-                                            transform="rotate(-90 22 22)"
-                                            strokeDasharray="100.48"
-                                            strokeDashoffset="30.36"
-                                        />
-                                    </svg>
+                                    <IconOverview86 />
                                     <b className="fw-medium">70%</b>
                                 </div>
                             </div>
@@ -84,27 +68,7 @@ export default function BusinessStoreOverview () {
                                     <p className="fs-6 ps-2 ms-1">Криптовалюта</p>
                                 </div>
                                 <div className="d-flex align-items-center gap-2">
-                                    <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                        <circle
-                                            strokeWidth="8"
-                                            stroke="#E9ECEF"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"/>
-                                        <circle
-                                            strokeWidth="8"
-                                            strokeLinecap="round"
-                                            stroke="#38C793"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"
-                                            transform="rotate(-90 22 22)"
-                                            strokeDasharray="100.48"
-                                            strokeDashoffset="30.36"
-                                        />
-                                    </svg>
+                                    <IconOverview85 />
                                     <b className="fw-medium">70%</b>
                                 </div>
                             </div>
@@ -116,27 +80,7 @@ export default function BusinessStoreOverview () {
                                     <p className="fs-6 ps-2 ms-1">Оплата картой</p>
                                 </div>
                                 <div className="d-flex align-items-center gap-2">
-                                    <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                        <circle
-                                            strokeWidth="8"
-                                            stroke="#E9ECEF"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"/>
-                                        <circle
-                                            strokeWidth="8"
-                                            strokeLinecap="round"
-                                            stroke="#38C793"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"
-                                            transform="rotate(-90 22 22)"
-                                            strokeDasharray="100.48"
-                                            strokeDashoffset="30.36"
-                                        />
-                                    </svg>
+                                    <IconOverview84 />
                                     <b className="fw-medium">70%</b>
                                 </div>
                             </div>
@@ -148,27 +92,7 @@ export default function BusinessStoreOverview () {
                                     <p className="fs-6 ps-2 ms-1">СБП</p>
                                 </div>
                                 <div className="d-flex align-items-center gap-2">
-                                    <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                        <circle
-                                            strokeWidth="8"
-                                            stroke="#E9ECEF"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"/>
-                                        <circle
-                                            strokeWidth="8"
-                                            strokeLinecap="round"
-                                            stroke="#38C793"
-                                            fill="transparent"
-                                            r="17"
-                                            cx="22"
-                                            cy="22"
-                                            transform="rotate(-90 22 22)"
-                                            strokeDasharray="100.48"
-                                            strokeDashoffset="30.36"
-                                        />
-                                    </svg>
+                                    <IconOverview83 />
                                     <b className="fw-medium">70%</b>
                                 </div>
                             </div>

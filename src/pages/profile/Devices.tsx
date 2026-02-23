@@ -1,6 +1,9 @@
 import IMG from "../../assets/images";
 import Header from "../../components/Header";
 import MainBtn from "../../components/UI/MainBtn";
+import IconDevices47 from "../../components/Icons/IconDevices47";
+import IconDevices48 from "../../components/Icons/IconDevices48";
+import IconDevices49 from "../../components/Icons/IconDevices49";
 
 export default function ProfileDevices () {
     return (<div className="wrapper d-flex flex-column justify-content-between">
@@ -21,9 +24,7 @@ export default function ProfileDevices () {
                             </div>
                         </div>
                         <button className="d-flex align-items-center justify-content-center flex-shrink-0">
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L11 11M11 1L1 11" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
+                            <IconDevices49 />
                         </button>
                     </div>
                     <MainBtn theme="red" size="md">
@@ -43,9 +44,7 @@ export default function ProfileDevices () {
                             </div>
                         </div>
                         <button className="d-flex align-items-center justify-content-center flex-shrink-0">
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L11 11M11 1L1 11" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
+                            <IconDevices48 />
                         </button>
                     </div>
                     <div className="device-card d-flex align-items-center justify-content-between gap-3">
@@ -58,9 +57,7 @@ export default function ProfileDevices () {
                             </div>
                         </div>
                         <button className="d-flex align-items-center justify-content-center flex-shrink-0">
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L11 11M11 1L1 11" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
+                            <IconDevices47 />
                         </button>
                     </div>
                 </div>

@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import Header from "../../../components/Header";
 import IMG from "../../../assets/images";
+import IconList76 from "../../../components/Icons/IconList76";
+import IconList77 from "../../../components/Icons/IconList77";
+import IconList78 from "../../../components/Icons/IconList78";
+import IconList79 from "../../../components/Icons/IconList79";
+import IconList80 from "../../../components/Icons/IconList80";
+import IconList81 from "../../../components/Icons/IconList81";
+import IconList82 from "../../../components/Icons/IconList82";
 
 export default function BusinessStoreList () {
     return (<div className="wrapper">
@@ -41,9 +48,7 @@ export default function BusinessStoreList () {
                             </div>
                             <span className="business-link__alert rounded-pill">Цифровые товары</span>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList82 />
                     </Link>
                     <Link to={'#'} className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo3} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -55,9 +60,7 @@ export default function BusinessStoreList () {
                             </div>
                             <span className="business-link__alert rounded-pill">Цифровые товары</span>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList81 />
                     </Link>
                     <Link to={'#'} className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                         <img src={IMG.businessLogo2} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -69,9 +72,7 @@ export default function BusinessStoreList () {
                             </div>
                             <span className="business-link__alert rounded-pill">Цифровые товары</span>
                         </div>
-                        <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <IconList80 />
                     </Link>
                     <Link to={'#'} className="business-link d-flex flex-column gap-3 p-3">
                         <div className="w-100 d-flex align-items-center justify-content-between gap-3">
@@ -83,34 +84,12 @@ export default function BusinessStoreList () {
                                 </div>
                                 <span className="business-link__alert rounded-pill">Цифровые товары</span>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconList79 />
                         </div>
                         <div className="business-link__bottom w-100 d-flex align-items-center justify-content-between gap-3">
                             <div className="business-link__bottom-title fs-6">Конверсия оплаты</div>
                             <div className="d-flex align-items-center gap-2">
-                                <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                    <circle
-                                        strokeWidth="8"
-                                        stroke="#E9ECEF"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"/>
-                                    <circle
-                                        strokeWidth="8"
-                                        strokeLinecap="round"
-                                        stroke="#38C793"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"
-                                        transform="rotate(-90 22 22)"
-                                        strokeDasharray="100.48"
-                                        strokeDashoffset="30.36"
-                                    />
-                                </svg>
+                                <IconList78 />
                                 <b className="fs-6 fw-medium">70%</b>
                             </div>
                         </div>
@@ -125,34 +104,12 @@ export default function BusinessStoreList () {
                                 </div>
                                 <span className="business-link__alert rounded-pill">Цифровые товары</span>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconList77 />
                         </div>
                         <div className="business-link__bottom w-100 d-flex align-items-center justify-content-between gap-3">
                             <div className="business-link__bottom-title fs-6">Конверсия оплаты</div>
                             <div className="d-flex align-items-center gap-2">
-                                <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 44 44">
-                                    <circle
-                                        strokeWidth="8"
-                                        stroke="#E9ECEF"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"/>
-                                    <circle
-                                        strokeWidth="8"
-                                        strokeLinecap="round"
-                                        stroke="#38C793"
-                                        fill="transparent"
-                                        r="17"
-                                        cx="22"
-                                        cy="22"
-                                        transform="rotate(-90 22 22)"
-                                        strokeDasharray="100.48"
-                                        strokeDashoffset="30.36"
-                                    />
-                                </svg>
+                                <IconList76 />
                                 <b className="fs-6 fw-medium">70%</b>
                             </div>
                         </div>

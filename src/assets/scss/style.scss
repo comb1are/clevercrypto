@@ -1,5 +1,5 @@
 @import './normalize',
-        './global';
+'./global';
 
 body {
     background: white;
@@ -8,7 +8,18 @@ body {
     font-weight: 400;
 }
 
-button, input, textarea, li, div {
+body,
+#root {
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+li,
+div {
     font-family: $font-nebulas;
     font-weight: 400;
 }
@@ -34,11 +45,13 @@ button, input, textarea, li, div {
         border-bottom: 1px solid $color-additional-gray-200;
     }
 
-    &-left, &-right {
+    &-left,
+    &-right {
         width: 40px;
         height: 40px;
     }
 }
+
 // Header end
 
 .h-full {
@@ -56,17 +69,18 @@ button, input, textarea, li, div {
         transition: .2s ease-in-out all;
         cursor: pointer;
         gap: 12px;
-        
-        &:hover, &:active {
+
+        &:hover,
+        &:active {
             background: $color-buttons-primary-accent-hover-pressed;
         }
-        
+
         &.md {
             height: 40px;
             border-radius: 14px;
             font-size: 16px;
         }
-        
+
         &.sm {
             height: 36px;
             border-radius: 100px;
@@ -89,18 +103,19 @@ button, input, textarea, li, div {
         color: $color-main-dark;
         transition: .2 ease-in-out all;
         gap: 12px;
-        
-        &:hover, &:active {
+
+        &:hover,
+        &:active {
             background: $color-buttons-light-secondary-hover-pressed;
         }
-        
+
         &.md {
             border-radius: 14px;
             padding: 0 20px;
             height: 40px;
             font-size: 16px;
         }
-        
+
         &.sm {
             border-radius: 1111px;
             padding: 0 12px;
@@ -128,13 +143,15 @@ button, input, textarea, li, div {
             transition: .2s ease-in-out all;
         }
 
-        &:hover, &:active {
+        &:hover,
+        &:active {
             color: $color-additional-gray-700;
 
             svg path {
                 fill: $color-additional-gray-700;
             }
         }
+
         &.sm {
             font-size: 14px;
             height: 36px;
@@ -162,7 +179,8 @@ button, input, textarea, li, div {
         cursor: pointer;
         gap: 12px;
 
-        &:hover, &:active {
+        &:hover,
+        &:active {
             background: $color-buttons-light-neutral-hover-pressed;
         }
 
@@ -193,25 +211,28 @@ button, input, textarea, li, div {
         cursor: pointer;
         gap: 12px;
 
-        svg, img {
+        svg,
+        img {
             opacity: 1;
             transition: .2s ease-in-out all;
         }
-        
-        &:hover, &:active {
+
+        &:hover,
+        &:active {
             color: rgba(220, 53, 70, 0.8);
 
-            img, svg {
+            img,
+            svg {
                 opacity: 0.8;
             }
         }
-        
+
         &.md {
             height: 40px;
             border-radius: 14px;
             font-size: 16px;
         }
-        
+
         &.sm {
             height: 36px;
             border-radius: 100px;
@@ -222,7 +243,8 @@ button, input, textarea, li, div {
             pointer-events: none;
             color: rgba(220, 53, 70, 0.5);
 
-            img, svg {
+            img,
+            svg {
                 opacity: 0.5;
             }
         }
@@ -240,26 +262,29 @@ button, input, textarea, li, div {
         color: $color-additional-gray-black;
         padding: 0 20px;
 
-        svg, img {
+        svg,
+        img {
             opacity: 1;
             transition: .2s ease-in-out all;
         }
-        
-        &:hover, &:active {
+
+        &:hover,
+        &:active {
             background: linear-gradient(270deg, rgba(220, 255, 204, 0.8) 0%, rgba(252, 255, 153, 0.8) 35%, rgba(255, 225, 204, 0.8) 60%, rgba(255, 178, 241, 0.8) 100%);
 
 
-            img, svg {
+            img,
+            svg {
                 opacity: 0.8;
             }
         }
-        
+
         &.md {
             height: 40px;
             border-radius: 14px;
             font-size: 16px;
         }
-        
+
         &.sm {
             height: 36px;
             border-radius: 100px;
@@ -272,7 +297,8 @@ button, input, textarea, li, div {
             background: linear-gradient(270deg, rgba(184, 255, 153, 0.5) 0%, rgba(252, 255, 153, 0.5) 35%, rgba(255, 225, 204, 0.5) 60%, rgba(255, 153, 236, 0.5) 100%);
             color: $color-additional-gray-900;
 
-            img, svg {
+            img,
+            svg {
                 opacity: 0.5;
             }
         }
@@ -322,7 +348,7 @@ button, input, textarea, li, div {
         color: $color-main-dark;
         caret-color: #007aff;
         width: 100%;
-        
+
         &::placeholder {
             color: $color-additional-gray-600;
         }
@@ -357,28 +383,28 @@ button, input, textarea, li, div {
             letter-spacing: 0.02em;
             color: $color-additional-gray-900;
             caret-color: #007aff;
-            
+
             &::placeholder {
                 color: $color-additional-gray-600;
             }
         }
     }
-    
+
     &-price {
         background: #f9f9f9;
         border-radius: 18px;
         z-index: 1;
-    
+
         input {
             height: 52px;
             letter-spacing: 0.02em;
             color: $color-main-dark;
-    
+
             &::placeholder {
                 color: $color-additional-gray-600;
             }
         }
-    
+
         p {
             height: 36px;
             border-left: 1px solid $color-additional-gray-300;
@@ -393,13 +419,13 @@ button, input, textarea, li, div {
         height: 28px;
         background: rgba(102, 110, 136, 0.12);
         transition: .2s ease-in-out all;
-        
+
         input {
             z-index: 2;
             opacity: 0 !important;
             cursor: pointer;
         }
-        
+
         span {
             background: $color-additional-gray-500;
             top: 3px;
@@ -413,7 +439,7 @@ button, input, textarea, li, div {
             background: $color-additional-teal-500;
         }
 
-        input:checked ~ span {
+        input:checked~span {
             background: $color-additional-gray-white;
             left: 25px;
         }
@@ -459,6 +485,7 @@ button, input, textarea, li, div {
         }
     }
 }
+
 // Header end
 
 // Home
@@ -487,6 +514,7 @@ button, input, textarea, li, div {
         }
     }
 }
+
 // Home end
 
 // Footer
@@ -500,6 +528,7 @@ button, input, textarea, li, div {
         gap: 10px;
     }
 }
+
 // Footer end
 
 // Auth
@@ -526,18 +555,13 @@ button, input, textarea, li, div {
         --bs-gutter-x: 4px;
     }
 }
+
 // Auth end
 
 // Anons
 .anons {
     user-select: none;
-    
-    .swiper-slide {
-        &:not(.swiper-slide-active) {
-            height: 0;
-            overflow: hidden;
-        }
-    }
+
 
     img {
         max-height: 454px;
@@ -563,6 +587,7 @@ button, input, textarea, li, div {
         color: $color-additional-gray-600;
     }
 }
+
 // Anons end
 
 .swp-pagination {
@@ -578,7 +603,8 @@ button, input, textarea, li, div {
         background: $color-additional-gray-200;
         display: block;
 
-        &:first-child, &.active {
+        &:first-child,
+        &.active {
             background: $color-additional-gray-900;
         }
     }
@@ -597,7 +623,7 @@ button, input, textarea, li, div {
         line-height: 157%;
         letter-spacing: 0.02em;
         color: $color-additional-gray-600;
-    
+
         .icon {
             .dot {
                 top: -3px;
@@ -606,7 +632,7 @@ button, input, textarea, li, div {
                 height: 9px;
                 background: $color-additional-red-500;
             }
-    
+
             img {
                 &.dark-icon {
                     display: none;
@@ -618,7 +644,8 @@ button, input, textarea, li, div {
             }
         }
 
-        &.active, &:hover {
+        &.active,
+        &:hover {
             color: $color-main-link;
 
             .icon {
@@ -633,6 +660,7 @@ button, input, textarea, li, div {
         }
     }
 }
+
 // Navs end
 
 .main-page {
@@ -675,7 +703,7 @@ button, input, textarea, li, div {
             line-height: 143%;
             letter-spacing: 0.04em;
             color: $color-additional-gray-600;
-            
+
             .icon {
                 height: 54px;
                 background: rgba(40, 40, 40, 0.04);
@@ -688,36 +716,8 @@ button, input, textarea, li, div {
         }
     }
 
-    .swiper {
-        overflow: visible;
-    }
-
-    .swiper-pagination {
-        margin-top: 12px;
-    }
 }
 
-.swiper-pagination {
-    top: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-    transform: translate(0);
-
-    span {
-        border-radius: 111px;
-        width: 4px;
-        height: 4px;
-        background: rgba(0, 0, 0, 0.25);
-        opacity: 1;
-        margin: 0 !important;
-        padding: 0;
-
-        &.swiper-pagination-bullet-active {
-            width: 12px;
-            background: $color-main-dark;
-        }
-    }
-}
 
 .alert-teal {
     line-height: 137%;
@@ -761,7 +761,7 @@ button, input, textarea, li, div {
         font-size: 14px;
         letter-spacing: 0.04em;
         color: $color-main-link;
-        
+
     }
 
     .btn-secondary {
@@ -847,7 +847,7 @@ button, input, textarea, li, div {
         line-height: 133%;
         letter-spacing: 0.03em;
         color: $color-main-dark;
-        
+
     }
 
     p {
@@ -910,30 +910,24 @@ button, input, textarea, li, div {
         opacity: 0.35;
     }
 
-    .swiper {
-        overflow: visible;
-    }
 
     &-card {
         h2 {
             font-family: $font-nagel;
             font-size: 38px;
             color: $color-main-dark;
-            
+
             span {
                 font-family: $font-nebulas;
                 font-size: 18px;
                 line-height: 133%;
                 letter-spacing: 0.03em;
                 color: $color-additional-gray-600;
-                
+
             }
         }
     }
 
-    .swiper-pagination {
-        margin-top: 12px;
-    }
 
     .navigation {
         background: rgba(255, 255, 255, 0.85);
@@ -945,7 +939,7 @@ button, input, textarea, li, div {
             line-height: 143%;
             letter-spacing: 0.04em;
             color: $color-additional-gray-600;
-            
+
             .icon {
                 height: 54px;
                 background: rgba(40, 40, 40, 0.04);
@@ -991,7 +985,8 @@ button, input, textarea, li, div {
             color: $color-main-dark;
             transition: .2s ease-in-out all;
 
-            &.active, &:hover {
+            &.active,
+            &:hover {
                 background: $color-main-dark;
                 color: $color-main-light;
             }
@@ -1063,7 +1058,7 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-main-dark;
-            
+
             span {
                 font-size: 14px;
                 line-height: 143%;
@@ -1093,9 +1088,6 @@ button, input, textarea, li, div {
         }
     }
 
-    .swiper-pagination {
-        margin-top: 12px;
-    }
 
     &-transaction {
         p {
@@ -1103,7 +1095,7 @@ button, input, textarea, li, div {
             line-height: 143%;
             letter-spacing: 0.04em;
             color: $color-additional-gray-600;
-            
+
         }
     }
 
@@ -1141,7 +1133,7 @@ button, input, textarea, li, div {
         line-height: 120%;
         letter-spacing: 0.02em;
         color: $color-main-dark;
-        
+
         span {
             color: $color-additional-gray-600;
         }
@@ -1155,7 +1147,7 @@ button, input, textarea, li, div {
         background: transparent;
         z-index: 1;
         background: $color-additional-gray-white;
-    
+
         &::before {
             border-radius: 32px;
             content: "";
@@ -1167,7 +1159,7 @@ button, input, textarea, li, div {
             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
         }
-        
+
         p {
             font-size: 13px;
             line-height: 138%;
@@ -1193,7 +1185,7 @@ button, input, textarea, li, div {
             line-height: 143%;
             letter-spacing: 0.04em;
             color: $color-additional-gray-600;
-            
+
             .icon {
                 height: 54px;
                 background: rgba(40, 40, 40, 0.04);
@@ -1245,9 +1237,6 @@ button, input, textarea, li, div {
         }
     }
 
-    .swiper-pagination {
-        margin-top: 12px;
-    }
 
     &__body {
         padding-left: 20px;
@@ -1278,7 +1267,7 @@ button, input, textarea, li, div {
         padding-bottom: 20px;
         background: #f9f9f9;
         border-radius: 24px;
-    
+
         h3 {
             font-family: $font-nagel;
             font-size: 20px;
@@ -1356,7 +1345,7 @@ button, input, textarea, li, div {
         font-size: 24px;
         color: $color-main-dark;
         margin-bottom: 2px;
-        
+
         span {
             line-height: 137%;
             letter-spacing: 0.03em;
@@ -1380,7 +1369,7 @@ button, input, textarea, li, div {
         border: 1px solid $color-additional-gray-800;
     }
 
-    input:checked ~ .icon span {
+    input:checked~.icon span {
         width: 14px;
         height: 14px;
         background: $color-main-link;
@@ -1397,12 +1386,15 @@ button, input, textarea, li, div {
         0% {
             opacity: 1;
         }
+
         40% {
             opacity: 0.3;
         }
+
         60% {
             opacity: 0.3;
         }
+
         100% {
             opacity: 1;
         }
@@ -1413,11 +1405,11 @@ button, input, textarea, li, div {
         height: 6px;
         background: $color-main-link;
         animation: loadAnimation .6s linear infinite;
-        
+
         &:nth-child(2) {
             animation-delay: .1s;
         }
-        
+
         &:nth-child(3) {
             animation-delay: .2s;
         }
@@ -1446,7 +1438,7 @@ button, input, textarea, li, div {
             color: $color-main-dark;
             margin-bottom: 6px;
         }
-        
+
         p {
             font-size: 18px;
             line-height: 133%;
@@ -1488,7 +1480,7 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-main-dark;
-            
+
             span {
                 color: $color-additional-gray-600;
             }
@@ -1518,7 +1510,7 @@ button, input, textarea, li, div {
         line-height: 137%;
         letter-spacing: 0.03em;
         color: $color-additional-gray-600;
-        
+
     }
 
     .btn-secondary {
@@ -1565,7 +1557,7 @@ button, input, textarea, li, div {
             border-radius: 14px;
         }
 
-        input:checked ~ div {
+        input:checked~div {
             .icon span {
                 width: 14px;
                 height: 14px;
@@ -1608,7 +1600,7 @@ button, input, textarea, li, div {
         line-height: 143%;
         letter-spacing: 0.04em;
         color: $color-additional-gray-600;
-        
+
     }
 }
 
@@ -1675,7 +1667,7 @@ button, input, textarea, li, div {
         z-index: 1;
         padding: 20px;
         width: 252px;
-    
+
         &::before {
             border-radius: 32px;
             content: "";
@@ -1730,7 +1722,7 @@ button, input, textarea, li, div {
             font-family: $font-nagel;
             font-size: 24px;
             color: $color-main-dark;
-            
+
         }
     }
 
@@ -1768,7 +1760,7 @@ button, input, textarea, li, div {
                 background: $color-additional-red-500;
             }
         }
-        
+
         .btn-secondary {
             img.dark-icon {
                 display: none;
@@ -1809,7 +1801,7 @@ button, input, textarea, li, div {
         line-height: 137%;
         letter-spacing: 0.03em;
         color: $color-main-dark;
-        
+
     }
 }
 
@@ -1861,8 +1853,8 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-main-dark;
-            
-    
+
+
             span {
                 background: #f9f9f9;
                 border-radius: 12px;
@@ -1938,7 +1930,7 @@ button, input, textarea, li, div {
             text-align: center;
             color: $color-main-dark;
             gap: 10px;
-            
+
             &.active {
                 padding: 10px 24px;
                 background: $color-main-link-12;
@@ -1966,7 +1958,7 @@ button, input, textarea, li, div {
             .bg-img {
                 z-index: -1;
             }
-            
+
             &__head {
                 padding: 20px;
                 gap: 20px;
@@ -1995,12 +1987,12 @@ button, input, textarea, li, div {
                     font-size: 28px;
                     color: $color-main-dark;
                 }
-                
+
                 .price {
                     font-family: $font-nagel;
                     font-size: 38px;
                     color: $color-main-dark;
-                    
+
 
                     span {
                         font-family: $font-nebulas;
@@ -2106,7 +2098,8 @@ button, input, textarea, li, div {
                 color: $color-main-light;
             }
 
-            &.active, &:hover {
+            &.active,
+            &:hover {
                 color: $color-main-dark;
                 background: $color-buttons-light-secondary-default;
             }
@@ -2144,12 +2137,12 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-additional-gray-600;
-        
+
             b {
                 font-size: 18px;
                 line-height: 133%;
                 color: $color-main-dark;
-                
+
             }
 
             .dot {
@@ -2270,7 +2263,7 @@ button, input, textarea, li, div {
         font-size: 24px;
         line-height: 100%;
         color: $color-main-dark;
-        
+
         span {
             color: $color-additional-gray-500;
         }
@@ -2294,13 +2287,7 @@ button, input, textarea, li, div {
         }
     }
 
-    .swiper {
-        overflow: visible;
 
-        &-slide {
-            width: 236px;
-        }
-    }
     .reviews-card {
         background: #f9f9f9;
         border-radius: 18px;
@@ -2315,7 +2302,7 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-main-dark;
-            
+
             span {
                 color: $color-additional-gray-500;
             }
@@ -2364,7 +2351,7 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-additional-gray-600;
-            
+
         }
     }
 
@@ -2376,7 +2363,7 @@ button, input, textarea, li, div {
         background: transparent;
         z-index: 1;
         background: $color-additional-gray-white;
-    
+
         &::before {
             border-radius: 32px;
             content: "";
@@ -2400,7 +2387,7 @@ button, input, textarea, li, div {
             line-height: 143%;
             letter-spacing: 0.04em;
             color: $color-additional-gray-600;
-            
+
             .icon {
                 height: 54px;
                 background: rgba(40, 40, 40, 0.04);
@@ -2450,7 +2437,7 @@ button, input, textarea, li, div {
             line-height: 137%;
             letter-spacing: 0.03em;
             color: $color-additional-gray-600;
-            
+
             b {
                 color: $color-main-dark;
             }
@@ -2531,7 +2518,7 @@ button, input, textarea, li, div {
                 color: $color-main-dark;
             }
         }
-    } 
+    }
 
     .rating-card {
         background: #f9f9f9;
@@ -2544,7 +2531,9 @@ button, input, textarea, li, div {
         }
 
         .alert {
-            &-teal, &-red {
+
+            &-teal,
+            &-red {
                 padding: 8px 10px;
                 border-radius: 14px;
 
@@ -2562,7 +2551,7 @@ button, input, textarea, li, div {
 
         &__head {
             gap: 12px;
-        
+
             h3 {
                 line-height: 137%;
                 letter-spacing: 0.03em;
@@ -2704,7 +2693,7 @@ button, input, textarea, li, div {
     &-head {
         &__left {
             gap: 12px;
-            
+
             a {
                 width: 40px;
                 height: 40px;
@@ -2760,7 +2749,7 @@ button, input, textarea, li, div {
             border: 1px solid $color-additional-gray-300;
             width: 28px;
             height: 28px;
-            
+
             span {
                 width: 14px;
                 height: 14px;
@@ -2775,7 +2764,7 @@ button, input, textarea, li, div {
             opacity: 0;
         }
 
-        input:checked ~ .icon span {
+        input:checked~.icon span {
             display: block;
         }
 
@@ -2826,7 +2815,7 @@ button, input, textarea, li, div {
         border: 1px solid $color-additional-gray-300;
         width: 28px;
         height: 28px;
-        
+
         span {
             width: 14px;
             height: 14px;
@@ -2841,7 +2830,7 @@ button, input, textarea, li, div {
         opacity: 0;
     }
 
-    input:checked ~ .icon span {
+    input:checked~.icon span {
         display: block;
     }
 
@@ -2893,7 +2882,7 @@ button, input, textarea, li, div {
         line-height: 137%;
         letter-spacing: 0.03em;
         color: $color-additional-gray-600;
-        
+
         b {
             color: $color-main-dark;
         }
@@ -2949,7 +2938,7 @@ button, input, textarea, li, div {
         cursor: pointer;
     }
 
-    input:checked ~ .icon span {
+    input:checked~.icon span {
         display: block;
     }
 }
@@ -3000,7 +2989,7 @@ button, input, textarea, li, div {
     .alert-warning {
         padding: 12px;
         gap: 12px;
-    
+
         p {
             font-size: 14px;
         }
@@ -3017,7 +3006,7 @@ button, input, textarea, li, div {
         line-height: 120%;
         letter-spacing: 0.02em;
         color: $color-main-dark;
-        
+
         span {
             color: $color-additional-gray-600
         }
@@ -3031,7 +3020,7 @@ button, input, textarea, li, div {
         background: transparent;
         z-index: 1;
         background: $color-additional-gray-white;
-    
+
         &::before {
             border-radius: 32px;
             content: "";

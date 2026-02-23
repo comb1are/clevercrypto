@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import IMG from "../../assets/images";
 import BottomNav from "../../components/BottomNav";
 import MainBtn from "../../components/UI/MainBtn";
+import IconIndex27 from "../../components/Icons/IconIndex27";
+import IconIndex28 from "../../components/Icons/IconIndex28";
+import IconIndex29 from "../../components/Icons/IconIndex29";
+import IconIndex30 from "../../components/Icons/IconIndex30";
+import IconIndex31 from "../../components/Icons/IconIndex31";
 
 export default function Business () {
     return (<div className="wrapper p-0">
@@ -48,9 +53,7 @@ export default function Business () {
                                     ozon.ru
                                 </div>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconIndex31 />
                         </Link>
                         <Link to={'#'} className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                             <img src={IMG.businessLogo2} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -60,9 +63,7 @@ export default function Business () {
                                     funpay.com
                                 </div>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconIndex30 />
                         </Link>
                     </div>
                     <div className="d-flex flex-column gap-2 w-100">
@@ -82,9 +83,7 @@ export default function Business () {
                                 </div>
                                 <span className="business-link__alert rounded-pill">Цифровые товары</span>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconIndex29 />
                         </Link>
                         <Link to={'#'} className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                             <img src={IMG.businessLogo2} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -95,9 +94,7 @@ export default function Business () {
                                 </div>
                                 <span className="business-link__alert rounded-pill">Цифровые товары</span>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconIndex28 />
                         </Link>
                         <Link to={'#'} className="business-link w-100 d-flex align-items-center justify-content-between p-3 gap-3">
                             <img src={IMG.businessLogo2} alt="" className="logo rounded-circle flex-shrink-0" />
@@ -108,9 +105,7 @@ export default function Business () {
                                 </div>
                                 <span className="business-link__alert rounded-pill">Цифровые товары</span>
                             </div>
-                            <svg className="flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 8L13.2929 11.2929C13.6834 11.6834 13.6834 12.3166 13.2929 12.7071L10 16" stroke="#ADB5BD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <IconIndex27 />
                         </Link>
                     </div>
                 </div>

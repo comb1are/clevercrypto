@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import IMG from "../../assets/images";
 import MainBtn from "../../components/UI/MainBtn";
+import IconTarifs51 from "../../components/Icons/IconTarifs51";
 
 export default function ProfileTarifs () {
     return (<div className="wrapper d-flex flex-column justify-content-between">
@@ -90,10 +91,7 @@ export default function ProfileTarifs () {
                     </div>
                     <div className="best-card overflow-hidden">
                         <div className="best-card__title d-flex align-items-center justify-content-center fw-medium">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.35" d="M16.6663 11.6667C16.6663 15.3484 13.6813 18.3334 9.99967 18.3334C6.31801 18.3334 3.33301 15.3484 3.33301 11.6667C3.33301 8.69672 6.71967 4.45672 8.66551 2.26672C9.37467 1.46839 10.6247 1.46839 11.3338 2.26672C13.2797 4.45672 16.6663 8.69672 16.6663 11.6667Z" fill="black" />
-                                <path d="M13.3337 13.3334C13.3337 15.1742 11.8412 16.6667 10.0003 16.6667C8.15949 16.6667 6.66699 15.1742 6.66699 13.3334C6.66699 11.8484 8.36033 9.72836 9.33283 8.63336C9.68783 8.23419 10.312 8.23419 10.667 8.63336C11.6403 9.72836 13.3337 11.8484 13.3337 13.3334Z" fill="black" />
-                            </svg>
+                            <IconTarifs51 />
                             <span>Лучшее предложение</span>
                         </div>
                         <div className="tarif-card overflow-hidden position-relative">

@@ -130,17 +130,3 @@ $color-additional-cyan-700: #087990;
 $color-additional-cyan-800: #055160;
 $color-additional-cyan-900: #032830;
 // Colors end
-
-@mixin media($value) {
-    @if ($value < 0) {
-        @media screen and (min-width: calc($value * (-1)) + 'px') {
-            @content;
-        }
-    }
-
-    @else {
-        @media screen and (max-width: $value + 'px') {
-            @content;
-        }
-    }
-}

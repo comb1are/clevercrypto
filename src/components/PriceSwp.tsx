@@ -1,25 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/pagination";
 import IMG from "../assets/images";
 
-export default function PriceSwp () {
-    return (<div>
-        <Swiper
-            modules={[Pagination]}
-            slidesPerView={1}
-            spaceBetween={16}
-            loop={true}
-            pagination={{
-                el: '.swiper-pagination',
-                clickable: true,
-            }}
-            className="swiper h-full overflow-visible"
-        >
-            {Array.from({length: 5}).map((_, index) => (
-                <SwiperSlide key={index}>
+export default function PriceSwp() {
+    return (
+        <div className="d-flex overflow-auto gap-3 pb-2">
+            {Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="flex-shrink-0" style={{ width: "90%" }}>
                     <div className="funds-card p-3">
                         <h3 className="d-flex align-items-center gap-2 mb-3 fs-6">
                             <img src={IMG.cryptoBitcoin} width="24" alt="" />
@@ -34,9 +19,8 @@ export default function PriceSwp () {
                             <p className="fs-6">≈$124 492,24</p>
                         </div>
                     </div>
-                </SwiperSlide>
+                </div>
             ))}
-        </Swiper>
-        <div className="swiper-pagination position-relative d-flex align-items-center justify-content-center gap-2 w-100"></div>
-    </div>)
+        </div>
+    )
 }

@@ -8,17 +8,17 @@
             background: rgba(0, 0, 0, 0.16);
             color: $color-main-light;
         }
-    
+
         &-tel {
             span {
                 border-color: $color-additional-gray-800;
                 color: $color-main-light;
             }
-    
+
             input {
                 color: $color-main-light;
                 caret-color: #007aff;
-                
+
                 &::placeholder {
                     color: $color-additional-gray-600;
                 }
@@ -27,15 +27,15 @@
 
         &-price {
             background: rgba(255, 255, 255, 0.04);
-        
+
             input {
                 color: $color-main-light;
-        
+
                 &::placeholder {
                     color: $color-additional-gray-600;
                 }
             }
-        
+
             p {
                 border-color: $color-additional-gray-800;
                 color: $color-main-light;
@@ -52,12 +52,12 @@
                     display: block;
                 }
             }
-    
+
             input {
                 height: 52px;
                 letter-spacing: 0.02em;
                 color: $color-main-dark;
-    
+
                 &::placeholder {
                     color: $color-additional-gray-600;
                 }
@@ -69,11 +69,11 @@
     .header {
         &-logo img {
             display: none;
-    
+
             &.light-img {
                 display: block;
             }
-    
+
             .btn-secondary {
                 background: rgba(225, 228, 253, 0.06);
             }
@@ -99,6 +99,7 @@
             }
         }
     }
+
     // Header end
 
     .btn {
@@ -114,7 +115,8 @@
             background: $color-main-light;
             color: $color-main-dark;
 
-            &:hover, &:active {
+            &:hover,
+            &:active {
                 background: $color-buttons-dark-neutral-hover-pressed;
             }
 
@@ -125,7 +127,9 @@
         }
 
         &-space {
-            &:hover, &:active {
+
+            &:hover,
+            &:active {
                 color: $color-additional-gray-500;
 
                 svg path {
@@ -153,6 +157,7 @@
             }
         }
     }
+
     // Home end
 
     // Auth
@@ -165,16 +170,11 @@
             color: $color-additional-gray-500;
         }
     }
+
     // Auth end
 
     // Anons
     .anons {
-        .swiper-slide {
-            &:not(.swiper-slide-active) {
-                height: 0;
-                overflow: hidden;
-            }
-        }
 
         img {
             display: none;
@@ -195,6 +195,7 @@
             color: $color-additional-gray-600;
         }
     }
+
     // Anons end
 
     .navs {
@@ -208,14 +209,15 @@
             .icon {
                 img {
                     display: none;
-                    
+
                     &.dark-icon {
                         display: block;
                     }
                 }
             }
 
-            &.active, &:hover {
+            &.active,
+            &:hover {
                 color: $color-main-link;
 
                 .icon {
@@ -237,28 +239,28 @@
 
     .main-page {
         z-index: 1;
-    
+
         .circle {
             border-radius: 100%;
             background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20.000000298023224%, rgb(249, 255, 32) 55.000001192092896%, rgb(255, 218, 192) 80.0000011920929%, rgb(252, 118, 227) 100%);
             filter: blur(65px);
             opacity: 0.3;
         }
-    
+
         .overal-balance {
             p {
                 color: $color-additional-gray-500;
             }
-    
+
             h3 {
                 color: $color-main-light;
             }
         }
-    
+
         .navigation {
             a {
                 color: $color-main-light;
-                
+
                 .icon {
                     height: 54px;
                     border-radius: 18px;
@@ -274,18 +276,9 @@
                 }
             }
         }
-    
-    }
-    
-    .swiper-pagination {
-        span {
-            background: rgba(255, 255, 255, 0.25);
 
-            &.swiper-pagination-bullet-active {
-                background: $color-main-light;
-            }
-        }
     }
+
 
     .alert-white {
         background: #0f1012;
@@ -298,11 +291,11 @@
                 display: block;
             }
         }
-    
+
         h3 {
             color: $color-main-light;
         }
-    
+
         .btn-secondary {
             background: $color-buttons-dark-secondary-default;
 
@@ -314,7 +307,7 @@
 
     .my-wallet {
         background: #0f1012;
-    
+
         h2 {
             color: $color-main-light;
         }
@@ -322,11 +315,11 @@
 
     .operation-month {
         background: rgba(255, 255, 255, 0.04);
-    
+
         h3 {
             color: $color-main-light;
         }
-    
+
         &__right {
             padding-left: 12px;
         }
@@ -346,7 +339,7 @@
 
     .clever-card {
         background: rgba(255, 255, 255, 0.04);
-    
+
         .icon {
             background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20.000000298023224%, rgb(249, 255, 32) 55.000001192092896%, rgb(255, 218, 192) 80.0000011920929%, rgb(252, 118, 227) 100%);
             filter: blur(54.5px);
@@ -354,11 +347,11 @@
             height: 159px;
             opacity: 0.13;
         }
-    
+
         h3 {
             color: $color-main-light;
         }
-    
+
         h4 {
             color: $color-main-light;
         }
@@ -369,7 +362,7 @@
             h3 {
                 color: $color-main-light;
             }
-    
+
             h4 {
                 color: $color-main-light;
             }
@@ -387,26 +380,26 @@
             transform: translateX(calc(-50% + 5px)) rotateZ(0deg);
             opacity: 0.3;
         }
-    
+
         &-card {
             h2 {
                 color: $color-main-light;
-                
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
         }
-    
+
         .navigation {
             background: rgba(15, 16, 18, 0.85);
-    
+
             a {
                 color: $color-additional-gray-500;
-                
+
                 .icon {
                     background: rgba(255, 255, 255, 0.04);
-    
+
                     svg {
                         display: none;
 
@@ -418,35 +411,36 @@
             }
         }
     }
-    
+
     .alert-gray {
         color: $color-additional-gray-500;
         background: rgba(255, 255, 255, 0.04);
     }
-    
+
     .transactions {
         background: #0f1012;
-    
+
         h2 {
             color: $color-main-light;
         }
-    
+
         &-navs {
             a {
                 color: $color-main-light;
                 background: rgba(255, 255, 255, 0.04);
-    
-                &.active, &:hover {
+
+                &.active,
+                &:hover {
                     background: $color-main-light;
                     color: $color-main-dark;
                 }
             }
         }
-    
+
         &-card {
             .icon {
                 background: rgba(255, 255, 255, 0.04);
-    
+
                 img {
                     display: none;
 
@@ -459,15 +453,15 @@
                     fill: $color-additional-gray-500;
                 }
             }
-    
+
             h3 {
                 color: $color-main-light;
             }
-    
+
             h4 {
                 color: $color-main-light;
             }
-    
+
             &.input {
                 .icon {
                     svg {
@@ -476,7 +470,7 @@
                         }
                     }
                 }
-    
+
                 h4 {
                     color: $color-additional-teal-600;
                 }
@@ -487,33 +481,30 @@
     .funds {
         &-card {
             background: rgba(255, 255, 255, 0.04);
-    
+
             h3 {
                 color: $color-main-light;
-                
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
-    
+
             h2 {
                 color: $color-main-light;
-    
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
         }
-    
-        .swiper-pagination {
-            margin-top: 12px;
-        }
+
 
         .form-tel {
             background: rgba(255, 255, 255, 0.04);
             border: 0;
         }
-    
+
         .transfer-amount {
             li {
                 background: rgba(255, 255, 255, 0.04);
@@ -534,19 +525,19 @@
         .container {
             gap: 20px;
         }
-    
+
         h3 {
             color: $color-main-light;
-            
+
             span {
                 color: $color-additional-gray-600;
             }
         }
-    
+
         .navigation {
             a {
                 color: $color-additional-gray-600;
-                
+
                 .icon {
                     height: 54px;
                     border-radius: 18px;
@@ -563,7 +554,7 @@
             }
         }
     }
-    
+
     .alert-warning {
         img {
             display: none;
@@ -594,14 +585,14 @@
                 color: $color-additional-gray-500;
             }
         }
-    
+
         &__body {
             background: #202123;
-    
+
             p {
                 color: $color-main-light;
             }
-    
+
             .btn-neutral {
                 img {
                     display: none;
@@ -613,33 +604,33 @@
             }
         }
     }
-    
+
     .history {
         &-check {
             background: #202123;
-        
+
             h3 {
                 color: $color-main-light;
             }
         }
-    
+
         &-card {
             h4 {
                 color: $color-main-light;
-    
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
-    
+
             p {
                 color: $color-additional-gray-600;
             }
-    
+
             b {
                 color: $color-additional-gray-600;
             }
-    
+
             svg circle:nth-child(1) {
                 stroke: $color-additional-gray-800;
             }
@@ -649,7 +640,7 @@
     .pay-card {
         border: 1px solid $color-additional-gray-800;
         background: #0f1012;
-    
+
         img {
             display: none;
 
@@ -657,28 +648,28 @@
                 display: block;
             }
         }
-    
+
         &__left {
             gap: 12px;
         }
-    
+
         h3 {
             color: $color-main-light;
-            
+
             span {
                 color: $color-additional-gray-600;
             }
         }
-    
+
         .price {
             color: $color-main-light;
-    
+
             del {
                 color: $color-additional-gray-600;
             }
         }
     }
-    
+
     .load-page {
         h2 {
             color: $color-main-light;
@@ -694,7 +685,7 @@
             h3 {
                 color: $color-main-light;
             }
-            
+
             p {
                 color: $color-main-light;
             }
@@ -705,7 +696,7 @@
                 color: $color-main-light;
             }
         }
-    
+
         .result-card {
             background: #202123;
             border: 0;
@@ -717,26 +708,26 @@
                 letter-spacing: 0.04em;
                 color: $color-additional-gray-600;
             }
-    
+
             h3 {
                 color: $color-main-light;
-                
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
-    
+
             .line {
                 background: rgba(255, 255, 255, 0.06);
-    
+
                 &.line-green span {
                     background: $color-additional-teal-500;
                 }
-    
+
                 &.line-yellow span {
                     background: $color-additional-yellow-500;
                 }
-    
+
                 &.line-red span {
                     background: $color-additional-red-500;
                 }
@@ -755,15 +746,15 @@
             }
         }
     }
-    
+
     .add-wallet {
         &__card {
             background: #202123;
-    
+
             h3 {
                 color: $color-main-light;
             }
-    
+
             .icon {
                 border: 1px solid $color-additional-gray-700;
             }
@@ -786,7 +777,7 @@
         .form-inp {
             background: rgba(255, 255, 255, 0.06);
         }
-    
+
         a {
             color: $color-additional-gray-500;
             background: #202123;
@@ -802,15 +793,15 @@
         .crypto-list {
             background: #202123;
         }
-    
+
         &__btns {
             gap: 10px;
         }
-    
+
         .btn-red {
             gap: 12px;
         }
-    
+
         .btn-secondary {
             gap: 12px;
             background: $color-buttons-dark-secondary-default;
@@ -841,7 +832,7 @@
                 color: $color-additional-gray-500;
             }
         }
-    
+
         .form-inp {
             background: rgba(255, 255, 255, 0.06);
         }
@@ -861,13 +852,13 @@
             transform: translateX(-50%) rotateZ(156deg);
             opacity: 0.14;
         }
-    
+
         &-head {
             h2 {
                 color: $color-main-light;
             }
         }
-    
+
         &-payment {
             border: 1px solid $color-additional-gray-900;
             background: #202123;
@@ -875,23 +866,23 @@
             h3 {
                 color: $color-main-light;
             }
-    
+
             h4 {
                 color: $color-main-light;
-    
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
-    
+
             .line {
                 background: rgba(255, 255, 255, 0.06);
-    
+
                 span {
                     background: $color-additional-red-500;
                 }
             }
-            
+
             .btn-secondary {
                 background: $color-buttons-dark-secondary-default;
 
@@ -904,23 +895,23 @@
                 }
             }
         }
-    
+
         .link {
             &-list {
                 border: 1px solid $color-additional-gray-900;
                 background: #202123;
             }
-    
+
             &-item {
                 color: $color-main-light;
             }
-    
+
             &-line {
                 height: 1px;
                 background: $color-additional-gray-900;
             }
         }
-    
+
         .log-out {
             border: 1px solid $color-additional-gray-900;
             color: $color-main-light;
@@ -942,24 +933,24 @@
         .form-inp {
             background: rgba(255, 255, 255, 0.06);
         }
-    
+
         .two-factor {
             border: 1px solid $color-additional-gray-800;
         }
-    
+
         .text {
             h4 {
                 color: $color-main-light;
-        
+
                 span {
                     background: rgba(255, 255, 255, 0.04);
                 }
             }
         }
-    
+
         .btns {
             gap: 12px;
-    
+
             .btn-secondary {
                 img {
                     display: none;
@@ -977,11 +968,11 @@
             color: $color-main-light;
         }
     }
-    
+
     .device-card {
         &__text {
             gap: 12px;
-    
+
             img {
                 display: none;
 
@@ -990,7 +981,7 @@
                 }
             }
         }
-    
+
         &__name {
             color: $color-main-light;
         }
@@ -1003,17 +994,17 @@
     .profile-tarif {
         &__head {
             background: rgba(255, 255, 255, 0.04);
-    
+
             a {
                 color: $color-main-light;
-                
+
                 &.active {
                     background: $color-main-link-12;
                     color: $color-main-link;
                 }
             }
         }
-    
+
         .tarif {
             &-card {
                 border-color: $color-additional-gray-800;
@@ -1022,10 +1013,10 @@
                 .bg-img {
                     z-index: -1;
                 }
-                
+
                 &__head {
                     border-color: $color-additional-gray-800;
-    
+
                     .icon {
                         display: none;
 
@@ -1033,20 +1024,20 @@
                             display: block;
                         }
                     }
-    
+
                     h4 {
                         color: $color-main-light;
                     }
-    
+
                     h3 {
                         color: $color-main-light;
                     }
-                    
+
                     .price {
                         color: $color-main-light;
                     }
                 }
-    
+
                 &__bottom {
                     p {
                         span {
@@ -1062,21 +1053,23 @@
         h2 {
             color: $color-main-light;
         }
-    
+
         &-navs {
             border-bottom: 1px solid $color-additional-gray-800;
-    
+
             a {
-                &.active, &:hover {
+
+                &.active,
+                &:hover {
                     color: $color-main-light;
                     background: rgba(255, 255, 255, 0.08);
                 }
             }
         }
-    
+
         .btn-secondary {
             background: $color-buttons-dark-secondary-default;
-    
+
             img {
                 display: none;
 
@@ -1085,10 +1078,10 @@
                 }
             }
         }
-    
+
         &-link {
             background: #202123;
-    
+
             &__title {
                 b {
                     color: $color-main-light;
@@ -1101,7 +1094,7 @@
                     letter-spacing: 0.03em;
                     color: $color-main-light;
                 }
-    
+
                 svg circle:nth-child(1) {
                     stroke: $color-additional-gray-700;
                 }
@@ -1133,38 +1126,38 @@
                 }
             }
         }
-    
+
         .title {
             color: $color-main-light;
-            
+
             span {
                 color: $color-additional-gray-600;
             }
         }
-    
+
         .statistic-card {
             border: 1.5px solid $color-additional-gray-800;
-    
+
             h3 {
                 color: $color-main-light;
             }
         }
-    
+
         .reviews-card {
             background: #202123;
-    
+
             &__name {
                 color: $color-additional-gray-600;
             }
-    
+
             &__rating {
                 color: $color-main-light;
-                
+
                 span {
                     color: $color-additional-gray-600;
                 }
             }
-    
+
             p {
                 color: $color-main-light;
             }
@@ -1177,7 +1170,7 @@
                 color: $color-main-light;
             }
         }
-    
+
         .form-inp {
             background: rgba(255, 255, 255, 0.06);
         }
@@ -1185,7 +1178,7 @@
         .navigation {
             a {
                 color: $color-additional-gray-600;
-                
+
                 .icon {
                     height: 54px;
                     border-radius: 18px;
@@ -1205,10 +1198,10 @@
 
     .payment-card {
         background: #202123;
-    
+
         h3 {
             color: $color-main-light;
-    
+
             span {
                 color: $color-additional-gray-600;
             }
@@ -1220,12 +1213,12 @@
             background: #202123;
 
             &-name {
-            
+
                 b {
                     color: $color-main-light;
                 }
             }
-    
+
             p {
                 color: $color-main-light;
             }
@@ -1235,28 +1228,28 @@
                 color: $color-main-light;
             }
         }
-    
+
         .title {
             color: $color-main-light;
         }
-    
+
         .statistica {
             &-card {
                 background: #202123;
-    
+
                 b {
                     color: $color-main-light;
                 }
             }
-        } 
-    
+        }
+
         .rating-card {
             background: #202123;
         }
-    
+
         .disputes-card {
             background: #202123;
-    
+
             &__head {
                 h3 {
                     color: $color-main-light;
@@ -1274,13 +1267,13 @@
             h3 {
                 color: $color-main-light;
             }
-    
+
             &-right {
                 b {
                     color: $color-main-light;
                 }
             }
-    
+
             &.success {
                 b {
                     color: $color-additional-teal-600;
@@ -1288,29 +1281,30 @@
             }
         }
     }
-    
+
     .main-modal {
         background: #18191b;
     }
-    
+
     .payment-modal {
         h2 {
             color: $color-main-light;
         }
-    
+
         &__card {
             background: rgba(249, 249, 249, 0.06);
-    
+
             h4 {
                 color: $color-main-light;
-    
+
                 .text-gray {
                     color: $color-additional-gray-600;
                 }
             }
         }
-    
+
         .btns {
+
             .btn-neutral,
             .btn-secondary,
             .btn-space {
@@ -1336,31 +1330,31 @@
                     border-color: #0F1012;
                 }
             }
-    
+
             h2 {
                 color: $color-main-light;
             }
         }
-    
+
         &-card {
             border: 1px solid $color-additional-gray-800;
-    
+
             .icon {
                 border: 1px solid $color-additional-gray-700;
             }
-    
+
             h3 {
                 color: $color-main-light;
             }
         }
-    
+
         &-bottom {
             gap: 10px;
 
             .btn-neutral {
                 background: $color-main-accent;
             }
-    
+
             .btn-space {
                 img {
                     display: none;
@@ -1384,14 +1378,14 @@
             background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20.000000298023224%, rgb(249, 255, 32) 55.000001192092896%, rgb(255, 218, 192) 80.0000011920929%, rgb(252, 118, 227) 100%);
             opacity: 0.1;
         }
-    
+
         .icon {
             border: 1px solid $color-additional-gray-700;
         }
-    
+
         h3 {
             color: $color-main-light;
-    
+
             span {
                 color: $color-additional-gray-600;
             }
@@ -1402,15 +1396,15 @@
         h2 {
             color: $color-main-light;
         }
-    
+
         h3 {
             color: $color-main-light;
-    
+
             &.text-blue {
                 color: $color-main-link;
             }
         }
-    
+
         .btn-secondary {
             background: $color-buttons-dark-secondary-default;
         }
@@ -1435,10 +1429,10 @@
         h2 {
             color: $color-main-light;
         }
-    
+
         p {
             color: $color-additional-gray-500;
-            
+
             b {
                 color: $color-main-light;
             }
@@ -1461,7 +1455,7 @@
         .btns {
             flex-direction: column-reverse !important;
         }
-    
+
         &__foot {
             .btn-space {
                 img {
@@ -1473,7 +1467,7 @@
 
     .payment-select {
         border: 1px solid $color-additional-gray-800;
-    
+
         h3 {
             color: $color-main-light;
 
@@ -1481,7 +1475,7 @@
                 color: $color-additional-gray-600;
             }
         }
-    
+
         .icon {
             border: 1px solid $color-additional-gray-700;
         }
@@ -1491,14 +1485,14 @@
         .title {
             color: $color-main-light;
         }
-    
+
         .subtitle {
             color: $color-additional-gray-500;
         }
-    
+
         &__card {
             background: #202123;
-    
+
             h3 {
                 color: $color-main-light;
             }
@@ -1506,7 +1500,7 @@
             img.light-img {
                 filter: invert(1)
             }
-    
+
             button {
                 img {
                     filter: invert(1)
@@ -1526,23 +1520,23 @@
     .paying-modal {
         h2 {
             color: $color-main-light;
-            
+
             span {
                 color: $color-additional-gray-600
             }
         }
-    
+
         ul {
             li {
                 color: $color-main-light;
-    
+
                 &:has(input:checked) {
                     background: $color-main-link-12;
                     color: $color-main-link;
                 }
             }
         }
-    
+
         .btns {
             gap: 10px;
         }

@@ -2,6 +2,8 @@ import { useState } from "react"
 import IMG from "../../assets/images"
 import MainBtn from "../../components/UI/MainBtn";
 import Offcanvas from "../../components/UI/Offcanvas";
+import IconByCrypto41 from "../../components/Icons/IconByCrypto41";
+import IconByCrypto42 from "../../components/Icons/IconByCrypto42";
 
 interface CryptoListInterface {
     id: number;
@@ -41,9 +43,7 @@ export default function PayingByCrypto () {
                     <div className="paying-head d-flex align-items-center justify-content-between pb-3 mb-1">
                         <div className="paying-head__left d-flex align-items-center">
                             <a href="#" className="d-flex align-items-center justify-content-center btn-secondary rounded-circle p-0">
-                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.75993 5.52727C9.43449 5.20186 8.90697 5.20184 8.58154 5.52727L4.46126 9.64755C4.13593 9.97298 4.13589 10.5005 4.46126 10.8259L8.58154 14.9462C8.90695 15.2716 9.43449 15.2715 9.75993 14.9462C10.0854 14.6208 10.0853 14.0933 9.75993 13.7678L7.06217 11.0701H14.9479C15.4081 11.0701 15.7812 10.6969 15.7812 10.2367C15.7812 9.7765 15.4082 9.4034 14.9479 9.4034H7.06217L9.75993 6.70565L9.81689 6.64217C10.0839 6.31486 10.065 5.83237 9.75993 5.52727Z" fill="#282828" />
-                                </svg>
+                                <IconByCrypto42 />
                             </a>
                             <div className="paying-head__img d-flex align-items-center">
                                 <img src={IMG.payLogo1} width="40" alt="" className="flex-shrink-0 rounded-circle" />
@@ -84,9 +84,7 @@ export default function PayingByCrypto () {
                                         </div>
                                         <div className="d-flex align-items-center gap-2">
                                             {index == 0 && (
-                                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path opacity="0.35" fillRule="evenodd" clipRule="evenodd" d="M8.02627 2.32208C8.21752 1.96208 8.59177 1.73633 8.99977 1.73633C9.40777 1.73633 9.78202 1.96208 9.97327 2.32208L11.8205 5.80583C11.8415 5.84633 11.8723 5.88083 11.909 5.90783C11.9458 5.93483 11.9885 5.95283 12.0335 5.96033L15.917 6.64058C16.319 6.71108 16.6483 6.99758 16.775 7.38533C16.901 7.77308 16.8028 8.19908 16.5185 8.49233L13.7765 11.3258C13.745 11.3588 13.721 11.3986 13.7068 11.4413C13.6925 11.4848 13.6888 11.5306 13.6948 11.5763L14.2475 15.4801C14.3045 15.8836 14.1343 16.2863 13.8043 16.5263C13.4743 16.7663 13.0393 16.8038 12.6725 16.6246L9.13102 14.8921C9.09052 14.8718 9.04552 14.8613 8.99977 14.8613C8.95402 14.8613 8.90902 14.8718 8.86777 14.8913L5.32627 16.6238C4.95952 16.8031 4.52452 16.7648 4.19452 16.5256C3.86452 16.2856 3.69427 15.8836 3.75127 15.4793L4.30402 11.5756C4.31077 11.5306 4.30627 11.4841 4.29202 11.4406C4.27777 11.3971 4.25452 11.3573 4.22227 11.3251L1.48027 8.49158C1.19677 8.19833 1.09777 7.77233 1.22377 7.38458C1.34977 6.99683 1.67977 6.71033 2.08177 6.63983L5.96527 5.95958C6.01027 5.95133 6.05302 5.93333 6.08977 5.90708C6.12652 5.88008 6.15727 5.84558 6.17827 5.80508L8.02627 2.32208Z" fill="#282828" />
-                                                </svg>
+                                                <IconByCrypto41 />
                                             )}
                                             <h3 className="fw-medium fs-6">
                                                 Clever {data.subtitle && (<span>{data.subtitle}</span>)}
