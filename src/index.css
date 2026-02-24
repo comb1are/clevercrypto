@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+    --color-surface: var(--bg-main);
+    --color-surface-card: var(--bg-card);
+    --color-primary: var(--text-main);
     --font-helvetica: "HelveticaNeue", sans-serif;
     --font-nagel: "Nagel", sans-serif;
     --font-nebulas: "Nebulas", sans-serif;

@@ -29,7 +29,7 @@ export default function MainBtn({
     onClick,
 }: MainBtnProps) {
     // Common button base classes
-    const base = "w-100 d-flex align-items-center justify-content-center";
+    const base = "";
 
     // Theme variations
     const themeClasses: Record<Theme, string> = {

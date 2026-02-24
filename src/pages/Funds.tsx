@@ -8,24 +8,26 @@ import MoneyInput from "../components/UI/MoneyInput";
 import PriceSwp from "../components/PriceSwp";
 import IconFunds3 from "../components/Icons/IconFunds3";
 import IconFunds4 from "../components/Icons/IconFunds4";
+import { useTheme } from "../hooks/useTheme";
 
-export default function Funds () {
+export default function Funds() {
+    const isDark = useTheme();
     const [phone, setPhone] = useState<string>();
 
-    return (<div className="wrapper d-flex flex-column justify-content-between">
-        <Header type="inner" leftLink="/home" leftLinkIcon="">
+    return (<div className="flex flex-col min-h-screen justify-between py-6 pb-10">
+        <Header type="inner" leftLink="/home" leftLinkIcon="arrow">
             Кошелёк
         </Header>
 
         {/* <!-- Funds --> */}
-        <section className="funds h-full d-flex">
-            <div className="container h-full d-flex flex-column justify-content-between pt-3">
-                <div className="d-flex flex-column gap-3">
+        <section className="funds flex-1 flex flex-col pt-[20px] bg-(--bg-main) rounded-t-[24px]">
+            <div className="container px-4 h-full flex flex-col justify-between">
+                <div className="flex flex-col gap-3">
                     <PriceSwp />
-                    <div className="funds-transaction">
-                        <p className="mb-2">Кому перевести</p>
-                        <div className="position-relative form-tel">
-                            <span className="position-absolute gap-2 d-flex align-items-center justify-content-center fs-6">
+                    <div className="funds-transaction bg-(--btn-secondary-bg) p-4 rounded-[18px]">
+                        <p className="mb-2 text-[#6C757D]">Кому перевести</p>
+                        <div className="relative form-tel flex items-center border-b border-(--header-border) pb-2">
+                            <span className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center gap-2 text-base text-(--title-color)">
                                 <img src={IMG.flagRu} alt="" />
                                 +7
                             </span>
@@ -35,24 +37,26 @@ export default function Funds () {
                                 value={phone}
                                 onAccept={(val: unknown) => setPhone(String(val))}
                                 placeholder="(000) 000-00-00"
-                                className="position-relative h-100 w-100 start-0 top-0 fs-6"
+                                className="w-full bg-transparent outline-none text-base pl-16 py-2 text-(--title-color) placeholder:text-[#6C757D]"
                             />
                         </div>
                     </div>
-                    <div className="transfer-amount d-flex flex-column gap-2">
-                        <p>Сумма перевода</p>
+                    <div className="transfer-amount flex flex-col gap-2 bg-(--btn-secondary-bg) p-4 rounded-[18px]">
+                        <p className="text-[#6C757D]">Сумма перевода</p>
                         <MoneyInput />
-                        <ul className="d-flex align-items-center flex-wrap gap-2">
-                            <li className="d-flex align-items-center rounded-pill">
+                        <ul className="flex items-center flex-wrap gap-2 mt-2">
+                            <li className="flex items-center rounded-full bg-(--bg-main) px-3 py-1 gap-1 text-(--title-color)">
                                 <IconFunds4 />
                                 <IconFunds3 />
-                                <span>В долларах</span>
+                                <span className="text-sm">В долларах</span>
                             </li>
-                            <li className="d-flex align-items-center rounded-pill">Max</li>
+                            <li className="flex items-center rounded-full bg-(--bg-main) px-3 py-1 text-sm text-(--title-color)">Max</li>
                         </ul>
                     </div>
                 </div>
-                <MainBtn theme="primary">Отправить</MainBtn>
+                <div className="mt-4 pb-4">
+                    <MainBtn theme="primary">Отправить</MainBtn>
+                </div>
             </div>
         </section>
         {/* <!-- Funds end --> */}

@@ -1,55 +1,45 @@
 import { Link } from "react-router-dom";
 import IMG from "../assets/images";
+import { useTheme } from "../hooks/useTheme";
+import clsx from "clsx";
 
-export default function BottomNav () {
-    return (<section className="navs position-fixed bottom-0 start-0 w-100 bg-white">
-        <div className="container">
-            <div className="row gx-1">
-                <div className="col-3">
-                    <Link to="#" className="navs-link w-100 d-flex flex-column align-items-center text-center active">
-                        <span className="icon position-relative">
-                            <img src={IMG.navsIcon1} alt="" />
-                            <img src={IMG.navsIcon1Dark} alt="" className="dark-icon" />
-                            <img src={IMG.navsIcon1Dark} alt="" className="active-icon" />
-                            <span className="dot position-absolute rounded-circle"></span>
-                        </span>
-                        <span>Главная</span>
-                    </Link>
-                </div>
-                <div className="col-3">
-                    <Link to="#" className="navs-link w-100 d-flex flex-column align-items-center text-center">
-                        <span className="icon position-relative">
-                            <img src={IMG.navsIcon2} alt="" />
-                            <img src={IMG.navsIcon2Dark} alt="" className="dark-icon" />
-                            <img src={IMG.navsIcon2Dark} alt="" className="active-icon" />
-                            <span className="dot position-absolute rounded-circle"></span>
-                        </span>
-                        <span>Платежи</span>
-                    </Link>
-                </div>
-                <div className="col-3">
-                    <Link to="#" className="navs-link w-100 d-flex flex-column align-items-center text-center">
-                        <span className="icon position-relative">
-                            <img src={IMG.navsIcon3} alt="" />
-                            <img src={IMG.navsIcon3Dark} alt="" className="dark-icon" />
-                            <img src={IMG.navsIcon3Dark} alt="" className="active-icon" />
-                            <span className="dot position-absolute rounded-circle"></span>
-                        </span>
-                        <span>Бизнес</span>
-                    </Link>
-                </div>
-                <div className="col-3">
-                    <Link to="#" className="navs-link w-100 d-flex flex-column align-items-center text-center">
-                        <span className="icon position-relative">
-                            <img src={IMG.navsIcon4} alt="" />
-                            <img src={IMG.navsIcon4Dark} alt="" className="dark-icon" />
-                            <img src={IMG.navsIcon4Dark} alt="" className="active-icon" />
-                            <span className="dot position-absolute rounded-circle"></span>
-                        </span>
-                        <span>Профиль</span>
-                    </Link>
+export default function BottomNav() {
+    const isDark = useTheme();
+
+    const navItems = [
+        { label: "Главная", to: "#", iconDefault: IMG.navsIcon1, iconDark: IMG.navsIcon1Dark, iconActive: IMG.navsIcon1Active, hasDot: true, isActive: true },
+        { label: "Платежи", to: "#", iconDefault: IMG.navsIcon2, iconDark: IMG.navsIcon2Dark, iconActive: IMG.navsIcon2Active, hasDot: true, isActive: false },
+        { label: "Бизнес", to: "#", iconDefault: IMG.navsIcon3, iconDark: IMG.navsIcon3Dark, iconActive: IMG.navsIcon3Active, hasDot: true, isActive: false },
+        { label: "Профиль", to: "#", iconDefault: IMG.navsIcon4, iconDark: IMG.navsIcon4Dark, iconActive: IMG.navsIcon4Active, hasDot: true, isActive: false },
+    ];
+
+    return (
+        <section className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-(--bg-main) pt-[10px] pb-[17px] z-10 border-t border-(--header-border)">
+            <div className="container px-4">
+                <div className="grid grid-cols-4 gap-1">
+                    {navItems.map((item, index) => (
+                        <Link
+                            key={index}
+                            to={item.to}
+                            className={clsx(
+                                "w-full flex flex-col items-center text-center gap-[6px] text-[14px] leading-[1.57] tracking-[0.02em] transition-colors",
+                                item.isActive ? "text-(--title-color)" : "text-[#7B7B7C] hover:text-(--title-color)"
+                            )}
+                        >
+                            <span className="relative flex items-center justify-center">
+                                <img
+                                    src={item.isActive ? item.iconActive : (isDark ? item.iconDark : item.iconDefault)}
+                                    alt={item.label}
+                                />
+                                {item.hasDot && (
+                                    <span className="absolute -top-[3px] -right-[4.25px] w-[9px] h-[9px] bg-[#EF4444] rounded-full"></span>
+                                )}
+                            </span>
+                            <span>{item.label}</span>
+                        </Link>
+                    ))}
                 </div>
             </div>
-        </div>
-    </section>)
+        </section>
+    );
 }

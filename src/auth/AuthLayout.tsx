@@ -22,7 +22,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                         <img src={isDark ? IMG.logoLight : IMG.logo} alt="Logo" className="w-full rounded-lg" />
                     </Link>
                     <Link to={'/'} className="w-10 h-10 flex items-center justify-center rounded-2xl bg-(--btn-secondary-bg) transition-colors hover:bg-(--buttons-light-secondary-hover-pressed)">
-                        <IconAuthLayout2 />
+                        <IconAuthLayout2 isDark={isDark} />
                     </Link>
                 </div>
             </header>
@@ -36,8 +36,8 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             </main>
 
             <footer className="pt-[10px] shrink-0 relative z-10 w-full mt-8">
-                <div className="px-4 w-full flex flex-col gap-4">
-                    <MainBtn to={'#'} theme="space" className="gap-3">
+                <div className="px-4 w-full flex justify-center">
+                    <MainBtn to={'#'} className="gap-4 flex text-[#6C757D]">
                         <IconAuthLayout1 />
                         <span>Вход по Telegram</span>
                     </MainBtn>

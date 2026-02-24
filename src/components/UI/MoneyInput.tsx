@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { IMaskInput } from "react-imask";
 
-export default function MoneyInput () {
+export default function MoneyInput() {
     const [amount, setAmount] = useState<string | any>('')
 
     return (
-        <div className="form-price position-relative">
+        <div className="form-price relative">
             <IMaskInput
                 mask={Number}
                 scale={2}
@@ -17,9 +17,9 @@ export default function MoneyInput () {
                 value={amount}
                 onAccept={(val: unknown) => setAmount(String(val))}
                 placeholder="0,00"
-                className="position-relative w-100 px-4 fs-6"
+                className="relative w-full px-4 text-base bg-transparent text-(--main-dark) outline-none"
             />
-            <p className="px-3 position-absolute position-absolute end-0 top-50 translate-middle-y d-flex align-items-center fs-6">BTC</p>
+            <p className="px-3 absolute right-0 top-1/2 -translate-y-1/2 flex items-center text-base text-(--additional-gray-600) pointer-events-none">BTC</p>
         </div>
     )
 }

@@ -93,22 +93,22 @@ function EmailStep({
     onNext,
 }: EmailStepProps) {
     return (
-        <div className="container d-flex flex-column row-gap-3">
-            <h2 className="auth-title">Создать <br /> аккаунт</h2>
-            <p>Введите Email или номер телефона</p>
+        <div className="flex flex-col gap-3">
+            <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Создать <br /> аккаунт</h2>
+            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Введите Email или номер телефона</p>
 
             {!isPhone ? (
                 <input
                     type="text"
                     value={email}
                     onChange={onEmailChange}
-                    className="px-4 fs-6 form-inp"
+                    className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
                     placeholder="Email или номер телефона"
                 />
             ) : (
-                <div className="position-relative form-tel">
-                    <span className="position-absolute gap-2 d-flex align-items-center justify-content-center fs-6">
-                        <img src={IMG.flagRu} alt="flag" />
+                <div className="relative w-full h-12 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl z-10 flex items-center">
+                    <span className="absolute left-[23px] top-[7px] py-[6px] pr-4 flex items-center gap-2 text-[--text-main] text-base tracking-[0.02em] z-[-1] border-r border-[#dee2e6]">
+                        <img src={IMG.flagRu} alt="flag" className="w-5 h-5 shrink-0 rounded-full" />
                         +7
                     </span>
                     <IMaskInput
@@ -118,13 +118,13 @@ function EmailStep({
                         value={phone}
                         onAccept={(val: any) => onPhoneChange(String(val))}
                         placeholder="(___) ___-__-__"
-                        className="position-relative h-100 w-100 start-0 top-0 fs-6"
+                        className="w-full h-full pl-[101px] pr-5 text-(--text-main) text-base tracking-[0.02em] bg-transparent outline-none caret-blue-500 placeholder-[#6c757d]"
                     />
                 </div>
             )}
 
-            <div className="d-flex flex-column w-100 auth-btns">
-                <MainBtn onClick={onNext} disabled={btnDisabled} theme="neutral" className="fw-medium">Продолжить</MainBtn>
+            <div className="flex flex-col w-full gap-3 mt-4">
+                <MainBtn onClick={onNext} disabled={btnDisabled} className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${btnDisabled ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`}>Продолжить</MainBtn>
             </div>
         </div>
     );
@@ -139,20 +139,20 @@ interface PasswordStepProps {
 
 function PasswordStep({ password, setPassword, onNext }: PasswordStepProps) {
     return (
-        <div className="container d-flex flex-column row-gap-3">
-            <h2 className="auth-title">Придумайте <br /> пароль</h2>
-            <p>Придумайте пароль для входа в аккаунт</p>
+        <div className="flex flex-col gap-3">
+            <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Придумайте <br /> пароль</h2>
+            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Придумайте пароль для входа в аккаунт</p>
 
             <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Пароль"
-                className="px-4 fs-6 form-inp"
+                className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
             />
 
-            <div className="d-flex flex-column w-100 auth-btns">
-                <MainBtn disabled={password.length <= 5} onClick={onNext} theme="neutral" className="fw-medium">Продолжить</MainBtn>
+            <div className="flex flex-col w-full gap-3 mt-4">
+                <MainBtn disabled={password.length <= 5} onClick={onNext} className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${password.length <= 5 ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`}>Продолжить</MainBtn>
             </div>
         </div>
     );
@@ -194,13 +194,13 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
     };
 
     return (
-        <div className="container d-flex flex-column row-gap-3">
-            <h2 className="auth-title">Введите <br /> код-пароль</h2>
-            <p>Прислали СМС на ваш телефон</p>
+        <div className="flex flex-col gap-3">
+            <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Введите <br /> код-пароль</h2>
+            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Прислали СМС на ваш телефон</p>
 
-            <div className="row check-code w-100">
+            <div className="flex w-full gap-3">
                 {[0, 1, 2, 3].map((i) => (
-                    <div key={i} className="col-3">
+                    <div key={i} className="flex-1">
                         <input
                             ref={(el) => {
                                 if (el) inputRefs.current[i] = el;
@@ -208,7 +208,7 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
                             type="text"
                             maxLength={1}
                             placeholder="0"
-                            className="form-inp text-center"
+                            className="w-full h-12 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d] text-center"
                             inputMode="numeric"
                             pattern="[0-9]*"
                             onChange={(e) => handleChange(i, e.target.value)}
@@ -218,12 +218,11 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
                 ))}
             </div>
 
-            <div className="d-flex flex-column w-100 auth-btns">
+            <div className="flex flex-col w-full gap-3 mt-4">
                 <MainBtn
                     disabled={!isComplete}
-                    theme="neutral"
-                    className="check-code__submit fw-medium"
-                    onClick={() => {console.log(smsCode)}}
+                    className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${!isComplete ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`}
+                    onClick={() => { console.log(smsCode) }}
                 >
                     Продолжить
                 </MainBtn>

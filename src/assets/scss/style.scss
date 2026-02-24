@@ -1,7 +1,7 @@
-@import './global';
-
 @layer base {
     // не трогать 
+
+
 
     * {
         padding: 0;
@@ -88,7 +88,7 @@
 
     body,
     #root {
-        max-width: 480px;
+        max-width: 454px;
         margin: 0 auto;
         overflow-x: hidden;
     }
@@ -108,28 +108,47 @@
         --black: rgba(15, 16, 18, 1);
 
 
+        --color-surface: var(--bg-main);
+        --color-surface-card: var(--bg-card);
+        --color-primary: var(--text-main);
+        --font-helvetica: "HelveticaNeue", sans-serif;
+        --font-nagel: "Nagel", sans-serif;
+        --font-nebulas: "Nebulas", sans-serif;
+        --font-sf-compact: "SF Compact Display", sans-serif;
+        --font-sf-display: "SF Pro Display", sans-serif;
+        --font-sf-text: "SFProText", sans-serif;
+
+
         --bg-main: #ffffff;
         --text-main: #282828;
-        --bg-card: #f8f9fa;
-
+        --bg-secondary: rgba(249, 249, 249, 1);
+        --bg-card: rgba(255, 255, 255, 0.85);
+        --border-secondary: rgba(233, 236, 239, 1);
         --header-border: #E5E7EB;
-        --btn-secondary-bg: rgba(40, 40, 40, 0.04);
+
         --title-color: #2d2d2d;
 
         --bg-accent: rgba(247, 248, 249, 1);
+        --btn-active: rgba(123, 123, 124, 1);
+        --btn-secondary-bg: rgba(40, 40, 40, 0.04);
+        --btn-main: rgba(40, 40, 40, 1);
 
         --intro-btn-bg: rgba(247, 248, 249, 1);
     }
 
     /* ТЕМНАЯ ТЕМА (Включается только если на <body> есть класс "dark") */
     body.dark {
-        --bg-main: #0F1012;
+        --bg-main: rgba(15, 16, 18, 1);
         --text-main: #e7e7e7;
-        --bg-card: #202123;
+        --bg-secondary: rgba(0, 0, 0, 0.16);
+        --bg-card: rgba(15, 16, 18, 0.85);
+        --border-secondary: rgba(52, 58, 64, 1);
 
         --header-border: #1F2937;
         --btn-secondary-bg: rgba(255, 255, 255, 0.04);
         --title-color: #ffffff;
+
+        --btn-main: rgba(231, 231, 231, 1);
 
         --intro-btn-bg: rgba(225, 228, 253, 0.06);
     }
@@ -146,10 +165,19 @@
     }
 }
 
+@layer utilities {
+    .bg-glow-blob {
+        background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%);
+    }
+}
+
 
 
 @theme {
-    --color-surface: var(--bg-main);
-    --color-surface-card: var(--bg-card);
-    --color-primary: var(--text-main);
+    --font-helvetica: "HelveticaNeue", sans-serif;
+    --font-nagel: "Nagel", sans-serif;
+    --font-nebulas: "Nebulas", sans-serif;
+    --font-sf-compact: "SF Compact Display", sans-serif;
+    --font-sf-display: "SF Pro Display", sans-serif;
+    --font-sf-text: "SFProText", sans-serif;
 }

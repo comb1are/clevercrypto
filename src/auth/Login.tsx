@@ -29,7 +29,7 @@ export default function Login() {
             setTimeout(() => inputRef.current?.focus(), 100);
         }
     }, []);
-    
+
 
     // Email/phone verification
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Login() {
     }, [email, phone]);
 
     return <AuthLayout>
-        { status == 'password' ? (
+        {status == 'password' ? (
             <PasswordStep password={password} setPassword={setPassword} />
         ) : (
             <EmailStep
@@ -79,22 +79,22 @@ function EmailStep({
     onNext,
 }: EmailStepProps) {
     return (
-        <div className="container d-flex flex-column row-gap-3">
-            <h2 className="auth-title">Вход <br /> в аккаунт</h2>
-            <p>Введите Email или номер телефона для входа</p>
+        <div className="flex flex-col gap-3">
+            <h2 className="font-nagel font-medium text-[48px] leading-none text-main ">Вход <br /> в аккаунт</h2>
+            <p className="text-base tracking-[0.02em] text-(--additional-gray-600) ">Введите Email или номер телефона для входа</p>
 
             {!isPhone ? (
                 <input
                     type="text"
                     value={email}
                     onChange={onEmailChange}
-                    className="px-4 fs-6 form-inp"
+                    className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
                     placeholder="Email или номер телефона"
                 />
             ) : (
-                <div className="position-relative form-tel">
-                    <span className="position-absolute gap-2 d-flex align-items-center justify-content-center fs-6">
-                        <img src={IMG.flagRu} alt="flag" />
+                <div className="relative w-full h-12 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl z-10 flex items-center">
+                    <span className="absolute left-[23px] top-[7px] py-[6px] pr-4 flex items-center gap-2 text-[--text-main] text-base tracking-[0.02em] z-[-1] border-r border-[#dee2e6]">
+                        <img src={IMG.flagRu} alt="flag" className="w-5 h-5 shrink-0 rounded-full" />
                         +7
                     </span>
                     <IMaskInput
@@ -104,14 +104,14 @@ function EmailStep({
                         value={phone}
                         onAccept={(val: any) => onPhoneChange(String(val))}
                         placeholder="(___) ___-__-__"
-                        className="position-relative h-100 w-100 start-0 top-0 fs-6"
+                        className="w-full h-full pl-[101px] pr-5 text-(--text-main) text-base tracking-[0.02em] bg-transparent outline-none caret-blue-500 placeholder-[#6c757d]"
                     />
                 </div>
             )}
 
-            <div className="d-flex flex-column w-100 auth-btns">
-                <MainBtn onClick={onNext} disabled={btnDisabled} theme="neutral" className="fw-medium" >Продолжить</MainBtn>
-                <MainBtn to="/register" theme="space" className="gap-3">Создать аккаунт</MainBtn>
+            <div className="flex flex-col w-full gap-3 mt-4">
+                <MainBtn onClick={onNext} disabled={btnDisabled} className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${btnDisabled ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`} >Продолжить</MainBtn>
+                <MainBtn to="/register" theme="space" className="font-medium py-4 text-center rounded-2xl text-[rgba(173, 181, 189, 1)]">Создать аккаунт</MainBtn>
             </div>
         </div>
     );
@@ -125,20 +125,20 @@ interface PasswordStepProps {
 
 function PasswordStep({ password, setPassword }: PasswordStepProps) {
     return (
-        <div className="container d-flex flex-column row-gap-3">
-            <h2 className="auth-title">Введите <br /> пароль</h2>
-            <p>Введите пароль для авторизации</p>
+        <div className="flex flex-col gap-3">
+            <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Введите <br /> пароль</h2>
+            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Введите пароль для авторизации</p>
 
             <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Пароль"
-                className="px-4 fs-6 form-inp"
+                className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
             />
 
-            <div className="d-flex flex-column w-100 auth-btns">
-                <MainBtn disabled={password.length <= 5} theme="neutral" className="fw-medium" >Войти</MainBtn>
+            <div className="flex flex-col w-full gap-3 mt-4">
+                <MainBtn disabled={password.length <= 5} className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${password.length <= 5 ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`} >Войти</MainBtn>
             </div>
         </div>
     );
