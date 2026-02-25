@@ -16,7 +16,7 @@ import "./assets/scss/style.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MemoryRouter initialEntries={['/home']}>
+    <MemoryRouter initialEntries={['/withdraw']}>
       <App />
     </MemoryRouter>
   </React.StrictMode>

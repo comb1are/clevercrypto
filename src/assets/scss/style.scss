@@ -107,7 +107,7 @@
         --bg-green: rgba(157, 255, 115, 1);
         --black: rgba(15, 16, 18, 1);
         --grey: #6C757D;
-
+        --orange-bg: rgba(255, 193, 7, 0.12);
         --color-surface: var(--bg-main);
         --color-surface-card: var(--bg-card);
         --color-primary: var(--text-main);
@@ -172,6 +172,12 @@
 @layer utilities {
     .bg-glow-blob {
         background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%);
+    }
+
+    .border-glow-blob {
+        background: linear-gradient(var(--text-main), var(--text-main)) padding-box,
+            radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%) border-box;
+        border: 2px solid transparent;
     }
 }
 

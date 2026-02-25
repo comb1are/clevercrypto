@@ -47,7 +47,7 @@ export default function Home() {
                     </div>
                     <div className="grid grid-cols-4 gap-2 mb-4 navigation mx-3 bg-(--bg-card) rounded-[24px] p-3">
                         <div className="">
-                            <Link to="#" className="w-full flex flex-col items-center text-center gap-2">
+                            <Link to="/withdraw" className="w-full flex flex-col items-center text-center gap-2">
                                 <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
                                     {isDark ? <IconHome14 /> : <IconHome15 />}
                                 </div>

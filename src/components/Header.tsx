@@ -25,7 +25,7 @@ export default function Header({
     return (
         <header className={clsx(
             'shrink-0 pb-4',
-            type == 'inner' && 'border-b border-[var(--header-border)]',
+            type == 'inner' && 'border-b border-[#212529]',
             className
         )}>
             {type == 'inner' ? (
