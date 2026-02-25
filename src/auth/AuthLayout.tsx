@@ -37,7 +37,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
             <footer className="pt-[10px] shrink-0 relative z-10 w-full mt-8">
                 <div className="px-4 w-full flex justify-center">
-                    <MainBtn to={'#'} className="gap-4 flex text-[#6C757D]">
+                    <MainBtn to={'#'} className="gap-4 flex text-(--grey)">
                         <IconAuthLayout1 />
                         <span>Вход по Telegram</span>
                     </MainBtn>

@@ -2,21 +2,21 @@ import IMG from "../assets/images";
 
 export default function PriceSwp() {
     return (
-        <div className="d-flex overflow-auto gap-3 pb-2">
+        <div className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-4 px-4 -mx-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {Array.from({ length: 5 }).map((_, index) => (
-                <div key={index} className="flex-shrink-0" style={{ width: "90%" }}>
-                    <div className="funds-card p-3">
-                        <h3 className="d-flex align-items-center gap-2 mb-3 fs-6">
+                <div key={index} className="shrink-0 snap-center w-[100%]">
+                    <div className="bg-(--bg-secondary) p-4 rounded-[18px]">
+                        <h3 className="flex items-center gap-2 mb-3 text-base leading-[1.37] tracking-[0.03em] text-(--title-color)">
                             <img src={IMG.cryptoBitcoin} width="24" alt="" />
                             Bitcoin
-                            <span>bc1qm...3scw</span>
+                            <span className="text-[14px] leading-[1.43] tracking-[0.04em] text-[#6C757D]">bc1qm...3scw</span>
                         </h3>
-                        <div className="d-flex justify-content-between align-items-end">
-                            <h2 className="fw-medium lh-1 d-flex align-items-end gap-2">
+                        <div className="flex justify-between items-end">
+                            <h2 className="font-medium font-nagel text-[38px] leading-none flex items-end gap-2 text-(--title-color)">
                                 1.4919
-                                <span className="fw-normal">BTC</span>
+                                <span className="font-normal font-nebulas text-[18px] leading-[1.33] tracking-[0.03em] text-[#6C757D]">BTC</span>
                             </h2>
-                            <p className="fs-6">≈$124 492,24</p>
+                            <p className="text-base font-nebulas leading-[1.37] tracking-[0.03em] text-[#6C757D]">≈$124 492,24</p>
                         </div>
                     </div>
                 </div>

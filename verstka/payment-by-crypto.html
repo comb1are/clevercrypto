@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Fotns -->
+    <link rel="stylesheet" href="./assets/fonts/nebulas/stylesheet.css">
+    <link rel="stylesheet" href="./assets/fonts/SFCompactText/stylesheet.css">
+    <link rel="stylesheet" href="./assets/fonts/nagel/stylesheet.css">
+    <link rel="stylesheet" href="./assets/fonts/SFProDisplay/stylesheet.css">
+    <link rel="stylesheet" href="./assets/fonts/HelveticaNeue/stylesheet.css">
+    <link rel="stylesheet" href="./assets/fonts/SFProText/stylesheet.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Syle CSS -->
+    <link rel="stylesheet" href="./assets/scss/style.css">
+</head>
+
+<body>
+
+    <div class="wrapper p-0 d-flex">
+
+        <!-- Paying -->
+        <section class="paying h-full d-flex flex-column">
+            <div class="container h-full d-flex flex-column justify-content-between gap-4">
+                <div class="w-100">
+                    <div class="paying-head d-flex align-items-center justify-content-between pb-3 mb-1">
+                        <div class="paying-head__left d-flex align-items-center">
+                            <a href="#" class="d-flex align-items-center justify-content-center btn-secondary rounded-circle p-0">
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.75993 5.52727C9.43449 5.20186 8.90697 5.20184 8.58154 5.52727L4.46126 9.64755C4.13593 9.97298 4.13589 10.5005 4.46126 10.8259L8.58154 14.9462C8.90695 15.2716 9.43449 15.2715 9.75993 14.9462C10.0854 14.6208 10.0853 14.0933 9.75993 13.7678L7.06217 11.0701H14.9479C15.4081 11.0701 15.7812 10.6969 15.7812 10.2367C15.7812 9.7765 15.4082 9.4034 14.9479 9.4034H7.06217L9.75993 6.70565L9.81689 6.64217C10.0839 6.31486 10.065 5.83237 9.75993 5.52727Z" fill="#282828" />
+                                </svg>
+                            </a>
+                            <div class="paying-head__img d-flex align-items-center">
+                                <img src="./assets/images/pay-logo-1.svg" width="40" alt="" class="flex-shrink-0 rounded-circle">
+                                <img src="./assets/images/pay-logo-2.svg" width="40" alt="" class="flex-shrink-0 rounded-circle">
+                            </div>
+                            <h2 class="fw-medium lh-1">Funpay</h2>
+                        </div>
+                        <p class="fs-6">#451940</p>
+                    </div>
+                    <div class="paying-body d-flex flex-column">
+                        <label for="">Выберите валюту для оплаты</label>
+                        <div class="form-search d-flex align-items-center gap-3 ps-4">
+                            <button class="h-100 flex-shrink-0">
+                                <img src="./assets/images/search-icon-2.svg" alt="">
+                                <img src="./assets/images/search-icon-2-dark.svg" alt="" class="dark-icon">
+                            </button>
+                            <input type="text" placeholder="Найти монету..." class="w-100 fs-6 pe-2">
+                        </div>
+                        <div class="row g-1">
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="circle-bg rounded-circle position-absolute"></div>
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-1.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" checked class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.35" fill-rule="evenodd" clip-rule="evenodd" d="M8.02627 2.32208C8.21752 1.96208 8.59177 1.73633 8.99977 1.73633C9.40777 1.73633 9.78202 1.96208 9.97327 2.32208L11.8205 5.80583C11.8415 5.84633 11.8723 5.88083 11.909 5.90783C11.9458 5.93483 11.9885 5.95283 12.0335 5.96033L15.917 6.64058C16.319 6.71108 16.6483 6.99758 16.775 7.38533C16.901 7.77308 16.8028 8.19908 16.5185 8.49233L13.7765 11.3258C13.745 11.3588 13.721 11.3986 13.7068 11.4413C13.6925 11.4848 13.6888 11.5306 13.6948 11.5763L14.2475 15.4801C14.3045 15.8836 14.1343 16.2863 13.8043 16.5263C13.4743 16.7663 13.0393 16.8038 12.6725 16.6246L9.13102 14.8921C9.09052 14.8718 9.04552 14.8613 8.99977 14.8613C8.95402 14.8613 8.90902 14.8718 8.86777 14.8913L5.32627 16.6238C4.95952 16.8031 4.52452 16.7648 4.19452 16.5256C3.86452 16.2856 3.69427 15.8836 3.75127 15.4793L4.30402 11.5756C4.31077 11.5306 4.30627 11.4841 4.29202 11.4406C4.27777 11.3971 4.25452 11.3573 4.22227 11.3251L1.48027 8.49158C1.19677 8.19833 1.09777 7.77233 1.22377 7.38458C1.34977 6.99683 1.67977 6.71033 2.08177 6.63983L5.96527 5.95958C6.01027 5.95133 6.05302 5.93333 6.08977 5.90708C6.12652 5.88008 6.15727 5.84558 6.17827 5.80508L8.02627 2.32208Z" fill="#282828" />
+                                        </svg>
+                                        <h3 class="fw-medium fs-6">
+                                            Clever
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-2.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">Ethereum</h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-3.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">Bitcoin</h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-4.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        USDT <span>TRC-20</span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-5.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        USDT <span>ERC-20</span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-6.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        USDT <span>BNB-20</span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-7.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        USD Coin
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-8.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        Tron
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
+                                    <div class="w-100 d-flex align-items-center justify-content-between gap-3">
+                                        <img src="./assets/images/payment-crypto-9.svg" width="28" height="28" alt="" class="flex-shrink-0 rounded-circle">
+                                        <input type="radio" name="selectCountry" class="position-absolute top-0 start-0 w-100 h-100">
+                                        <div class="icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <span class="rounded-circle"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="fw-medium fs-6">
+                                        Litecoin
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-flex flex-column paying-bottom">
+                    <button class="w-100 d-flex align-items-center justify-content-center fw-medium btn-primary">Перейти к оплате</button>
+                    <button class="w-100 d-flex align-items-center justify-content-center btn-space" type="button" data-bs-toggle="offcanvas" data-bs-target="#detailModal" aria-controls="detailModal">
+                        <img src="./assets/images/warning-circle-gray.svg" alt="" class="flex-shrink-0">
+                        <img src="./assets/images/warning-circle-gray-dark.svg" alt="" class="flex-shrink-0 dark-icon">
+                        <span>Детали платежа</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Paying end -->
+
+        <!-- Show payment modal -->
+        <div class="offcanvas offcanvas-bottom border-0 main-modal details-modal" tabindex="-1" id="detailModal" aria-labelledby="detailModalLabel">
+            <div class="offcanvas-body">
+                <div class="container d-flex flex-column gap-4">
+                    <h2 class="fw-medium lh-1">Детали платежа</h2>
+                    <ul class="d-flex flex-column gap-4">
+                        <li class="d-flex align-items-center justify-content-between gap-3">
+                            <p class="fs-6">Продавец</p>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="./assets/images/business-logo-2.svg" width="22" height="22" alt="" class="rounded-circle ">
+                                <h3 class="fs-6 text-blue">FunPay</h3>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center justify-content-between gap-3">
+                            <p class="fs-6">Страховой депозит</p>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="./assets/images/payment-crypto-1.svg" width="22" height="22" alt="" class="rounded-circle ">
+                                <h3 class="fs-6">120.50 CLV</h3>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center justify-content-between gap-3">
+                            <p class="fs-6">Номер заказа</p>
+                            <h3 class="fs-6 flex-shrink-0">#124624</h3>
+                        </li>
+                    </ul>
+                    <div class="btns w-100 d-flex flex-column">
+                        <a href="" class="w-100 d-flex align-items-center justify-content-center link-btn">
+                            <img src="./assets/images/message-icon.svg" alt="" class="flex-shrink-0">
+                            <span>Написать продавцу</span>
+                        </a>
+                        <a href="#" class="w-100 d-flex align-items-center justify-content-center btn-red">
+                            <img src="./assets/images/alert-red.svg" width="24" alt="" class="flex-shrink-0">
+                            <span>Открыть спор</span>
+                        </a>
+                        <button class="w-100 d-flex align-items-center justify-content-center text-center btn-secondary" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Show payment modal end -->
+
+    </div>
+
+    <!-- iMask JS -->
+    <script src="./assets/js/iMask.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- JS file -->
+    <script src="./assets/js/main.js"></script>
+
+</body>
+
+</html>

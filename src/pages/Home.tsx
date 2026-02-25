@@ -1,4 +1,5 @@
 import IMG from "../assets/images"
+import { useState } from "react";
 import BottomNav from "../components/BottomNav"
 import Header from "../components/Header"
 
@@ -20,6 +21,7 @@ import { useTheme } from "../hooks/useTheme";
 
 export default function Home() {
     const isDark = useTheme();
+    const [activeIndex, setActiveIndex] = useState(0);
 
     return (<div className="py-6 pb-10 flex flex-col min-h-screen">
         <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
@@ -53,7 +55,7 @@ export default function Home() {
                             </Link>
                         </div>
                         <div className="">
-                            <Link to="#" className="w-full flex flex-col items-center text-center gap-2">
+                            <Link to="/funds" className="w-full flex flex-col items-center text-center gap-2">
                                 <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
                                     {isDark ? <IconHome12 /> : <IconHome13 />}
                                 </div>
@@ -77,9 +79,12 @@ export default function Home() {
                             </Link>
                         </div>
                     </div>
-                    <div className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <div
+                        className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        onScroll={(e) => setActiveIndex(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
+                    >
                         {Array.from({ length: 5 }).map((_, index) => (
-                            <div key={index} className="shrink-0 snap-center w-[100%]">
+                            <div key={index} className="shrink-0 snap-center w-full">
                                 <div className="relative flex rounded-[18px] bg-(--bg-main) items-center gap-5  px-4 py-3 ">
                                     <img
                                         src={isDark ? IMG.alertWhiteIcon1Dark : IMG.alertWhiteIcon1}
@@ -101,6 +106,15 @@ export default function Home() {
                                     </button>
                                 </div>
                             </div>
+                        ))}
+                    </div>
+                    <div className="flex justify-center gap-1.5 mt-1 mb-4">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? "bg-(--title-color) w-4" : "bg-(--25-opacity)  w-1.5"
+                                    }`}
+                            ></div>
                         ))}
                     </div>
                 </div>

@@ -32,7 +32,7 @@ export default function Header({
                 <div className="px-4 w-full flex items-center justify-between">
                     <div className="w-10 h-10 flex items-center justify-center">
                         {leftLinkIcon !== 'hidden' && (
-                            <MainBtn to={leftLink} theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)]'>
+                            <MainBtn to={leftLink} theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)] justify-center items-center rounded-full flex'>
                                 {leftLinkIcon === 'arrow' ? (
                                     <img src={isDark ? IMG.arrowLeftDark : IMG.arrowLeft} alt="" />
                                 ) : (

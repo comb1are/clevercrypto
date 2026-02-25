@@ -88,7 +88,7 @@ function EmailStep({
                     type="text"
                     value={email}
                     onChange={onEmailChange}
-                    className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
+                    className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-(--main-dark) text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#text-(--grey)]"
                     placeholder="Email или номер телефона"
                 />
             ) : (
@@ -104,7 +104,7 @@ function EmailStep({
                         value={phone}
                         onAccept={(val: any) => onPhoneChange(String(val))}
                         placeholder="(___) ___-__-__"
-                        className="w-full h-full pl-[101px] pr-5 text-(--text-main) text-base tracking-[0.02em] bg-transparent outline-none caret-blue-500 placeholder-[#6c757d]"
+                        className="w-full h-full pl-[101px] pr-5 text-(--text-main) text-base tracking-[0.02em] bg-transparent outline-none caret-blue-500 placeholder-[#text-(--grey)]"
                     />
                 </div>
             )}
@@ -134,7 +134,7 @@ function PasswordStep({ password, setPassword }: PasswordStepProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Пароль"
-                className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#6c757d]"
+                className="w-full h-12 px-4 bg-(--bg-secondary) border border-(--border-secondary) rounded-2xl text-base tracking-[0.02em] outline-none caret-blue-500 placeholder-[#text-(--grey)]"
             />
 
             <div className="flex flex-col w-full gap-3 mt-4">

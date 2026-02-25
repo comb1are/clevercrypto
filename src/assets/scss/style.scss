@@ -106,7 +106,7 @@
     :root {
         --bg-green: rgba(157, 255, 115, 1);
         --black: rgba(15, 16, 18, 1);
-
+        --grey: #6C757D;
 
         --color-surface: var(--bg-main);
         --color-surface-card: var(--bg-card);
@@ -128,6 +128,8 @@
 
         --title-color: #2d2d2d;
 
+
+        --25-opacity: rgba(0, 0, 0, 0.25);
         --bg-accent: rgba(247, 248, 249, 1);
         --btn-active: rgba(123, 123, 124, 1);
         --btn-secondary-bg: rgba(40, 40, 40, 0.04);
@@ -144,6 +146,8 @@
         --bg-card: rgba(15, 16, 18, 0.85);
         --border-secondary: rgba(52, 58, 64, 1);
 
+
+        --25-opacity: rgba(255, 255, 255, 0.25);
         --header-border: #1F2937;
         --btn-secondary-bg: rgba(255, 255, 255, 0.04);
         --title-color: #ffffff;
