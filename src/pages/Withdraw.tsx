@@ -12,7 +12,7 @@ import { useTheme } from "../hooks/useTheme";
 export default function Withdraw() {
     const isDark = useTheme();
 
-    return (<div className="flex flex-col justify-between min-h-screen pt-6 ">
+    return (<div className="flex flex-col justify-between min-h-screen  ">
         <Header type="inner" leftLink="/home" leftLinkIcon="">Пополнить баланс</Header>
 
         {/* <!-- Withdraw --> */}

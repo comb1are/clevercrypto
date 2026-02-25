@@ -15,7 +15,7 @@ export default function Funds() {
     const [phone, setPhone] = useState<string>();
     const [activeIndex, setActiveIndex] = useState(0);
 
-    return (<div className="flex flex-col min-h-screen py-6 pb-10">
+    return (<div className="flex flex-col min-h-screen pb-10">
         <Header type="inner" leftLink="/home" leftLinkIcon="arrow">
             Кошелёк
         </Header>

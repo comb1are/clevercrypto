@@ -23,7 +23,7 @@ export default function Home() {
     const isDark = useTheme();
     const [activeIndex, setActiveIndex] = useState(0);
 
-    return (<div className="py-6 pb-10 flex flex-col min-h-screen">
+    return (<div className="pb-10 flex flex-col min-h-screen">
         <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
             Мой кошелёк #1
         </Header>

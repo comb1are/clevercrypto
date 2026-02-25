@@ -3,6 +3,7 @@ import IMG from "../../assets/images";
 import Header from "../../components/Header";
 import Alert from "../../components/UI/Alert";
 import MainBtn from "../../components/UI/MainBtn";
+import { useTheme } from "../../hooks/useTheme";
 
 interface PayListInterface {
     id: number;
@@ -12,8 +13,10 @@ interface PayListInterface {
     selected: boolean;
 }
 
-export default function ProfilePayment () {
-    const [payList, setPayList] = useState<PayListInterface []>([
+export default function ProfilePayment() {
+    const isDark = useTheme();
+
+    const [payList, setPayList] = useState<PayListInterface[]>([
         { id: 1, amount: '2 000', price: '100 ₽', discount: '140 ₽', selected: true },
         { id: 2, amount: '20 000', price: '1000 ₽', discount: '1 440 ₽', selected: false },
         { id: 3, amount: '50 000', price: '2 400 ₽', discount: '3 000 ₽', selected: false },
@@ -28,52 +31,50 @@ export default function ProfilePayment () {
                     : { ...item, selected: false }
             )
         );
-    };    
+    };
 
-    return (<div className="wrapper d-flex flex-column justify-content-between">
+    return (<div className="wrapper flex flex-col justify-between p-0 h-screen overflow-y-auto pb-[100px]">
         <Header type="inner" leftLink="/profile" leftLinkIcon="">Приобрести платежи</Header>
 
         {/* <!-- Profile payment --> */}
-        <section className="check-aml h-full d-flex">
-            <div className="container h-full d-flex flex-column justify-content-between pt-3 gap-2">
-                <div className="d-flex flex-column gap-3">
-                    <Alert type="gray">
-                        <img src={IMG.warningGray} className="flex-shrink-0" alt="" />
-                        <img src={IMG.warningGrayDark} className="flex-shrink-0 dark-icon" alt="" />
-                        <p>Выберите количество платежей</p>
+        <section className="h-full flex flex-col pt-3 px-4">
+            <div className="container h-full flex flex-col justify-between gap-2 mx-auto">
+                <div className="flex flex-col gap-3">
+                    <Alert type="gray" className="py-3 gap-4">
+                        <img src={isDark ? IMG.warningGrayDark : IMG.warningGray} className="shrink-0" alt="" />
+                        <p className="text-[14px] leading-[1.43] tracking-[0.04em] text-(--grey) ">Выберите количество платежей</p>
                     </Alert>
-                    <ul className="d-flex flex-column gap-3">
+                    <ul className="flex flex-col gap-3">
                         {payList.map((data, index) => (
-                            <li key={index} className="pay-card overflow-hidden position-relative d-flex align-items-start justify-content-between">
+                            <li key={index} className={`relative overflow-hidden flex items-start justify-between bg-(--bg-card) border rounded-[24px] p-5 select-none z-10 transition-colors ${data.selected ? "border-[#367DF0]" : "border-(--header-border)"}`}>
                                 <input
                                     type="radio"
                                     checked={data.selected}
-                                    onChange={() => handleSelect(data.id)} 
+                                    onChange={() => handleSelect(data.id)}
                                     name="pay"
-                                    className="position-absolute start-0 top-0 w-100 h-100" 
+                                    className="absolute left-0 top-0 w-full h-full opacity-0 cursor-pointer z-20 peer"
                                 />
-                                <div className="pay-card__left d-flex align-items-start">
-                                    <img src={IMG.payDoc2} className="flex-shrink-0" alt="" />
-                                    <img src={IMG.payDoc2Dark} className="flex-shrink-0 dark-icon" alt="" />
+                                <div className="flex items-start gap-3">
+                                    <img src={isDark ? IMG.payDoc2Dark : IMG.payDoc2} className="shrink-0" alt="" />
                                     <div>
-                                        <h3 className="d-flex align-items-end gap-2 fw-medium lh-1">
+                                        <h3 className="flex items-end gap-2 font-nagel text-[24px] text-(--title-color) mb-[2px] leading-none">
                                             {data.amount}
-                                            <span className="fs-6 fw-normal">платежей</span>
+                                            <span className="text-base  leading-[1.37] tracking-[0.03em] text-(--grey)">платежей</span>
                                         </h3>
-                                        <div className="price d-flex align-items-center gap-2 fs-6 fw-medium">
-                                            <del className="fw-normal">{data.discount}</del>
+                                        <div className="flex items-center gap-2 text-base font-medium leading-[1.37] tracking-[0.03em] text-(--title-color)">
+                                            <del className="text-(--grey)">{data.discount}</del>
                                             <span>{data.price}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="icon d-flex align-items-center justify-content-center rounded-pill">
-                                    <span className="rounded-pill"></span>
+                                <div className={`flex items-center justify-center shrink-0 w-[28px] h-[28px] border rounded-full transition-colors ${data.selected ? "border-[#367DF0]" : "border-[#303030]"}`}>
+                                    <span className={`w-[14px] h-[14px] rounded-full transition-colors ${data.selected ? "bg-[#367DF0]" : "bg-transparent"}`}></span>
                                 </div>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <MainBtn theme="primary" className="fw-medium">Выбрать и оплатить</MainBtn>
+                <MainBtn theme="primary" className="font-medium mt-auto mb-4 py-[14px] rounded-[18px] bg-(--main-link) text-white tracking-[4%]">Выбрать и оплатить</MainBtn>
             </div>
         </section>
         {/* <!-- Profile payment end --> */}

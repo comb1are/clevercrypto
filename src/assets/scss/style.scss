@@ -8,6 +8,7 @@
         margin: 0;
         box-sizing: border-box;
         -webkit-tap-highlight-color: transparent !important;
+        letter-spacing: 4%;
     }
 
     a {
@@ -107,6 +108,8 @@
         --bg-green: rgba(157, 255, 115, 1);
         --black: rgba(15, 16, 18, 1);
         --grey: #6C757D;
+        --red-bg: rgba(220, 53, 69, 0.12);
+
         --orange-bg: rgba(255, 193, 7, 0.12);
         --color-surface: var(--bg-main);
         --color-surface-card: var(--bg-card);
@@ -133,6 +136,8 @@
         --bg-accent: rgba(247, 248, 249, 1);
         --btn-active: rgba(123, 123, 124, 1);
         --btn-secondary-bg: rgba(40, 40, 40, 0.04);
+        --btn-border-bg: rgba(233, 236, 239, 1);
+        --btn-profile-bg: rgba(233, 236, 239, 1);
         --btn-main: rgba(40, 40, 40, 1);
 
         --intro-btn-bg: rgba(247, 248, 249, 1);
@@ -150,6 +155,8 @@
         --25-opacity: rgba(255, 255, 255, 0.25);
         --header-border: #1F2937;
         --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+        --btn-border-bg: rgba(33, 37, 41, 1);
+        --btn-profile-bg: rgba(32, 33, 35, 1);
         --title-color: #ffffff;
 
         --btn-main: rgba(231, 231, 231, 1);
@@ -172,6 +179,11 @@
 @layer utilities {
     .bg-glow-blob {
         background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%);
+    }
+
+    .bg-btn-glow {
+        background: linear-gradient(270deg, rgba(220, 255, 204, 0.8) 0%, rgba(252, 255, 153, 0.8) 35%, rgba(255, 225, 204, 0.8) 60%, rgba(255, 179, 241, 0.8) 100%);
+
     }
 
     .border-glow-blob {

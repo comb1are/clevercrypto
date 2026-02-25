@@ -33,13 +33,13 @@ export default function MainBtn({
 
     // Theme variations
     const themeClasses: Record<Theme, string> = {
-        primary: "btn-primary",
-        secondary: "btn-secondary",
-        space: "btn-space",
-        neutral: "btn-neutral",
-        link: "link-btn",
-        red: "btn-red",
-        linear: "btn-linear",
+        primary: "",
+        secondary: "",
+        space: "",
+        neutral: "",
+        link: "l",
+        red: "",
+        linear: "",
     };
 
     // Build final className dynamically

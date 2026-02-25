@@ -5,6 +5,7 @@ import MainBtn from "../../components/UI/MainBtn";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import IconIndex50 from "../../components/Icons/IconIndex50";
+import { useTheme } from "../../hooks/useTheme";
 
 interface LinkInterface {
     id: number,
@@ -13,8 +14,10 @@ interface LinkInterface {
     icon: string,
 }
 
-export default function Profile () {
-    const [linkList] = useState<LinkInterface []>([
+export default function Profile() {
+    const isDark = useTheme();
+
+    const [linkList] = useState<LinkInterface[]>([
         { id: 1, title: 'Основные настройки', to: '/profile/settings', icon: IMG.profileLink1 },
         { id: 2, title: 'Настройка API', to: '#', icon: IMG.profileLink2 },
         { id: 3, title: 'Безопасность', to: '/profile/security', icon: IMG.profileLink3 },
@@ -24,58 +27,57 @@ export default function Profile () {
         { id: 7, title: 'Тарифы', to: '/profile/tarifs', icon: IMG.profileLink7 },
     ])
 
-    return (<div className="wrapper p-0">
+    return (<div className="p-0 h-screen overflow-y-auto pb-[100px]">
         <BottomNav />
 
         {/* <!-- Profile --> */}
-        <section className="profile position-relative">
-            <div className="circle position-absolute start-50"></div>
-            <div className="container d-flex flex-column align-items-center">
-                <img src={IMG.avatar} alt="" className="profile-avatar rounded-circle mb-3" />
-                <div className="w-100 profile-head d-flex flex-column align-items-center mb-3">
-                    <h2 className="fw-medium lh-1 text-center">Alex Kaste</h2>
-                    <MainBtn to="#" theme="linear" size="sm" className="w-auto fw-medium">Обновить тариф</MainBtn>
+        <section className="relative pt-6">
+            <div className="absolute left-1/2 -translate-x-1/2"></div>
+            <div className="flex flex-col items-center mx-auto px-4">
+                <img src={IMG.avatar} alt="Avatar" className="rounded-full mb-3 w-[80px] h-[80px]" />
+                <div className="w-full flex flex-col items-center mb-3">
+                    <h2 className="font-medium font-nagel text-2xl leading-none text-center">Alex Kaste</h2>
+                    <MainBtn to="#" theme="linear" size="sm" className="w-auto  px-3 py-2 mb-4 mt-4 text-(--bg-main) bg-btn-glow rounded-[18px]">Обновить тариф</MainBtn>
                 </div>
-                <div className="profile-payment w-100 d-flex flex-column gap-3 mb-2">
+                <div className="w-full flex flex-col gap-3 p-[20px] mb-2 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
                     <div>
-                        <div className="text d-flex align-items-center justify-content-between">
-                            <h3 className="fs-6 fw-medium">Лимит платежей</h3>
-                            <div className="d-flex align-items-center gap-2">
-                                <h4 className="fs-6 fw-medium">
-                                    464 000<span>/500 000</span>
+                        <div className="text flex items-center justify-between mb-3">
+                            <h3 className="font-medium text-(--text-main)">Лимит платежей</h3>
+                            <div className="flex items-center gap-2">
+                                <h4 className="text-base font-medium text-(--text-main)">
+                                    464 000<span className="text-(--grey)">/500 000</span>
                                 </h4>
-                                <img src={IMG.warningIcon} className="flex-shrink-0" alt="" />
+                                <img src={IMG.warningIcon} className="shrink-0" alt="Warning" />
                             </div>
                         </div>
-                        <div className="line position-relative rounded-pill overflow-hidden">
-                            <span style={{width: "92.8%"}} className="position-absolute start-0 top-0 h-100"></span>
+                        <div className="line relative rounded-full overflow-hidden h-[10px] bg-(--intro-btn-bg)">
+                            <span style={{ width: "92.8%" }} className="absolute left-0 top-0 h-full bg-[#E53935]"></span>
                         </div>
                     </div>
-                    <MainBtn theme="secondary" size="md" className="text-center">
-                        <img src="./assets/images/plus-icon.svg" className="flex-shrink-0" alt="" />
-                        <img src="./assets/images/plus-icon-dark.svg" className="flex-shrink-0 dark-icon" alt="" />
+                    <MainBtn theme="secondary" size="md" to="/profile/payment" className="text-center w-full p-[10px] bg-(--intro-btn-bg) rounded-[14px] mt-2 flex items-center justify-center gap-3">
+                        <img src={isDark ? IMG.plusIconDark : IMG.plusIcon} className="shrink-0" alt="Plus" />
                         <span>Приобрести платежи</span>
                     </MainBtn>
                 </div>
-                <ul className="link-list d-flex flex-column gap-2 mb-4 w-100">
+                <ul className="link-list flex flex-col gap-2 mb-4 w-full px-[20px] py-3 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
                     {linkList.map((data, index) => (
-                        <li key={index} className="d-flex flex-column gap-2">
-                            <Link to={data.to} className="link-item fs-6 d-flex align-items-center justify-content-between gap-4">
-                                <span className="d-flex align-items-center">
-                                    <img src={data.icon} alt="" className="flex-shrink-0" />
+                        <li key={index} className="flex flex-col gap-2 border-b py-2 border-[#212529] last:border-0" >
+                            <Link to={data.to} className="link-item text-base flex items-center justify-between gap-4 text-(--text-main)">
+                                <span className="flex items-center gap-3">
+                                    <img src={data.icon} alt={data.title} className="shrink-0" />
                                     {data.title}
                                 </span>
                                 <IconIndex50 />
                             </Link>
                             <div className={clsx(
-                                'link-line w-100 flex-shrink-0',
-                                index + 1 == linkList.length && 'd-none'
+                                'link-line w-full shrink-0',
+                                index + 1 == linkList.length && 'hidden'
                             )}></div>
                         </li>
                     ))}
                 </ul>
-                <Link to={'#'} className="log-out fs-6 d-flex align-items-center w-100">
-                    <img src={IMG.logOut} alt="" className="flex-shrink-0" />
+                <Link to={'#'} className="log-out text-base flex items-center w-full gap-3 p-[20px] bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
+                    <img src={IMG.logOut} alt="Log out" className="shrink-0" />
                     <span>Выйти из аккаунта</span>
                 </Link>
             </div>
