@@ -20,7 +20,7 @@ export default function Alert({ type = "teal", className = "", children }: Alert
     return (
         <div
             className={clsx(
-                "flex items-center px-4 py-1 leading-[1.37] tracking-[0.03em] rounded-2xl",
+                "flex items-center px-4 gap-3 py-1 leading-[1.37] tracking-[0.03em] rounded-2xl",
                 typeClasses[type] || typeClasses.teal,
                 className
             )}

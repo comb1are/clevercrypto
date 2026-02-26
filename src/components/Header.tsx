@@ -44,7 +44,7 @@ export default function Header({
                     <h2 className="font-medium text-base text-center leading-[1.37] tracking-[0.003rem] text-[var(--title-color)]">{children}</h2>
                     <div className="w-10 h-10 flex items-center justify-center">
                         {rightLinkType === 'settings' ? (
-                            <MainBtn to='#' theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)] !rounded-full flex justify-center items-center'>
+                            <MainBtn to='/wallet/my' theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)] !rounded-full flex justify-center items-center'>
                                 <img src={isDark ? IMG.settingsDark : IMG.settings} alt="" />
                             </MainBtn>
                         ) : rightLinkType === 'search' ? (

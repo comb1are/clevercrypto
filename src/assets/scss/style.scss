@@ -106,7 +106,7 @@
     /* СВЕТЛАЯ ТЕМА (По умолчанию) */
     :root {
         --bg-green: rgba(157, 255, 115, 1);
-
+        --blue-bg: rgba(69, 140, 255, 0.12);
         --bg-icon-green: rgba(26, 161, 121, 0.12);
 
         --black: rgba(15, 16, 18, 1);
@@ -142,6 +142,8 @@
         --btn-border-bg: rgba(233, 236, 239, 1);
         --btn-profile-bg: rgba(233, 236, 239, 1);
         --btn-main: rgba(40, 40, 40, 1);
+        --btn-third-bg: rgba(102, 110, 136, 0.04);
+
 
         --intro-btn-bg: rgba(247, 248, 249, 1);
     }
@@ -162,6 +164,7 @@
         --title-color: #ffffff;
 
         --btn-main: rgba(231, 231, 231, 1);
+        --btn-third-bg: rgba(231, 231, 231, 0.08);
 
         --intro-btn-bg: rgba(225, 228, 253, 0.06);
     }

@@ -151,7 +151,7 @@ export default function Home() {
                         <p className="text-[#6C757D]">$4 491,52</p>
                     </div>
                 </div>
-                <ul className="crypto-list flex flex-col gap-4">
+                <ul className="crypto-list flex flex-col gap-4 pb-6">
                     {Array.from({ length: 9 }).map((_, index) => (
                         <li key={index} className="p-4 flex items-center justify-between ">
                             <div className="crypto-card__left flex items-center gap-3">

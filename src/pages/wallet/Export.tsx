@@ -10,19 +10,19 @@ export default function WalletExport() {
         <Header type="inner" leftLink="/home" leftLinkIcon="">Экспорт кошелька</Header>
 
         {/* <!-- Export wallet --> */}
-        <section className="export-wallet h-full flex">
-            <div className="container h-full pt-3 flex items-center flex-col gap-3">
-                <Alert type="gray">
+        <section className="h-full flex">
+            <div className="h-full pt-3 flex items-center flex-col gap-3">
+                <Alert type="gray" className="py-3">
                     <img src={isDark ? IMG.warningGrayDark : IMG.warningGray} className="shrink-0" alt="" />
                     <p>Отсканируйте QR-код для импорта кошелька в мобильное приложение Trust Wallet</p>
                 </Alert>
-                <div className="qr-code">
+                <div className="bg-(--text-main) p-[20px] rounded-4xl">
                     <img src={IMG.exportQrCode} alt="" className="w-full h-auto" />
                 </div>
                 <div className="w-full flex flex-col gap-2">
-                    <label>Seed-фраза</label>
-                    <input type="text" onChange={() => { }} className="pl-4 py-3 pr-2 text-[15px] font-normal form-inp" value="divert inject apple focus divorce strategy dignity stairs state stem guard state" />
-                    <MainBtn theme="neutral" className="font-medium">
+                    <label className="text-(--grey)">Seed-фраза</label>
+                    <input type="text" onChange={() => { }} className="pl-4 py-3 pr-2 bg-(--intro-btn-bg) rounded-[18px] form-inp" value="divert inject apple focus divorce strategy dignity stairs state stem guard state" />
+                    <MainBtn theme="neutral" className="font-medium flex bg-[#282828] gap-3 justify-center items-center rounded-[18px] py-3">
                         <img src={IMG.copyIcon} className="shrink-0" alt="" />
                         <span>Скопировать</span>
                     </MainBtn>

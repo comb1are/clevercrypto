@@ -37,7 +37,7 @@ export default function MainBtn({
         secondary: "",
         space: "",
         neutral: "",
-        link: "l",
+        link: "",
         red: "",
         linear: "",
     };
