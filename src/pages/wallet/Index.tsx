@@ -1,3 +1,4 @@
+import { useTheme } from "../../hooks/useTheme";
 import Header from "../../components/Header";
 
 import Alert from "../../components/UI/Alert";
@@ -22,10 +23,15 @@ type Transaction = {
     subtitle: string;
     amount: string;
     usd: string;
-    type: '' | 'input' | 'other';
+    type: TransactionType;
 };
 
+// Задаем жесткие и понятные типы
+type TransactionType = 'deposit' | 'transfer' | 'withdrawal';
+
 export default function Wallet() {
+    const isDark = useTheme();
+    const [activeIndex, setActiveIndex] = useState(0);
     const [transactionList] = useState<Transaction[]>([
         {
             id: 1,
@@ -33,7 +39,7 @@ export default function Wallet() {
             subtitle: "Пополнение",
             amount: "+1.4919 BTC",
             usd: "$181,319.56",
-            type: ''
+            type: 'deposit'
         },
         {
             id: 2,
@@ -41,7 +47,7 @@ export default function Wallet() {
             subtitle: "Перевод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'input'
+            type: 'transfer'
         },
         {
             id: 3,
@@ -49,7 +55,7 @@ export default function Wallet() {
             subtitle: "Вывод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'other'
+            type: 'withdrawal'
         },
         {
             id: 4,
@@ -57,7 +63,7 @@ export default function Wallet() {
             subtitle: "Пополнение",
             amount: "+1.4919 BTC",
             usd: "$181,319.56",
-            type: ''
+            type: 'deposit'
         },
         {
             id: 5,
@@ -65,7 +71,7 @@ export default function Wallet() {
             subtitle: "Перевод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'input'
+            type: 'transfer'
         },
         {
             id: 6,
@@ -73,7 +79,7 @@ export default function Wallet() {
             subtitle: "Вывод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'other'
+            type: 'withdrawal'
         },
         {
             id: 7,
@@ -81,7 +87,7 @@ export default function Wallet() {
             subtitle: "Пополнение",
             amount: "+1.4919 BTC",
             usd: "$181,319.56",
-            type: ''
+            type: 'deposit'
         },
         {
             id: 8,
@@ -89,7 +95,7 @@ export default function Wallet() {
             subtitle: "Перевод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'input'
+            type: 'transfer'
         },
         {
             id: 9,
@@ -97,11 +103,37 @@ export default function Wallet() {
             subtitle: "Вывод",
             amount: "-0.534 BTC",
             usd: "$1,928.40",
-            type: 'other'
+            type: "withdrawal"
         },
     ]);
 
-    return (<div className="wrapper d-flex flex-column justify-content-between">
+    const getTransactionUI = (type: TransactionType, isDark: boolean) => {
+        switch (type) {
+            case 'deposit':
+                return {
+                    icon: <IconIndex52 fill="#1AA179" />,
+                    amountColor: 'text-[#1AA179]',
+                    bgColor: 'bg-(--bg-icon-green)',
+                    reverse: 'rotate-180'
+                };
+            case 'withdrawal':
+                return {
+                    icon: <img src={isDark ? IMG.cardIconDark : IMG.cardIcon} alt="Card" />,
+                    amountColor: 'text-(--text-main)',
+                    bgColor: 'bg-(--btn-secondary-bg)',
+                    reverse: ''
+                };
+            case 'transfer':
+                return {
+                    icon: <IconIndex52 />,
+                    amountColor: 'text-(--text-main)',
+                    bgColor: 'bg-(--btn-secondary-bg)',
+                    reverse: ''
+                };
+        }
+    };
+
+    return (<div className="wrapper flex flex-col justify-between">
         <Header type="inner" leftLink="/home" leftLinkIcon="" rightLinkType="search">
             Кошелёк
         </Header>
@@ -109,21 +141,24 @@ export default function Wallet() {
         <main>
 
             {/* <!-- Wallet --> */}
-            <section className="wallet position-relative pt-3">
-                <div className="circle position-absolute"></div>
-                <div className="container">
-                    <div className="d-flex overflow-auto gap-3 pb-2 mb-3">
+            <section className="relative">
+                <div className="absolute left-1/2 top-[185px] z-[-1] h-[465px] w-[588px] translate-x-[calc(-50%+5px)] rotate-180 rounded-full bg-glow-blob opacity-[0.35] blur-[129px]"></div>
+                <div className="">
+                    <div
+                        className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        onScroll={(e) => setActiveIndex(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
+                    >
                         {Array.from({ length: 5 }).map((_, index) => (
-                            <div key={index} className="flex-shrink-0" style={{ width: "95%" }}>
-                                <div className="wallet-card d-flex flex-column align-items-center gap-3">
-                                    <img src="./assets/images/crypto-bitcoin.svg" alt="" className="crypto-logo" />
-                                    <h2 className="d-flex align-items-end justify-content-center gap-2 fw-medium lh-1 text-center">
+                            <div key={index} className="shrink-0 snap-center w-full">
+                                <div className="py-4 flex flex-col items-center gap-3">
+                                    <img src={IMG.cryptoBitcoin} alt="" className=" rounded-full w-[48px] h-[48px]" />
+                                    <h3 className="flex items-end justify-center gap-2 font-medium text-5xl text-center font-nagel">
                                         1.4919
-                                        <span className="fw-normal">BTC</span>
-                                    </h2>
-                                    <div className="d-flex align-items-center gap-2">
-                                        <Alert type="gray" className="py-1 px-3 gap-2 fs-6 text-center rounded-pill">$4 491,52</Alert>
-                                        <Alert type="teal" className="py-1 px-3 gap-2 fs-6 text-center rounded-pill">
+                                        <span className="font-normal text-3xl">BTC</span>
+                                    </h3>
+                                    <div className="flex items-center gap-2">
+                                        <Alert type="gray" className="py-1 px-3 gap-2 text-[15px] text-center rounded-full">$4 491,52</Alert>
+                                        <Alert type="teal" className="py-1 px-3 gap-2 text-[15px] text-center rounded-full">
                                             <span>+$149</span>
                                             <IconIndex61 />
                                             <span>4%</span>
@@ -133,39 +168,44 @@ export default function Wallet() {
                             </div>
                         ))}
                     </div>
-                    <div className="row gx-2 mb-4 navigation">
-                        <div className="col-3">
-                            <Link to={'#'} className="w-100 d-flex flex-column align-items-center text-center gap-2">
-                                <div className="icon d-flex align-items-center justify-content-center w-100">
-                                    <IconIndex60 />
-                                    <IconIndex59 />
+                    <div className="flex justify-center gap-1.5 mt-1 mb-4">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? "bg-(--title-color) w-4" : "bg-(--25-opacity)  w-1.5"
+                                    }`}
+                            ></div>
+                        ))}
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 mb-4 navigation mx-3 bg-(--bg-card) rounded-[24px] p-3">
+                        <div className="">
+                            <Link to={'/withdraw'} className="w-full flex flex-col items-center text-center gap-2">
+                                <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
+                                    {isDark ? <IconIndex59 /> : <IconIndex60 />}
                                 </div>
                                 <span>Пополнить</span>
                             </Link>
                         </div>
-                        <div className="col-3">
-                            <Link to={'#'} className="w-100 d-flex flex-column align-items-center text-center gap-2">
-                                <div className="icon d-flex align-items-center justify-content-center w-100">
-                                    <IconIndex58 />
-                                    <IconIndex57 />
+                        <div className="">
+                            <Link to={'/funds'} className="w-full flex flex-col items-center text-center gap-2">
+                                <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
+                                    {isDark ? <IconIndex57 /> : <IconIndex58 />}
                                 </div>
                                 <span>Отправить</span>
                             </Link>
                         </div>
-                        <div className="col-3">
-                            <Link to={'#'} className="w-100 d-flex flex-column align-items-center text-center gap-2">
-                                <div className="icon d-flex align-items-center justify-content-center w-100">
-                                    <IconIndex56 />
-                                    <IconIndex55 />
+                        <div className="">
+                            <Link to={'/'} className="w-full flex flex-col items-center text-center gap-2">
+                                <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
+                                    {isDark ? <IconIndex55 /> : <IconIndex56 />}
                                 </div>
                                 <span>Вывести</span>
                             </Link>
                         </div>
-                        <div className="col-3">
-                            <Link to={'#'} className="w-100 d-flex flex-column align-items-center text-center gap-2">
-                                <div className="icon d-flex align-items-center justify-content-center w-100">
-                                    <IconIndex54 />
-                                    <IconIndex53 />
+                        <div className="">
+                            <Link to={'#'} className="w-full flex flex-col items-center text-center gap-2">
+                                <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
+                                    {isDark ? <IconIndex53 /> : <IconIndex54 />}
                                 </div>
                                 <span>AML</span>
                             </Link>
@@ -176,51 +216,42 @@ export default function Wallet() {
             {/* <!-- Wallet end --> */}
 
             {/* <!-- Transactions --> */}
-            <section className="transactions">
+            <section className="px-4 mt-2 py-4 pt-[20px] rounded-t-4xl bg-(--bg-main)">
                 <div className="container">
-                    <h2 className="mb-3 fw-medium lh-1">Транзакции</h2>
-                    <ul className="transactions-navs d-flex align-items-center flex-wrap gap-2">
+                    <h2 className="mb-5 font-medium leading-none font-nagel text-2xl">Транзакции</h2>
+                    <ul className="transactions-navs flex items-center flex-wrap gap-2">
                         <li>
-                            <Link to={'#'} className="rounded-pill active">Все</Link>
+                            <Link to={'#'} className="rounded-full bg-(--text-main) text-(--bg-main) px-3 py-[9px]">Все</Link>
                         </li>
                         <li>
-                            <Link to={'#'} className="rounded-pill">Пополнения</Link>
+                            <Link to={'#'} className="rounded-full bg-(--btn-secondary-bg) px-3 py-[9px]">Пополнения</Link>
                         </li>
                         <li>
-                            <Link to={'#'} className="rounded-pill">Переводы</Link>
+                            <Link to={'#'} className="rounded-full bg-(--btn-secondary-bg) px-3 py-[9px]">Переводы</Link>
                         </li>
                         <li>
-                            <Link to={'#'} className="rounded-pill">Выводы</Link>
+                            <Link to={'#'} className="rounded-full bg-(--btn-secondary-bg) px-3 py-[9px]">Выводы</Link>
                         </li>
                     </ul>
-                    <ul className="transactions-list d-flex flex-column gap-4">
-                        {transactionList.map((data, index) => (
-                            <li key={index} className={clsx(
-                                'transactions-card d-flex align-items-center justify-content-between',
-                                data.type
-                            )}>
-                                <div className="transactions-card__left d-flex align-items-center">
-                                    <div className="icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle">
-                                        {data.type == 'other' ? (
-                                            <>
-                                                <img src={IMG.cardIcon} alt="" />
-                                                <img src={IMG.cardIconDark} alt="" className="dark-img" />
-                                            </>
-                                        ) : (
-                                            <IconIndex52 />
-                                        )}
+                    <ul className="transactions-list flex flex-col gap-4 mt-4">
+                        {transactionList.map((data) => {
+                            const { icon, bgColor, reverse, amountColor } = getTransactionUI(data.type, isDark);
+                            return (<li key={data.id} className={'transactions-card flex items-center justify-between '}>
+                                <div className="flex items-center gap-3">
+                                    <div className={clsx(`icon flex items-center justify-center shrink-0 rounded-full w-[40px] h-[40px]`, bgColor, reverse)}>
+                                        {icon}
                                     </div>
                                     <div>
-                                        <h3 className="fw-medium">{data.title}</h3>
-                                        <p>{data.subtitle}</p>
+                                        <h3 className="font-medium text-lg ">{data.title}</h3>
+                                        <p className="text-(--grey)">{data.subtitle}</p>
                                     </div>
                                 </div>
-                                <div className="text-end">
-                                    <h4>{data.amount}</h4>
-                                    <p>{data.usd}</p>
+                                <div className="text-right">
+                                    <h4 className={clsx(`text-lg`, amountColor)}>{data.amount}</h4>
+                                    <p className="text-(--grey)">{data.usd}</p>
                                 </div>
-                            </li>
-                        ))}
+                            </li>)
+                        })}
                     </ul>
                 </div>
             </section>

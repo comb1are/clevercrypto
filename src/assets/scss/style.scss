@@ -106,6 +106,9 @@
     /* СВЕТЛАЯ ТЕМА (По умолчанию) */
     :root {
         --bg-green: rgba(157, 255, 115, 1);
+
+        --bg-icon-green: rgba(26, 161, 121, 0.12);
+
         --black: rgba(15, 16, 18, 1);
         --grey: #6C757D;
         --red-bg: rgba(220, 53, 69, 0.12);
@@ -150,7 +153,6 @@
         --bg-secondary: rgba(0, 0, 0, 0.16);
         --bg-card: rgba(15, 16, 18, 0.85);
         --border-secondary: rgba(52, 58, 64, 1);
-
 
         --25-opacity: rgba(255, 255, 255, 0.25);
         --header-border: #1F2937;

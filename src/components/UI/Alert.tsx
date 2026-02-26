@@ -14,7 +14,7 @@ export default function Alert({ type = "teal", className = "", children }: Alert
         error: "bg-[#b02a37]/12 text-[#b02a37]",
         white: "bg-(--bg-main) border-[1.5px] border-[#e9ecef] rounded-[18px] text-(--main-dark)",
         warning: "bg-(--orange-bg) text-[#FFC107]",
-        gray: "bg-gray-500/12 text-gray-600",
+        gray: "bg-(--btn-secondary-bg) text-[#ADB5BD]",
     };
 
     return (

@@ -63,7 +63,7 @@ export default function Home() {
                             </Link>
                         </div>
                         <div className="">
-                            <Link to="#" className="w-full flex flex-col items-center text-center gap-2">
+                            <Link to="/withdraw" className="w-full flex flex-col items-center text-center gap-2">
                                 <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
                                     {isDark ? <IconHome10 /> : <IconHome11 />}
                                 </div>
