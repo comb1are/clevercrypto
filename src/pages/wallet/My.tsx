@@ -36,7 +36,7 @@ export default function My() {
         <section className="flex-1 flex mt-4">
             <div className="container px-4 flex flex-col gap-2 w-full">
                 <div className="text-(--grey)">Мои кошельки</div>
-                <MainBtn theme="secondary" className="w-full py-[10px] flex items-center justify-center gap-3 text-center bg-(--btn-secondary-bg) text-(--text-main) rounded-[18px] hover:bg-white/10 transition-colors">
+                <MainBtn to="/wallet/import" theme="secondary" className="w-full py-[10px] flex items-center justify-center gap-3 text-center bg-(--btn-secondary-bg) text-(--text-main) rounded-[18px] hover:bg-white/10 transition-colors">
                     <img src={isDark ? IMG.plusIconDark : IMG.plusIcon} className="shrink-0" alt="" />
                     <span className="font-medium tracking-[0.04em]">Добавить кошелек</span>
                 </MainBtn>

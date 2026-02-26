@@ -74,7 +74,7 @@ export default function ProfilePayment() {
                         ))}
                     </ul>
                 </div>
-                <MainBtn theme="primary" className="font-medium mt-auto mb-4 py-[14px] rounded-[18px] bg-(--main-link) text-white tracking-[4%]">Выбрать и оплатить</MainBtn>
+                <MainBtn theme="primary" className="font-medium mt-auto mb-4 py-[14px] rounded-[18px] bg-(--main-link) bg-(--text-main) text-(--bg-main) tracking-[4%]">Выбрать и оплатить</MainBtn>
             </div>
         </section>
         {/* <!-- Profile payment end --> */}

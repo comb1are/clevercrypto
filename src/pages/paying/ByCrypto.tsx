@@ -4,6 +4,7 @@ import MainBtn from "../../components/UI/MainBtn";
 import Offcanvas from "../../components/UI/Offcanvas";
 import IconByCrypto41 from "../../components/Icons/IconByCrypto41";
 import IconByCrypto42 from "../../components/Icons/IconByCrypto42";
+import { useTheme } from "../../hooks/useTheme";
 
 interface CryptoListInterface {
     id: number;
@@ -13,8 +14,10 @@ interface CryptoListInterface {
     selected: boolean;
 }
 
-export default function PayingByCrypto () {
-    const [cryptoList, setCryptoList] = useState<CryptoListInterface []>([
+export default function PayingByCrypto() {
+    const isDark = useTheme();
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+    const [cryptoList, setCryptoList] = useState<CryptoListInterface[]>([
         { id: 1, icon: IMG.paymentCrypto1, title: 'Clever', subtitle: '', selected: true },
         { id: 2, icon: IMG.paymentCrypto2, title: 'Ethereum', subtitle: '', selected: false },
         { id: 3, icon: IMG.paymentCrypto3, title: 'Bitcoin', subtitle: '', selected: false },
@@ -35,112 +38,124 @@ export default function PayingByCrypto () {
         );
     };
 
-    return (<div className="wrapper p-0 d-flex">
+    return (<div className="flex flex-col min-h-screen pb-10">
         {/* <!-- Paying --> */}
-        <section className="paying h-full d-flex flex-column">
-            <div className="container h-full d-flex flex-column justify-content-between gap-4">
-                <div className="w-100">
-                    <div className="paying-head d-flex align-items-center justify-content-between pb-3 mb-1">
-                        <div className="paying-head__left d-flex align-items-center">
-                            <a href="#" className="d-flex align-items-center justify-content-center btn-secondary rounded-circle p-0">
+        <section className="flex flex-col flex-1 mt-4">
+            <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
+                <div className="w-full flex flex-col gap-4">
+                    <div className="flex items-center justify-between pb-3 mb-1 border-b border-(--border-main)">
+                        <div className="flex items-center gap-2">
+                            <a href="#" className="flex items-center justify-center bg-(--btn-secondary-bg) rounded-full w-[40px] h-[40px] p-0 transition-colors hover:bg-white/10">
                                 <IconByCrypto42 />
                             </a>
-                            <div className="paying-head__img d-flex align-items-center">
-                                <img src={IMG.payLogo1} width="40" alt="" className="flex-shrink-0 rounded-circle" />
-                                <img src={IMG.payLogo2} width="40" alt="" className="flex-shrink-0 rounded-circle" />
+                            <div className="flex items-center -space-x-2 relative">
+                                <img src={IMG.payLogo1} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-2 border-2 border-(--bg-main)" />
+                                <img src={IMG.payLogo2} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-1 border-2 border-(--bg-main)" />
                             </div>
-                            <h2 className="fw-medium lh-1">Funpay</h2>
+                            <h2 className="font-medium leading-none text-(--text-main) text-lg pl-1">Funpay</h2>
                         </div>
-                        <p className="fs-6">#451940</p>
+                        <p className="text-sm text-(--grey)">#451940</p>
                     </div>
-                    <div className="paying-body d-flex flex-column">
-                        <label>Выберите валюту для оплаты</label>
-                        <div className="form-search d-flex align-items-center gap-3 ps-4">
-                            <button className="h-100 flex-shrink-0">
-                                <img src={IMG.searchIcon2} alt="" />
-                                <img src={IMG.searchIcon2Dark} alt="" className="dark-icon" />
+
+                    <div className="flex flex-col gap-3">
+                        <label className="text-sm text-(--grey)">Выберите валюту для оплаты</label>
+                        <div className="flex items-center gap-3 pl-4 bg-(--bg-card) rounded-[18px] h-[52px]">
+                            <button className="h-full shrink-0 flex items-center justify-center">
+                                <img src={isDark ? IMG.searchIcon2Dark : IMG.searchIcon2} alt="" />
                             </button>
-                            <input type="text" placeholder="Найти монету..." className="w-100 fs-6 pe-2" />
+                            <input type="text" placeholder="Найти монету..." className="w-full text-sm pr-4 bg-transparent outline-none text-(--text-main) placeholder:text-(--grey)" />
                         </div>
-                        <div className="row g-1">
+
+                        <div className="grid grid-cols-2 gap-2 mt-2">
                             {cryptoList.map((data, index) => (
-                                <div key={index} className="col-6">
-                                    <div className="country-card d-flex align-items-start flex-column gap-3 position-relative overflow-hidden">
-                                        {index == 0 && (
-                                            <div className="circle-bg rounded-circle position-absolute"></div>
-                                        )}
-                                        <div className="w-100 d-flex align-items-center justify-content-between gap-3">
-                                            <img src={data.icon} width="28" height="28" alt="" className="flex-shrink-0 rounded-circle" />
-                                            <input
-                                                type="radio"
-                                                name="selectCountry"
-                                                checked={data.selected}
-                                                onChange={() => handleSelectCrypto(data.id)}
-                                                className="position-absolute top-0 start-0 w-100 h-100"
-                                            />
-                                            <div className="icon rounded-circle d-flex align-items-center justify-content-center">
-                                                <span className="rounded-circle"></span>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex align-items-center gap-2">
-                                            {index == 0 && (
-                                                <IconByCrypto41 />
-                                            )}
-                                            <h3 className="fw-medium fs-6">
-                                                Clever {data.subtitle && (<span>{data.subtitle}</span>)}
-                                            </h3>
+                                <div key={index} className="bg-(--btn-secondary-bg) flex items-start flex-col gap-3 relative overflow-hidden rounded-[18px] p-3 transition-colors">
+                                    {index === 0 && (
+                                        <div className="w-[102px] h-[102px] bg-[#367DF01F] rounded-full blur-[20px] absolute -top-[30px] -left-[30px] z-0 pointer-events-none"></div>
+                                    )}
+                                    <div className="w-full flex items-center justify-between gap-3 relative z-5">
+                                        <img src={data.icon} width={28} height={28} alt="" className="shrink-0 rounded-full w-[28px] h-[28px]" />
+                                        <input
+                                            type="radio"
+                                            name="selectCountry"
+                                            checked={data.selected}
+                                            onChange={() => handleSelectCrypto(data.id)}
+                                            className="absolute cursor-pointer inset-0 z-10 w-full h-full opacity-0 peer"
+                                        />
+                                        <div className={`flex items-center justify-center shrink-0 rounded-full w-[20px] h-[20px] transition-colors ${data.selected ? 'bg-(--green-bg)' : 'border border-(--grey)'}`}>
+                                            {data.selected && <img src={IMG.checkGreen} alt="" className="w-3 h-3" />}
                                         </div>
                                     </div>
+                                    <div className="flex items-center gap-2 relative z-5">
+                                        {index === 0 && (
+                                            <IconByCrypto41 />
+                                        )}
+                                        <h3 className="font-medium text-sm text-(--text-main)">
+                                            {data.title} {data.subtitle && (<span className="text-(--grey) ml-1">{data.subtitle}</span>)}
+                                        </h3>
+                                    </div>
+
+                                    {/* Selected state border highlight */}
+                                    <div className={`absolute inset-0 rounded-[18px] pointer-events-none transition-colors border-[1.5px] ${data.selected ? 'border-(--green-bg)' : 'border-transparent'}`}></div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-                <div className="w-100 d-flex flex-column paying-bottom">
-                    <MainBtn theme="primary" className="fw-medium">Перейти к оплате</MainBtn>
-                    <button className="w-100 d-flex align-items-center justify-content-center btn-space" type="button" data-bs-toggle="offcanvas" data-bs-target="#detailModal" aria-controls="detailModal">
-                        <img src={IMG.warningCircleGray} alt="" className="flex-shrink-0" />
-                        <img src={IMG.warningCircleGrayDark} alt="" className="flex-shrink-0 dark-icon" />
-                        <span>Детали платежа</span>
+
+                <div className="w-full flex flex-col gap-3 mt-auto pt-4">
+                    <MainBtn theme="neutral" className="w-full flex items-center justify-center font-medium bg-(--text-main) text-(--bg-main) py-3 rounded-[18px]">Перейти к оплате</MainBtn>
+                    <button
+                        className="w-full flex items-center justify-center gap-2 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]"
+                        type="button"
+                        onClick={() => setIsDetailModalOpen(true)}
+                    >
+                        <img src={isDark ? IMG.warningCircleGrayDark : IMG.warningCircleGray} alt="" className="shrink-0" />
+                        <span className="text-sm font-medium tracking-[0.04em]">Детали платежа</span>
                     </button>
                 </div>
             </div>
         </section>
         {/* <!-- Paying end --> */}
 
-        <Offcanvas className="details-modal" id="detailModal">
-            <div className="container d-flex flex-column gap-4">
-                <h2 className="fw-medium lh-1">Детали платежа</h2>
-                <ul className="d-flex flex-column gap-4">
-                    <li className="d-flex align-items-center justify-content-between gap-3">
-                        <p className="fs-6">Продавец</p>
-                        <div className="d-flex align-items-center gap-2">
-                            <img src={IMG.businessLogo2} width="22" height="22" alt="" className="rounded-circle " />
-                            <h3 className="fs-6 text-blue">FunPay</h3>
+        <Offcanvas className="details-modal" id="detailModal" isOpen={isDetailModalOpen} onClose={() => setIsDetailModalOpen(false)}>
+            <div className="container px-4 flex flex-col gap-4">
+                <h2 className="font-medium leading-none text-(--text-main) text-lg tracking-[0.04em]">Детали платежа</h2>
+                <ul className="flex flex-col gap-4">
+                    <li className="flex items-center justify-between gap-3">
+                        <p className="text-sm text-(--grey)">Продавец</p>
+                        <div className="flex items-center gap-2">
+                            <img src={IMG.businessLogo2} width={22} height={22} alt="" className="rounded-full w-[22px] h-[22px]" />
+                            <h3 className="text-sm text-[#367DF0]">FunPay</h3>
                         </div>
                     </li>
-                    <li className="d-flex align-items-center justify-content-between gap-3">
-                        <p className="fs-6">Страховой депозит</p>
-                        <div className="d-flex align-items-center gap-2">
-                            <img src={IMG.paymentCrypt1} width="22" height="22" alt="" className="rounded-circle " />
-                            <h3 className="fs-6">120.50 CLV</h3>
+                    <li className="flex items-center justify-between gap-3">
+                        <p className="text-sm text-(--grey)">Страховой депозит</p>
+                        <div className="flex items-center gap-2">
+                            <img src={IMG.paymentCrypt1} width={22} height={22} alt="" className="rounded-full w-[22px] h-[22px]" />
+                            <h3 className="text-sm text-(--text-main)">120.50 CLV</h3>
                         </div>
                     </li>
-                    <li className="d-flex align-items-center justify-content-between gap-3">
-                        <p className="fs-6">Номер заказа</p>
-                        <h3 className="fs-6 flex-shrink-0">#124624</h3>
+                    <li className="flex items-center justify-between gap-3">
+                        <p className="text-sm text-(--grey)">Номер заказа</p>
+                        <h3 className="text-sm shrink-0 text-(--text-main)">#124624</h3>
                     </li>
                 </ul>
-                <div className="btns w-100 d-flex flex-column">
-                    <MainBtn to="#" theme="link">
-                        <img src={IMG.messageIcon} alt="" className="flex-shrink-0" />
-                        <span>Написать продавцу</span>
+                <div className="w-full flex flex-col gap-3 mt-2">
+                    <MainBtn to="#" theme="link" className="w-full flex items-center justify-center gap-2 bg-(--blue-bg) text-[#367DF0] py-[14px] rounded-[18px] transition-colors hover:bg-[#367DF0]/20">
+                        <img src={IMG.messageIcon} alt="" className="shrink-0" />
+                        <span className="font-medium tracking-[0.04em]">Написать продавцу</span>
                     </MainBtn>
-                    <MainBtn to="#" theme="red">
-                        <img src={IMG.alertRed} width="24" alt="" className="flex-shrink-0" />
-                        <span>Открыть спор</span>
+                    <MainBtn to="#" theme="red" className="w-full flex items-center justify-center gap-2 bg-[#DC35451A] text-[#DC3545] py-[14px] rounded-[18px] transition-colors hover:bg-[#DC3545]/20">
+                        <img src={IMG.alertRed} width={24} height={24} alt="" className="shrink-0 w-[24px] h-[24px]" />
+                        <span className="font-medium tracking-[0.04em]">Открыть спор</span>
                     </MainBtn>
-                    <button className="w-100 d-flex align-items-center justify-content-center text-center btn-secondary" type="button" data-bs-dismiss="offcanvas" aria-label="Close">Закрыть</button>
+                    <button
+                        className="w-full flex items-center justify-center text-center bg-(--btn-secondary-bg) text-(--text-main) py-[14px] rounded-[18px] transition-colors hover:bg-white/10"
+                        type="button"
+                        onClick={() => setIsDetailModalOpen(false)}
+                    >
+                        <span className="font-medium tracking-[0.04em]">Закрыть</span>
+                    </button>
                 </div>
             </div>
         </Offcanvas>
