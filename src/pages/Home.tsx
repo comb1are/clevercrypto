@@ -1,5 +1,5 @@
 import IMG from "../assets/images"
-import { useState } from "react";
+import { useSliderObserver } from "../hooks/useSliderObserver";
 import BottomNav from "../components/BottomNav"
 import Header from "../components/Header"
 
@@ -21,7 +21,7 @@ import { useTheme } from "../hooks/useTheme";
 
 export default function Home() {
     const isDark = useTheme();
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
 
     return (<div className="pb-10 flex flex-col min-h-screen">
         <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
@@ -80,11 +80,11 @@ export default function Home() {
                         </div>
                     </div>
                     <div
+                        ref={sliderRef}
                         className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                        onScroll={(e) => setActiveIndex(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
                     >
                         {Array.from({ length: 5 }).map((_, index) => (
-                            <div key={index} className="shrink-0 snap-center w-full">
+                            <div key={index} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
                                 <div className="relative flex rounded-[18px] bg-(--bg-main) items-center gap-5  px-4 py-3 ">
                                     <img
                                         src={isDark ? IMG.alertWhiteIcon1Dark : IMG.alertWhiteIcon1}
@@ -163,7 +163,7 @@ export default function Home() {
                             </div>
                             <div className="text-right">
                                 <h4 className="text-lg text-(--btn-main) tracking-[3%]">1.4919 BTC</h4>
-                                <p className="text-[#6C757D]">$181 319,56</p>
+                                <p className="text-[#6C757D]">$181 319,56</p>
                             </div>
                         </li>
                     ))}

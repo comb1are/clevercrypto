@@ -4,6 +4,7 @@ import MainBtn from "../components/UI/MainBtn";
 
 import { IMaskInput } from "react-imask";
 import { useState } from "react";
+import { useSliderObserver } from "../hooks/useSliderObserver";
 import MoneyInput from "../components/UI/MoneyInput";
 
 import IconFunds3 from "../components/Icons/IconFunds3";
@@ -13,7 +14,7 @@ import { useTheme } from "../hooks/useTheme";
 export default function Funds() {
     const isDark = useTheme();
     const [phone, setPhone] = useState<string>();
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
 
     return (<div className="flex flex-col min-h-screen pb-10">
         <Header type="inner" leftLink="/home" leftLinkIcon="arrow">
@@ -26,11 +27,11 @@ export default function Funds() {
                 <div className="flex flex-col gap-3">
                     <div className="-mx-4">
                         <div
+                            ref={sliderRef}
                             className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                            onScroll={(e) => setActiveIndex(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
                         >
                             {Array.from({ length: 5 }).map((_, index) => (
-                                <div key={index} className="shrink-0 snap-center w-[100%]">
+                                <div key={index} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-[100%]">
                                     <div className="bg-(--btn-secondary-bg) p-4 rounded-[18px]">
                                         <h3 className="flex items-center gap-2 mb-4 text-base leading-[1.37] tracking-[0.03em] text-(--text-main)">
                                             <img src={IMG.cryptoBitcoin} width="24" alt="" />

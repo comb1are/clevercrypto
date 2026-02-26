@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 
 import Alert from "../../components/UI/Alert";
 import { useState } from "react";
+import { useSliderObserver } from "../../hooks/useSliderObserver";
 import IMG from "../../assets/images";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
@@ -31,7 +32,7 @@ type TransactionType = 'deposit' | 'transfer' | 'withdrawal';
 
 export default function Wallet() {
     const isDark = useTheme();
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
     const [transactionList] = useState<Transaction[]>([
         {
             id: 1,
@@ -145,11 +146,11 @@ export default function Wallet() {
                 <div className="absolute left-1/2 top-[185px] z-[-1] h-[465px] w-[588px] translate-x-[calc(-50%+5px)] rotate-180 rounded-full bg-glow-blob opacity-[0.35] blur-[129px]"></div>
                 <div className="">
                     <div
+                        ref={sliderRef}
                         className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                        onScroll={(e) => setActiveIndex(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
                     >
                         {Array.from({ length: 5 }).map((_, index) => (
-                            <div key={index} className="shrink-0 snap-center w-full">
+                            <div key={index} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
                                 <div className="py-4 flex flex-col items-center gap-3">
                                     <img src={IMG.cryptoBitcoin} alt="" className=" rounded-full w-[48px] h-[48px]" />
                                     <h3 className="flex items-end justify-center gap-2 font-medium text-5xl text-center font-nagel">
