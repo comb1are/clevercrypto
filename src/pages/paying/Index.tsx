@@ -11,15 +11,14 @@ export default function Paying() {
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
     return (<div className="flex flex-col min-h-screen pb-10">
-        {/* <!-- Paying --> */}
         <section className="flex flex-col flex-1 mt-4">
             <div className="container px-4 flex flex-col flex-1 justify-between gap-3">
                 <div className="w-full flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 mb-1">
                         <div className="flex items-center">
                             <div className="flex items-center -space-x-2 relative">
-                                <img src={IMG.payLogo1} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-2 border-2 border-(--bg-main)" />
-                                <img src={IMG.payLogo2} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-1 border-2 border-(--bg-main)" />
+                                <img src={IMG.payLogo1} width={40} height={40} alt="" className="shrink-0 rounded-full w-10 h-10 relative z-2 border-2 border-(--bg-main)" />
+                                <img src={IMG.payLogo2} width={40} height={40} alt="" className="shrink-0 rounded-full w-10 h-10 relative z-1 border-2 border-(--bg-main)" />
                             </div>
                             <h2 className="font-medium leading-none text-(--text-main) text-lg pl-2 ml-1">Funpay</h2>
                         </div>
@@ -29,7 +28,7 @@ export default function Paying() {
                     <div className="flex flex-col gap-3 relative">
                         <label className="text-sm text-(--grey)">Выберите способ оплаты</label>
 
-                        <div className="flex flex-col w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors">
+                        <label className="flex flex-col w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors cursor-pointer has-checked:border-[#367DF0]">
                             <div className="flex items-center justify-between relative z-5">
                                 <img src={IMG.payCardLogo1} alt="" className="h-8" />
                                 <input
@@ -37,45 +36,42 @@ export default function Paying() {
                                     name="payType"
                                     checked={payType === 1}
                                     onChange={() => setPayType(1)}
-                                    className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer"
+                                    className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer peer"
                                 />
-                                <div className={`flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors ${payType === 1 ? 'border-[#367DF0]' : ''}`}>
-                                    {payType === 1 && <span className={`w-[14px] h-[14px] bg-(--main-link) rounded-full block  ${payType === 1 ? 'bg-[#367DF0]' : ''}`}></span>}
+                                <div className="flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors peer-checked:border-[#367DF0]">
+                                    <span className="w-3.5 h-3.5 rounded-full block bg-[#367DF0] opacity-0 peer-checked:opacity-100 transition-opacity"></span>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2 relative z-5">
-                                <h3 className="font-nagel font-medium text-[20px] leading-none text-(--text-main)">Оплата криптовалютой</h3>
-                                <p className="text-sm text-(--grey) leading-[137%] tracking-[0.03em]">Оплатита любой криптовалютой</p>
+                                <h3 className="font-nagel font-medium text-xl leading-none text-(--text-main)">Оплата криптовалютой</h3>
+                                <p className="text-sm text-(--grey)">Оплатита любой криптовалютой</p>
                             </div>
-                            <div className={`absolute inset-0 rounded-[24px] pointer-events-none transition-colors `}></div>
-                        </div>
+                        </label>
 
-                        <div className="flex flex-col w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors">
+                        <label className="flex flex-col w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors cursor-pointer has-checked:border-[#367DF0]">
                             <div className="flex items-center justify-between relative z-5">
                                 <div className="flex items-center gap-2">
                                     <img src={IMG.bankCard1} alt="" className="h-5" />
                                     <img src={IMG.bankCard2} alt="" className="h-5" />
                                     <img src={IMG.bankCard3} alt="" className="h-5" />
-                                    <img src={IMG.bankCard4} alt="" className="h-5 shrink-0 dark-img" />
-                                    {/* BankCard4 might be light-mode/dark-mode specific if it has dark-img class originally, assuming it's an overlay or invert */}
+                                    <img src={IMG.bankCard4} alt="" className="h-5 shrink-0" />
                                 </div>
                                 <input
                                     type="radio"
                                     name="payType"
                                     checked={payType === 2}
                                     onChange={() => setPayType(2)}
-                                    className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer"
+                                    className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer peer"
                                 />
-                                <div className={`flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors ${payType === 2 ? 'border-[#367DF0]' : ''}`}>
-                                    {payType === 2 && <span className={`w-[14px] h-[14px] bg-(--main-link) rounded-full block  ${payType === 2 ? 'bg-[#367DF0]' : ''}`}></span>}
+                                <div className="flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors peer-checked:border-[#367DF0]">
+                                    <span className="w-3.5 h-3.5 rounded-full block bg-[#367DF0] opacity-0 peer-checked:opacity-100 transition-opacity"></span>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2 relative z-5">
-                                <h3 className="font-nagel font-medium text-[20px] leading-none text-(--text-main)">Оплата картой</h3>
-                                <p className="text-sm text-(--grey) leading-[137%] tracking-[0.03em]">Оплата банковской картой</p>
+                                <h3 className="font-nagel font-medium text-xl leading-none text-(--text-main)">Оплата картой</h3>
+                                <p className="text-sm text-(--grey)">Оплата банковской картой</p>
                             </div>
-                            <div className={`absolute inset-0 rounded-[24px] pointer-events-none transition-colors`}></div>
-                        </div>
+                        </label>
 
                         <MainBtn className="w-full flex items-center justify-center gap-2 bg-(--btn-secondary-bg) text-(--text-main) py-[14px] rounded-[18px]">
                             <span className="font-medium tracking-[0.04em]">Другие способы оплаты</span>
@@ -85,19 +81,21 @@ export default function Paying() {
                 </div>
 
                 <div className="w-full flex flex-col gap-3 mt-auto pt-4">
-                    <MainBtn className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-(--bg-main) py-3 rounded-[18px]">Продолжить</MainBtn>
+                    <MainBtn
+                        className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-(--bg-main) py-3 rounded-[18px]"
+                        onClick={() => console.log('Продолжить с типом:', payType)}
+                    >Продолжить</MainBtn>
                     <button
                         className="w-full flex items-center justify-center gap-2 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]"
                         type="button"
                         onClick={() => setIsDetailModalOpen(true)}
                     >
                         <img src={isDark ? IMG.warningCircleGrayDark : IMG.warningCircleGray} alt="" className="shrink-0 w-6 h-6" />
-                        <span className=" font-medium ">Детали платежа</span>
+                        <span className="font-medium">Детали платежа</span>
                     </button>
                 </div>
             </div>
         </section>
-        {/* <!-- Paying end --> */}
 
         <Offcanvas className="details-modal" id="detailModal" isOpen={isDetailModalOpen} onClose={() => setIsDetailModalOpen(false)}>
             <div className="container px-4 flex flex-col gap-4">
@@ -128,7 +126,7 @@ export default function Paying() {
                         <span className="font-medium tracking-[0.04em]">Написать продавцу</span>
                     </MainBtn>
                     <MainBtn to="#" theme="red" className="w-full flex items-center justify-center gap-2 bg-[#DC35451A] text-[#DC3545] py-[14px] rounded-[18px] transition-colors hover:bg-[#DC3545]/20">
-                        <img src={IMG.alertRed} width={24} height={24} alt="" className="shrink-0 w-[24px] h-[24px]" />
+                        <img src={IMG.alertRed} width={24} height={24} alt="" className="shrink-0 w-6 h-6" />
                         <span className="font-medium tracking-[0.04em]">Открыть спор</span>
                     </MainBtn>
                     <button

@@ -4,35 +4,19 @@ import { useTheme } from "../../hooks/useTheme";
 import Header from "../../components/Header";
 import MainBtn from "../../components/UI/MainBtn";
 
-interface WalletInterface {
-    id: number;
-    title: string;
-    price: string;
-    checked: boolean;
-}
+const WALLET_LIST = [
+    { id: 1, title: 'Мой кошелек #1', price: '~$42 482.59' },
+    { id: 2, title: 'Для funpay', price: '~$42 482.59' },
+    { id: 3, title: 'Для себя', price: '~$42 482.59' },
+];
 
 export default function My() {
     const isDark = useTheme();
-    const [waletList, setWalletList] = useState<WalletInterface[]>([
-        { id: 1, title: 'Мой кошелек #1', price: '~$42 482.59', checked: true },
-        { id: 2, title: 'Для funpay', price: '~$42 482.59', checked: false },
-        { id: 3, title: 'Для себя', price: '~$42 482.59', checked: false },
-    ])
-
-    const handleCheck = (id: number) => {
-        setWalletList((prev) =>
-            prev.map((wallet) =>
-                wallet.id === id
-                    ? { ...wallet, checked: true }
-                    : { ...wallet, checked: false }
-            )
-        );
-    };
+    const [selectedId, setSelectedId] = useState<number>(WALLET_LIST[0].id);
 
     return (<div className="flex flex-col min-h-screen pb-10">
         <Header type="inner" leftLink="/home" leftLinkIcon="arrow">Мои кошельки</Header>
 
-        {/* <!-- My wallet --> */}
         <section className="flex-1 flex mt-4">
             <div className="container px-4 flex flex-col gap-2 w-full">
                 <div className="text-(--grey)">Мои кошельки</div>
@@ -41,36 +25,35 @@ export default function My() {
                     <span className="font-medium tracking-[0.04em]">Добавить кошелек</span>
                 </MainBtn>
                 <ul className="w-full flex flex-col gap-2">
-                    {waletList.map((data, index) => (
-                        <li key={index} className="bg-(--btn-secondary-bg) rounded-[18px] p-3 relative overflow-hidden">
-                            <input
-                                type="radio"
-                                className="absolute cursor-pointer inset-0 z-10 w-full h-[50%] opacity-0 peer"
-                                checked={data.checked}
-                                name="addWallet"
-                                onChange={() => handleCheck(data.id)}
-                            />
-                            <div className="mb-3 flex items-center justify-between relative z-5">
-                                <div>
-                                    <h3 className="mb-1 font-medium text-[18px] text-(--text-main)">{data.title}</h3>
-                                    <p className="text-(--grey)">{data.price}</p>
+                    {WALLET_LIST.map((data) => {
+                        const isSelected = selectedId === data.id;
+                        return (
+                            <li key={data.id} className="bg-(--btn-secondary-bg) rounded-[18px] p-3 relative overflow-hidden">
+                                <input
+                                    type="radio"
+                                    className="absolute cursor-pointer inset-0 z-10 w-full h-[50%] opacity-0 peer"
+                                    checked={isSelected}
+                                    name="addWallet"
+                                    onChange={() => setSelectedId(data.id)}
+                                />
+                                <div className="mb-3 flex items-center justify-between relative z-5">
+                                    <div>
+                                        <h3 className="mb-1 font-medium text-lg text-(--text-main)">{data.title}</h3>
+                                        <p className="text-(--grey)">{data.price}</p>
+                                    </div>
+                                    <div className={`flex items-center justify-center shrink-0 rounded-full w-6 h-6 transition-colors border border-(--grey) ${isSelected ? 'border-[#367DF0]' : ''}`}>
+                                        <span className={`rounded-full shrink-0 w-3.5 h-3.5 transition-colors ${isSelected ? 'bg-[#367DF0]' : 'bg-transparent'}`}></span>
+                                    </div>
                                 </div>
-                                <div className={`flex items-center justify-center shrink-0 rounded-full w-[24px] h-[24px]  transition-colors border border-(--grey) ${data.checked ? 'border-[#367DF0]' : ''}`}>
-                                    <span className={`rounded-full shrink-0 w-[14px] h-[14px] transition-colors ${data.checked ? 'bg-[#367DF0]' : 'bg-transparent'}`}></span>
+                                <div className="flex items-center gap-3 relative z-5">
+                                    <MainBtn to="/wallet/id" theme="link" className="w-full flex items-center justify-center py-0 h-10 text-center rounded-[14px] bg-(--btn-third-bg)">Редактировать</MainBtn>
+                                    <MainBtn to="" theme="link" className={`w-full flex items-center justify-center text-center py-0 h-10 rounded-[14px] bg-(--blue-bg) text-[#367DF0] ${isSelected ? 'hidden' : ''}`}>Выбрать</MainBtn>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-3 relative z-5">
-                                <MainBtn to="/wallet/id" theme="link" className="w-full flex items-center justify-center py-0 h-[40px] text-center rounded-[14px] bg-(--btn-third-bg)">Редактировать</MainBtn>
-                                <MainBtn to="" theme="link" className={`w-full flex items-center justify-center text-center py-0 h-[40px] rounded-[14px] bg-(--blue-bg) text-[#367DF0] ${data.checked ? 'hidden' : ''}`}>Выбрать</MainBtn>
-                            </div>
-
-                            {/* Selected state border highlight */}
-                            < div className={`absolute inset-0 rounded-[18px] pointer-events-none transition-colors ${data.checked ? '' : ''}`}></div>
-                        </li>
-                    ))}
+                            </li>
+                        );
+                    })}
                 </ul>
-            </div >
-        </section >
-        {/* <!-- My wallet end --> */}
-    </div >)
+            </div>
+        </section>
+    </div>)
 }

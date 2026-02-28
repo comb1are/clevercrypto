@@ -1,4 +1,3 @@
-import { useState } from "react";
 import IMG from "../../assets/images";
 import BottomNav from "../../components/BottomNav";
 import MainBtn from "../../components/UI/MainBtn";
@@ -7,39 +6,31 @@ import clsx from "clsx";
 import IconIndex50 from "../../components/Icons/IconIndex50";
 import { useTheme } from "../../hooks/useTheme";
 
-interface LinkInterface {
-    id: number,
-    title: string,
-    to: string,
-    icon: string,
-}
+const LINK_LIST = [
+    { id: 1, title: 'Основные настройки', to: '/profile/settings', icon: IMG.profileLink1 },
+    { id: 2, title: 'Настройка API', to: '#', icon: IMG.profileLink2 },
+    { id: 3, title: 'Безопасность', to: '/profile/security', icon: IMG.profileLink3 },
+    { id: 4, title: 'Активные сессии', to: '/profile/devices', icon: IMG.profileLink4 },
+    { id: 5, title: 'KYC верификация', to: '#', icon: IMG.profileLink5 },
+    { id: 6, title: 'Реферальная программа', to: '#', icon: IMG.profileLink6 },
+    { id: 7, title: 'Тарифы', to: '/profile/tarifs', icon: IMG.profileLink7 },
+];
 
 export default function Profile() {
     const isDark = useTheme();
 
-    const [linkList] = useState<LinkInterface[]>([
-        { id: 1, title: 'Основные настройки', to: '/profile/settings', icon: IMG.profileLink1 },
-        { id: 2, title: 'Настройка API', to: '#', icon: IMG.profileLink2 },
-        { id: 3, title: 'Безопасность', to: '/profile/security', icon: IMG.profileLink3 },
-        { id: 4, title: 'Активные сессии', to: '/profile/devices', icon: IMG.profileLink4 },
-        { id: 5, title: 'KYC верификация', to: '#', icon: IMG.profileLink5 },
-        { id: 6, title: 'Реферальная программа', to: '#', icon: IMG.profileLink6 },
-        { id: 7, title: 'Тарифы', to: '/profile/tarifs', icon: IMG.profileLink7 },
-    ])
-
     return (<div className="p-0 h-screen overflow-y-auto pb-[100px]">
         <BottomNav />
 
-        {/* <!-- Profile --> */}
         <section className="relative pt-6">
             <div className="absolute left-1/2 -translate-x-1/2"></div>
             <div className="flex flex-col items-center mx-auto px-4">
                 <img src={IMG.avatar} alt="Avatar" className="rounded-full mb-3 w-[80px] h-[80px]" />
                 <div className="w-full flex flex-col items-center mb-3">
                     <h2 className="font-medium font-nagel text-2xl leading-none text-center">Alex Kaste</h2>
-                    <MainBtn to="#" theme="linear" size="sm" className="w-auto  px-3 py-2 mb-4 mt-4 text-(--bg-main) bg-btn-glow rounded-[18px]">Обновить тариф</MainBtn>
+                    <MainBtn to="#" theme="linear" size="sm" className="w-auto px-3 py-2 mb-4 mt-4 text-(--bg-main) bg-btn-glow rounded-[18px]">Обновить тариф</MainBtn>
                 </div>
-                <div className="w-full flex flex-col gap-3 p-[20px] mb-2 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
+                <div className="w-full flex flex-col gap-3 p-5 mb-2 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
                     <div>
                         <div className="text flex items-center justify-between mb-3">
                             <h3 className="font-medium text-(--text-main)">Лимит платежей</h3>
@@ -59,9 +50,9 @@ export default function Profile() {
                         <span>Приобрести платежи</span>
                     </MainBtn>
                 </div>
-                <ul className="link-list flex flex-col gap-2 mb-4 w-full px-[20px] py-3 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
-                    {linkList.map((data, index) => (
-                        <li key={index} className="flex flex-col gap-2 border-b py-2 border-[#212529] last:border-0" >
+                <ul className="link-list flex flex-col gap-2 mb-4 w-full px-5 py-3 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
+                    {LINK_LIST.map((data, idx) => (
+                        <li key={data.id} className="flex flex-col gap-2 border-b py-2 border-[#212529] last:border-0">
                             <Link to={data.to} className="link-item text-base flex items-center justify-between gap-4 text-(--text-main)">
                                 <span className="flex items-center gap-3">
                                     <img src={data.icon} alt={data.title} className="shrink-0" />
@@ -71,17 +62,16 @@ export default function Profile() {
                             </Link>
                             <div className={clsx(
                                 'link-line w-full shrink-0',
-                                index + 1 == linkList.length && 'hidden'
+                                idx + 1 === LINK_LIST.length && 'hidden'
                             )}></div>
                         </li>
                     ))}
                 </ul>
-                <Link to={'#'} className="log-out text-base flex items-center w-full gap-3 p-[20px] bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
+                <Link to={'#'} className="log-out text-base flex items-center w-full gap-3 p-5 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">
                     <img src={IMG.logOut} alt="Log out" className="shrink-0" />
                     <span>Выйти из аккаунта</span>
                 </Link>
             </div>
         </section>
-        {/* <!-- Profile end --> */}
     </div>)
 }

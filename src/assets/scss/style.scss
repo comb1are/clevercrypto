@@ -179,9 +179,11 @@
         --btn-secondary-bg: var(--tg-theme-secondary-bg-color, rgba(40, 40, 40, 0.04));
         --title-color: var(--tg-theme-text-color, #2d2d2d);
     }
+
 }
 
 @layer utilities {
+
     .bg-glow-blob {
         background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%);
     }
@@ -196,15 +198,53 @@
             radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%) border-box;
         border: 2px solid transparent;
     }
+
+    @keyframes flashing-dots {
+
+        0%,
+        100% {
+            opacity: 0.3;
+        }
+
+        33% {
+            opacity: 1;
+        }
+    }
+
+    .animate-dots {
+        animation: flashing-dots 1.4s infinite linear;
+    }
 }
 
 
 
 @theme {
-    --font-helvetica: "HelveticaNeue", sans-serif;
-    --font-nagel: "Nagel", sans-serif;
-    --font-nebulas: "Nebulas", sans-serif;
-    --font-sf-compact: "SF Compact Display", sans-serif;
-    --font-sf-display: "SF Pro Display", sans-serif;
-    --font-sf-text: "SFProText", sans-serif;
+
+    --animate-flashing: flashing 1.4s infinite linear;
+
+    /* 2. Прописываем ключевые кадры (keyframes) */
+    @keyframes flashing {
+
+        0%,
+        100% {
+            opacity: 0.3;
+        }
+
+        33% {
+            opacity: 1;
+        }
+    }
+
+    --font-helvetica: "HelveticaNeue",
+    sans-serif;
+    --font-nagel: "Nagel",
+    sans-serif;
+    --font-nebulas: "Nebulas",
+    sans-serif;
+    --font-sf-compact: "SF Compact Display",
+    sans-serif;
+    --font-sf-display: "SF Pro Display",
+    sans-serif;
+    --font-sf-text: "SFProText",
+    sans-serif;
 }

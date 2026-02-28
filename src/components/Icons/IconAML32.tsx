@@ -1,27 +1,66 @@
 import React from 'react';
 
-export default function IconAML32(props: React.SVGProps<SVGSVGElement>) {
+interface IconAML32Props extends React.SVGProps<SVGSVGElement> {
+    percent?: number;      // Процент заполнения (от 0 до 100)
+    emptyColor?: string;   // Цвет серого фона кольца
+}
+
+export default function IconAML32({
+    percent = 0,
+    emptyColor = "#E9ECEF",
+    className,
+    ...props
+}: IconAML32Props) {
+
+    const safePercent = Math.max(0, Math.min(100, percent));
+
+
+    const getFillColor = (p: number) => {
+        if (p > 66) return "#DC3545"; // Красный
+        if (p > 33) return "#FFC107"; // Оранжевый
+        return "#20C997";            // Зеленый
+    };
+
+    const currentColor = getFillColor(safePercent);
+
+
+    const radius = 17;
+    const circumference = 2 * Math.PI * radius;
+    const strokeDashoffset = circumference - (safePercent / 100) * circumference;
+
     return (
-        <svg {...props} className="flex-shrink-0" width="22" height="22" viewBox="0 0 44 44">
-                                            <circle
-                                                strokeWidth="8"
-                                                stroke="#E9ECEF"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"/>
-                                            <circle
-                                                strokeWidth="8"
-                                                strokeLinecap="round"
-                                                stroke="#DC3545"
-                                                fill="transparent"
-                                                r="17"
-                                                cx="22"
-                                                cy="22"
-                                                transform="rotate(-90 22 22)"
-                                                strokeDasharray="100.48"
-                                                strokeDashoffset="15.36"
-                                            />
-                                        </svg>
+        <svg
+            {...props}
+            className={`flex-shrink-0 ${className || ''}`}
+            width="22"
+            height="22"
+            viewBox="0 0 44 44"
+        >
+            {/* Фоновое кольцо */}
+            <circle
+                strokeWidth="8"
+                stroke={emptyColor}
+                fill="transparent"
+                r={radius}
+                cx="22"
+                cy="22"
+            />
+
+            <circle
+                strokeWidth="8"
+                strokeLinecap="round"
+                stroke={currentColor}
+                fill="transparent"
+                r={radius}
+                cx="22"
+                cy="22"
+                transform="rotate(-90 22 22)"
+                strokeDasharray={circumference}
+                strokeDashoffset={strokeDashoffset}
+                style={{
+                    transition: 'stroke-dashoffset 0.5s ease-in-out, stroke 0.4s ease'
+                }}
+            />
+        </svg>
     );
 }

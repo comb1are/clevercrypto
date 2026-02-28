@@ -1,49 +1,93 @@
+import { useState } from "react";
+import { useTheme } from "../../hooks/useTheme";
 import IMG from "../../assets/images";
 import Header from "../../components/Header";
 import Alert from "../../components/UI/Alert";
 import MainBtn from "../../components/UI/MainBtn";
 
-export default function Pay () {
-    return (<div className="wrapper d-flex flex-column justify-content-between">
-        <Header type="inner" leftLink="/home" leftLinkIcon="">Пополнить проверки</Header>
+const MOCK_PLANS = [
+    { id: 1, checks: 5, oldPrice: '140 ₽', currentPrice: '100 ₽' },
+    { id: 2, checks: 10, oldPrice: '250 ₽', currentPrice: '180 ₽' },
+    { id: 3, checks: 20, oldPrice: '450 ₽', currentPrice: '320 ₽' },
+    { id: 4, checks: 50, oldPrice: '1000 ₽', currentPrice: '700 ₽' },
+];
 
-        {/* <!-- Check AML --> */}
-        <section className="check-aml h-full d-flex">
-            <div className="container h-full d-flex flex-column justify-content-between pt-3 gap-2">
-                <div className="d-flex flex-column gap-3">
-                    <Alert type="gray">
-                        <img src={IMG.warningGray} className="flex-shrink-0" alt="" />
-                        <img src={IMG.warningGrayDark} className="flex-shrink-0 dark-icon" alt="" />
-                        <p>Выберите кошелек для проверки AML</p>
-                    </Alert>
-                    <ul className="d-flex flex-column gap-3">
-                        {Array.from({length: 4}).map((_, index) => (
-                            <li key={index} className="pay-card overflow-hidden position-relative d-flex align-items-start justify-content-between">
-                                <input type="radio" name="pay" className="position-absolute start-0 top-0 w-100 h-100" id="" />
-                                <div className="pay-card__left d-flex align-items-start">
-                                    <img src={IMG.payDoc} className="flex-shrink-0" alt="" />
-                                    <img src={IMG.payDocDark} className="flex-shrink-0 dark-icon" alt="" />
-                                    <div>
-                                        <h3 className="d-flex align-items-end gap-2 fw-medium lh-1">
-                                            5
-                                            <span className="fs-6 fw-normal">проверок</span>
-                                        </h3>
-                                        <div className="price d-flex align-items-center gap-2 fs-6 fw-medium">
-                                            <del className="fw-normal">140 ₽</del>
-                                            <span>100 ₽</span>
+export default function Pay() {
+    const isDark = useTheme();
+
+    const [selectedPlanId, setSelectedPlanId] = useState<number>(MOCK_PLANS[0].id);
+
+    const handlePayment = () => {
+        const selectedPlan = MOCK_PLANS.find(p => p.id === selectedPlanId);
+        console.log("Отправляем на бэкенд запрос на покупку:", selectedPlan);
+
+    };
+
+    return (
+        <div className="wrapper flex min-h-screen flex-col justify-between bg-(--bg-main)">
+            <Header type="inner" leftLink="/home" leftLinkIcon="">Пополнить проверки</Header>
+
+            <section className="check-aml flex flex-1 flex-col pb-6 px-4">
+                <div className="container mx-auto flex flex-1 flex-col justify-between pt-4 gap-4">
+
+                    <div className="flex flex-col gap-4">
+                        <Alert type="gray" className="flex items-center gap-3">
+                            <img
+                                src={isDark ? IMG.warningGrayDark : IMG.warningGray}
+                                className="shrink-0 w-6 h-6"
+                                alt="Warning"
+                            />
+                            <p className="text-sm text-(--text-main)">Выберите кошелек для проверки AML</p>
+                        </Alert>
+
+                        <ul className="flex flex-col gap-3">
+                            {MOCK_PLANS.map((plan) => (
+                                <li
+                                    key={plan.id}
+                                    className="relative flex items-center justify-between overflow-hidden rounded-2xl bg-(--bg-card) p-4 border-2 border-transparent transition-colors has-checked:border-(--title-color)"
+                                >
+                                    <input
+                                        type="radio"
+                                        name="pay"
+                                        value={plan.id}
+                                        checked={selectedPlanId === plan.id}
+                                        onChange={() => setSelectedPlanId(plan.id)}
+                                        className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 peer"
+                                    />
+
+                                    <div className="flex items-start gap-3">
+                                        <img
+                                            src={isDark ? IMG.payDocDark : IMG.payDoc}
+                                            className="shrink-0 w-8 h-8"
+                                            alt="Document"
+                                        />
+                                        <div>
+                                            <h3 className="flex items-end gap-1 font-medium leading-none text-xl text-(--text-main)">
+                                                {plan.checks}
+                                                <span className="text-sm font-normal text-(--grey)">проверок</span>
+                                            </h3>
+                                            <div className="flex items-center gap-2 text-sm font-medium mt-1">
+                                                <del className="font-normal text-(--grey)">{plan.oldPrice}</del>
+                                                <span className="text-[#1AA179]">{plan.currentPrice}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="icon d-flex align-items-center justify-content-center rounded-pill">
-                                    <span className="rounded-pill"></span>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+
+                                    {/* Кастомный кружок (закрашивается через peer-checked) */}
+                                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--grey) bg-transparent peer-checked:border-(--title-color) peer-checked:bg-(--title-color) transition-all">
+                                        <span className="h-2.5 w-2.5 rounded-full bg-(--bg-card) opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Кнопка теперь тупо не висит в воздухе, а выполняет функцию */}
+                    <MainBtn onClick={handlePayment} className="w-full font-medium">
+                        Выбрать и оплатить
+                    </MainBtn>
                 </div>
-                <MainBtn className="fw-medium">Выбрать и оплатить</MainBtn>
-            </div>
-        </section>
-        {/* <!-- Check AML end --> */}
-    </div>)
+            </section>
+        </div>
+    );
 }

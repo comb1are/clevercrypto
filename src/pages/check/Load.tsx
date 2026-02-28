@@ -1,25 +1,28 @@
 import Header from "../../components/Header";
 import MainBtn from "../../components/UI/MainBtn";
+import DotsLoader from "../../components/DotsLoader";
 
-export default function Load () {
-    return (<div className="wrapper d-flex flex-column justify-content-between">
-        <Header type="inner" leftLink="/home" leftLinkIcon="">Проверка AML</Header>
+export default function Load() {
+    return (
+        <div className="wrapper flex min-h-screen flex-col justify-between bg-(--bg-main)">
+            <Header type="inner" leftLink="/home" leftLinkIcon="">Проверка AML</Header>
 
-        {/* <!-- Check AML --> */}
-        <section className="check-aml h-full d-flex">
-            <div className="container h-full d-flex flex-column justify-content-between">
-                <div className="load-page d-flex flex-column justify-content-center align-items-center gap-3 text-center h-full">
-                    <div className="load rounded-4 d-flex align-items-center justify-content-center">
-                        <div className="load-dot rounded-circle"></div>
-                        <div className="load-dot rounded-circle"></div>
-                        <div className="load-dot rounded-circle"></div>
+            <section className="check-aml flex flex-1 flex-col px-4 pb-6 pt-4">
+
+
+                <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+                    <div className="flex bg-blue-500/12 p-4 items-center justify-center rounded-2xl bg-(--bg-card)">
+                        <DotsLoader />
                     </div>
-                    <h2 className="fw-medium lh-1">Идёт проверка AML</h2>
-                    <p className="fs-6">Вы можете закрыть это окно — проверка продолжится на фоне</p>
+                    <h2 className="text-[28px] font-medium leading-none text-(--text-main)">Идёт проверка AML</h2>
+                    <p className=" text-(--grey)">Вы можете закрыть это окно — проверка продолжится в фоне</p>
                 </div>
-                <MainBtn theme="secondary" className="text-center">Закрыть</MainBtn>
-            </div>
-        </section>
-        {/* <!-- Check AML end --> */}
-    </div>)
+
+                <MainBtn className="w-full bg-(--btn-third-bg) py-[14px] rounded-[18px] text-center">
+                    Закрыть
+                </MainBtn>
+
+            </section>
+        </div>
+    );
 }
