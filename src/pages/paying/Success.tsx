@@ -1,8 +1,10 @@
 import IMG from "../../assets/images";
 import MainBtn from "../../components/UI/MainBtn";
 import IconSuccess46 from "../../components/Icons/IconSuccess46";
+import { useTheme } from "../../hooks/useTheme";
 
 export default function PayingSuccess() {
+    const isDark = useTheme();
     return (<div className="flex flex-col min-h-screen">
         {/* <!-- Payment result --> */}
         <section className="flex flex-col flex-1 pb-24 items-center justify-center relative">
@@ -14,17 +16,18 @@ export default function PayingSuccess() {
                     На ваш кошелёк зачислено: <b className="font-medium text-(--text-main)">440.54 USDT</b>
                 </p>
 
-                <div className="absolute left-0 bottom-0 w-full px-4 mb-4">
-                    <MainBtn to="#" className="w-full flex items-center justify-center font-medium gap-2 bg-(--text-main) text-(--bg-main) py-[14px] rounded-[18px]">
-                        <IconSuccess46 />
-                        <span className="font-medium tracking-[0.04em]">Вернуться в магазин</span>
-                    </MainBtn>
-                </div>
+
             </div>
         </section>
         {/* <!-- Payment result end --> */}
 
         <section className="w-full pb-8">
+            <div className="w-full px-4 mb-4">
+                <MainBtn to="/home" className="w-full flex items-center justify-center font-medium gap-2 bg-(--bg-main) text-(--text-main) py-[14px] rounded-[18px]">
+                    {isDark ? <IconSuccess46 fill="#282828" /> : <IconSuccess46 />}
+                    <span className="font-medium tracking-[0.04em]">Вернуться в магазин</span>
+                </MainBtn>
+            </div>
             <div className="container px-4">
                 <MainBtn className="w-full flex items-center justify-center gap-3 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]">
                     <img src={IMG.warningSpace} alt="" className="shrink-0 w-6 h-6" />

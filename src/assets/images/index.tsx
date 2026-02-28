@@ -159,9 +159,11 @@ import paymentSelectCard4 from './payment-select-card-4.svg';
 import alfaBank from './alfa-bank.svg';
 import copyIconGray from './copy-icon-gray.svg';
 import supportLogo from './support-logo.svg';
+import supportLogoDark from './support-logodark.svg'
 import clockIcon from './clock-icon.svg';
 import clockIconDark from './clock-icon-dark.svg';
 import shareIcon2 from './share-icon-2.svg';
+import shareIcon2Dark from './share-icon2dark.svg';
 import payingQrCode from './paying-qr-code.svg';
 import shareLink from './share-link.svg';
 import paymentSuccessCard from './payment-success-card.svg';
@@ -330,9 +332,11 @@ const IMG = {
     alfaBank,
     copyIconGray,
     supportLogo,
+    supportLogoDark,
     clockIcon,
     clockIconDark,
     shareIcon2,
+    shareIcon2Dark,
     payingQrCode,
     shareLink,
     paymentSuccessCard,

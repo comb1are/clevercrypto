@@ -3,7 +3,6 @@ import IMG from "../../assets/images"
 import MainBtn from "../../components/UI/MainBtn";
 import Offcanvas from "../../components/UI/Offcanvas";
 import IconByCrypto41 from "../../components/Icons/IconByCrypto41";
-import IconByCrypto42 from "../../components/Icons/IconByCrypto42";
 import { useTheme } from "../../hooks/useTheme";
 
 interface CryptoListInterface {
@@ -43,10 +42,10 @@ export default function PayingByCrypto() {
         <section className="flex flex-col flex-1 mt-4">
             <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
                 <div className="w-full flex flex-col gap-4">
-                    <div className="flex items-center justify-between pb-3 mb-1 border-b border-(--border-main)">
+                    <div className="flex items-center justify-between pb-3 mb-1">
                         <div className="flex items-center gap-2">
                             <a href="#" className="flex items-center justify-center bg-(--btn-secondary-bg) rounded-full w-[40px] h-[40px] p-0 transition-colors hover:bg-white/10">
-                                <IconByCrypto42 />
+                                <img src={isDark ? IMG.arrowLeftDark : IMG.arrowLeft} alt="" />
                             </a>
                             <div className="flex items-center -space-x-2 relative">
                                 <img src={IMG.payLogo1} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-2 border-2 border-(--bg-main)" />
@@ -58,8 +57,8 @@ export default function PayingByCrypto() {
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <label className="text-sm text-(--grey)">Выберите валюту для оплаты</label>
-                        <div className="flex items-center gap-3 pl-4 bg-(--bg-card) rounded-[18px] h-[52px]">
+                        <label className=" text-(--grey)">Выберите валюту для оплаты</label>
+                        <div className="flex items-center gap-3 pl-4 bg-(--intro-btn-bg)  rounded-[18px] h-[52px]">
                             <button className="h-full shrink-0 flex items-center justify-center">
                                 <img src={isDark ? IMG.searchIcon2Dark : IMG.searchIcon2} alt="" />
                             </button>
@@ -68,34 +67,32 @@ export default function PayingByCrypto() {
 
                         <div className="grid grid-cols-2 gap-2 mt-2">
                             {cryptoList.map((data, index) => (
-                                <div key={index} className="bg-(--btn-secondary-bg) flex items-start flex-col gap-3 relative overflow-hidden rounded-[18px] p-3 transition-colors">
+                                <div key={index} className={`flex flex-col w-full h-full relative border border-(--border-secondary) rounded-[24px] p-4 gap-3 transition-colors overflow-hidden`}>
                                     {index === 0 && (
                                         <div className="w-[102px] h-[102px] bg-[#367DF01F] rounded-full blur-[20px] absolute -top-[30px] -left-[30px] z-0 pointer-events-none"></div>
                                     )}
-                                    <div className="w-full flex items-center justify-between gap-3 relative z-5">
-                                        <img src={data.icon} width={28} height={28} alt="" className="shrink-0 rounded-full w-[28px] h-[28px]" />
-                                        <input
-                                            type="radio"
-                                            name="selectCountry"
-                                            checked={data.selected}
-                                            onChange={() => handleSelectCrypto(data.id)}
-                                            className="absolute cursor-pointer inset-0 z-10 w-full h-full opacity-0 peer"
-                                        />
-                                        <div className={`flex items-center justify-center shrink-0 rounded-full w-[20px] h-[20px] transition-colors ${data.selected ? 'bg-(--green-bg)' : 'border border-(--grey)'}`}>
-                                            {data.selected && <img src={IMG.checkGreen} alt="" className="w-3 h-3" />}
+                                    <div className="w-full flex items-center justify-between relative z-5">
+                                        <img src={data.icon} width={28} alt="" className="shrink-0 w-7 h-7 rounded-full" />
+                                        <div className={`flex items-center justify-center shrink-0 rounded-full w-6 h-6 border border-(--border-secondary) transition-colors ${data.selected ? 'border-[#367DF0]' : ''}`}>
+                                            {data.selected && <span className={`w-3 h-3 rounded-full block bg-[#367DF0]`}></span>}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2 relative z-5">
-                                        {index === 0 && (
-                                            <IconByCrypto41 />
-                                        )}
-                                        <h3 className="font-medium text-sm text-(--text-main)">
-                                            {data.title} {data.subtitle && (<span className="text-(--grey) ml-1">{data.subtitle}</span>)}
-                                        </h3>
-                                    </div>
 
-                                    {/* Selected state border highlight */}
-                                    <div className={`absolute inset-0 rounded-[18px] pointer-events-none transition-colors border-[1.5px] ${data.selected ? 'border-(--green-bg)' : 'border-transparent'}`}></div>
+                                    <div className="flex flex-col relative z-5 flex-1">
+                                        <div className="flex items-center gap-1">
+                                            {index === 0 && <IconByCrypto41 fill={isDark ? '#E7E7E7' : '#E7E7E7'} />}
+                                            <h3 className="font-nagel font-medium text-[16px] leading-none text-(--text-main) truncate">
+                                                {data.title} {data.subtitle && <span className="text-(--grey) text-base ml-1">{data.subtitle}</span>}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <input
+                                        type="radio"
+                                        name="selectCountry"
+                                        checked={data.selected}
+                                        onChange={() => handleSelectCrypto(data.id)}
+                                        className="absolute cursor-pointer inset-0 z-10 w-full h-full opacity-0"
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -103,7 +100,7 @@ export default function PayingByCrypto() {
                 </div>
 
                 <div className="w-full flex flex-col gap-3 mt-auto pt-4">
-                    <MainBtn theme="neutral" className="w-full flex items-center justify-center font-medium bg-(--text-main) text-(--bg-main) py-3 rounded-[18px]">Перейти к оплате</MainBtn>
+                    <MainBtn theme="neutral" className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-(--bg-main) py-3 rounded-[18px]">Перейти к оплате</MainBtn>
                     <button
                         className="w-full flex items-center justify-center gap-2 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]"
                         type="button"

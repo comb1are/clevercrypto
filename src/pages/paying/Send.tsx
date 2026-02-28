@@ -15,8 +15,11 @@ export default function PayingSend() {
         <section className="flex flex-col flex-1 mt-4">
             <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
                 <div className="w-full flex flex-col gap-4">
-                    <div className="flex items-center justify-between pb-3 mb-1 border-b border-(--border-main)">
+                    <div className="flex items-center justify-between pb-3 mb-1 ">
                         <div className="flex items-center gap-2">
+                            <MainBtn to="/paying" className="flex items-center justify-center bg-(--btn-secondary-bg) rounded-full w-[40px] h-[40px] p-0 transition-colors hover:bg-white/10">
+                                <img src={isDark ? IMG.arrowLeftDark : IMG.arrowLeft} alt="" />
+                            </MainBtn>
                             <div className="flex items-center -space-x-2 relative">
                                 <img src={IMG.payLogo1} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-2 border-2 border-(--bg-main)" />
                                 <img src={IMG.payLogo2} width={40} height={40} alt="" className="shrink-0 rounded-full w-[40px] h-[40px] relative z-1 border-2 border-(--bg-main)" />
@@ -30,7 +33,7 @@ export default function PayingSend() {
                         <h1 className="font-medium font-nagel text-[32px] leading-[87%] text-(--text-main)">Отправьте средства</h1>
                         <p className="text-(--grey) text-sm leading-[137%] tracking-[0.03em]">Отправьте средства по реквизитам ниже. Переводите точную сумму для зачисления платежа!</p>
 
-                        <div className="w-full bg-(--bg-card) rounded-[20px] p-4 flex flex-col gap-2">
+                        <div className="w-full relative bg-(--btn-profile-bg) rounded-[24px] p-4 flex flex-col gap-2 transition-colors">
                             <p className="text-sm text-(--grey) leading-none">Страна получателя</p>
                             <div className="flex items-center gap-2">
                                 <img src={IMG.flagRu} width={24} height={24} alt="" className="shrink-0 rounded-full object-cover w-6 h-6" />
@@ -38,7 +41,7 @@ export default function PayingSend() {
                             </div>
                         </div>
 
-                        <div className="w-full bg-(--bg-card) rounded-[20px] p-4 flex flex-col gap-2">
+                        <div className="w-full relative bg-(--btn-profile-bg) rounded-[24px] p-4 flex flex-col gap-2 transition-colors">
                             <p className="text-sm text-(--grey) leading-none">Банк получателя</p>
                             <div className="flex items-center gap-2">
                                 <img src={IMG.alfaBank} width={24} height={24} alt="" className="shrink-0 rounded-full object-cover w-6 h-6" />
@@ -46,7 +49,7 @@ export default function PayingSend() {
                             </div>
                         </div>
 
-                        <div className="w-full bg-(--bg-card) rounded-[20px] p-4 flex items-center justify-between">
+                        <div className="w-full relative bg-(--btn-profile-bg) rounded-[24px] p-4 flex items-center justify-between transition-colors">
                             <div className="w-full flex flex-col gap-2">
                                 <p className="text-sm text-(--grey) leading-none">Номер карты</p>
                                 <h3 className="font-nagel text-[20px] leading-none text-(--text-main)">2214 8539 8729 5735</h3>
@@ -56,7 +59,7 @@ export default function PayingSend() {
                             </button>
                         </div>
 
-                        <div className="w-full bg-(--bg-card) rounded-[20px] p-4 flex items-center justify-between">
+                        <div className="w-full relative bg-(--btn-profile-bg) rounded-[24px] p-4 flex items-center justify-between transition-colors">
                             <div className="w-full flex flex-col gap-2">
                                 <p className="text-sm text-(--grey) leading-none">Сумма к оплате</p>
                                 <h3 className="font-nagel text-[20px] leading-none text-(--text-main)">2 410 Руб</h3>
@@ -68,28 +71,28 @@ export default function PayingSend() {
 
                         <Alert type="warning">
                             <img src={isDark ? IMG.alertWarningDark : IMG.alertWarning} alt="" className="shrink-0 w-6 h-6" />
-                            <p className="text-sm text-(--text-main)">Не закрывайте страницу до завершения оплаты</p>
+                            <p className="text-sm text-[#FFC107] py-2">Не закрывайте страницу до завершения оплаты</p>
                         </Alert>
 
-                        <MainBtn className="w-full flex items-center justify-center gap-2 bg-(--btn-secondary-bg) text-(--text-main) py-[14px] rounded-[18px]">
+                        <MainBtn className="w-full flex items-center justify-center gap-2 bg-(--btn-third-bg) text-(--text-main) py-[10px] rounded-[18px]">
                             <img src={IMG.supportLogo} width={24} alt="" className="shrink-0 w-6 h-6" />
-                            <span className="font-medium tracking-[0.04em] text-sm">Проблемы с оплатой?</span>
+                            <span className="">Проблемы с оплатой?</span>
                         </MainBtn>
                     </div>
                 </div>
 
                 <div className="w-full flex flex-col gap-3 mt-auto pt-4">
-                    <MainBtn className="w-full flex items-center justify-center gap-2 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]">
+                    <MainBtn className="w-full flex items-center justify-center gap-2 text-(--text-main) py-3 rounded-[18px]">
                         <img src={isDark ? IMG.clockIconDark : IMG.clockIcon} alt="" className="shrink-0 w-[22px] h-[22px]" />
                         <span className="text-sm font-medium tracking-[0.04em]">Счёт действителен: 00:58:09</span>
                     </MainBtn>
                     <button
-                        className="w-full flex items-center justify-center gap-2 bg-(--btn-secondary-bg) text-(--text-main) py-3 rounded-[18px]"
+                        className="w-full cursor-pointer flex items-center justify-center gap-3 bg-(--btn-third-bg) text-(--text-main) py-3 rounded-[18px]"
                         type="button"
                         onClick={() => setIsPayingModalOpen(true)}
                     >
-                        <img src={IMG.shareIcon2} width={24} alt="" className="shrink-0 w-6 h-6" />
-                        <span className="text-sm font-medium tracking-[0.04em]">Поделиться</span>
+                        <img src={isDark ? IMG.shareIcon2Dark : IMG.shareIcon2} width={24} alt="" className="shrink-0 w-6 h-6 pointer-events-none" />
+                        <span className="tracking-[0.04em] pointer-events-none">Поделиться</span>
                     </button>
                 </div>
             </div>

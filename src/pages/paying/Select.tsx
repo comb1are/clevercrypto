@@ -54,26 +54,24 @@ export default function PayingSelect() {
                     <div className="flex flex-col gap-3 relative">
                         <label className="text-sm text-(--grey)">Выберите метод оплаты картой</label>
                         {paymentSelect.map((data, index) => (
-                            <div key={index} className="flex flex-col w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors">
-                                <div className="flex items-center justify-between relative z-5">
-                                    <img src={data.icon} width={32} height={32} alt="" className="shrink-0 w-8 h-8" />
-                                    <input
-                                        type="radio"
-                                        name="paymentSelect"
-                                        checked={data.selected}
-                                        onChange={() => handleSelectPayment(data.id)}
-                                        className="absolute cursor-pointer inset-0 z-10 w-full h-full opacity-0 peer"
-                                    />
-                                    <div className={`flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors ${data.selected ? 'border-[#367DF0]' : ''}`}>
-                                        {data.selected && <span className={`w-[14px] h-[14px] rounded-full block ${data.selected ? 'bg-[#367DF0]' : 'bg-(--main-link)'}`}></span>}
-                                    </div>
-                                </div>
-                                <div className="flex flex-col gap-2 relative z-5">
+                            <div key={index} className="flex items-center w-full relative border border-(--border-secondary) rounded-[24px] p-5 gap-4 transition-colors">
+                                <img src={data.icon} width={32} alt="" className="shrink-0 w-8 relative z-5" />
+                                <div className="flex flex-col gap-2 relative z-5 flex-1">
                                     <h3 className="font-nagel font-medium text-[20px] leading-none text-(--text-main)">
                                         {data.title} {data.subtitle && <span className="text-(--grey)">{data.subtitle}</span>}
                                     </h3>
                                     <p className="text-sm leading-[137%] tracking-[0.03em] text-(--grey)">{data.text}</p>
                                 </div>
+                                <div className={`flex items-center justify-center shrink-0 rounded-full w-7 h-7 relative z-5 border border-(--border-secondary) transition-colors ${data.selected ? 'border-[#367DF0]' : ''}`}>
+                                    {data.selected && <span className={`w-[14px] h-[14px] rounded-full block ${data.selected ? 'bg-[#367DF0]' : 'bg-(--main-link)'}`}></span>}
+                                </div>
+                                <input
+                                    type="radio"
+                                    name="paymentSelect"
+                                    checked={data.selected}
+                                    onChange={() => handleSelectPayment(data.id)}
+                                    className="absolute cursor-pointer inset-0 z-10 w-full h-full opacity-0"
+                                />
                                 <div className={`absolute inset-0 rounded-[24px] pointer-events-none transition-colors`}></div>
                             </div>
                         ))}
@@ -92,10 +90,11 @@ export default function PayingSelect() {
                     </button>
                 </div>
             </div>
-        </section>
+        </section >
         {/* <!-- Paying end --> */}
 
-        <Offcanvas className="details-modal" id="detailModal" isOpen={isDetailModalOpen} onClose={() => setIsDetailModalOpen(false)}>
+        < Offcanvas className="details-modal" id="detailModal" isOpen={isDetailModalOpen} onClose={() => setIsDetailModalOpen(false)
+        }>
             <div className="container px-4 flex flex-col gap-4">
                 <h2 className="font-medium leading-none text-(--text-main) text-lg tracking-[0.04em]">Детали платежа</h2>
                 <ul className="flex flex-col gap-4">
@@ -136,6 +135,6 @@ export default function PayingSelect() {
                     </button>
                 </div>
             </div>
-        </Offcanvas>
-    </div>)
+        </Offcanvas >
+    </div >)
 }
