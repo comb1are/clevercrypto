@@ -2,64 +2,57 @@ import { useState } from "react";
 import Header from "../../components/Header";
 import IMG from "../../assets/images";
 
-interface CryptoListInterface {
-    id: number;
-    img: string;
-    title: string;
-    subtitle: string;
-    selected: boolean;
-}
+const INITIAL_CRYPTO_LIST = [
+    { id: 1, img: IMG.cryptoBitcoin, title: 'Bitcoin', subtitle: '', selected: true },
+    { id: 2, img: IMG.cryptoEthereum, title: 'Ethereum', subtitle: '', selected: true },
+    { id: 3, img: IMG.cryptoTether, title: 'Tether', subtitle: '', selected: true },
+    { id: 4, img: IMG.cryptoTrc20, title: 'USDT', subtitle: 'TRC-20', selected: true },
+    { id: 5, img: IMG.cryptoBitcoin, title: 'USDT', subtitle: 'ERC-20', selected: true },
+    { id: 6, img: IMG.cryptoErc20, title: 'USDT', subtitle: 'BNB-20', selected: false },
+    { id: 7, img: IMG.cryptoLitecoin, title: 'Litecoin', subtitle: '', selected: true },
+    { id: 8, img: IMG.cryptoBinancecoin, title: 'Binance Coin', subtitle: '', selected: false },
+    { id: 9, img: IMG.cryptoUsdcoin, title: 'USD Coin', subtitle: '', selected: false },
+    { id: 10, img: IMG.cryptAvax, title: 'Avax', subtitle: '', selected: false },
+    { id: 11, img: IMG.cryptoRipple, title: 'Ripple', subtitle: '', selected: false },
+];
 
-export default function BusinessIncluded () {
-    const [cryptoList, setCryptoList] = useState<CryptoListInterface []>([
-        { id: 1, img: IMG.cryptoBitcoin, title: 'Bitcoin', subtitle: '', selected: true },
-        { id: 2, img: IMG.cryptoEthereum, title: 'Ethereum', subtitle: '', selected: true },
-        { id: 3, img: IMG.cryptoTether, title: 'Tether', subtitle: '', selected: true },
-        { id: 4, img: IMG.cryptoTrc20, title: 'USDT', subtitle: 'TRC-20', selected: true },
-        { id: 5, img: IMG.cryptoBitcoin, title: 'USDT', subtitle: 'ERC-20', selected: true },
-        { id: 6, img: IMG.cryptoErc20, title: 'USDT', subtitle: 'BNB-20', selected: false },
-        { id: 7, img: IMG.cryptoLitecoin, title: 'Litecoin', subtitle: '', selected: true },
-        { id: 8, img: IMG.cryptoBinancecoin, title: 'Binance Coin', subtitle: '', selected: false },
-        { id: 9, img: IMG.cryptoUsdcoin, title: 'USD Coin', subtitle: '', selected: false },
-        { id: 10, img: IMG.cryptAvax, title: 'Avax', subtitle: '', selected: false },
-        { id: 11, img: IMG.cryptoRipple, title: 'Ripple', subtitle: '', selected: false },
-    ])
+export default function BusinessIncluded() {
+    const [selectedIds, setSelectedIds] = useState<number[]>(
+        INITIAL_CRYPTO_LIST.filter(c => c.selected).map(c => c.id)
+    );
 
     const toggleSelect = (id: number) => {
-        setCryptoList((prev) =>
-            prev.map((item) =>
-                item.id === id ? { ...item, selected: !item.selected } : item
-            )
+        setSelectedIds(prev =>
+            prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
         );
     };
 
-    return (<div className="wrapper d-flex flex-column justify-content-between">
+    return (<div className="flex flex-col min-h-screen pb-[100px]">
         <Header type="inner" leftLink="/business" leftLinkIcon="">Включенные платежи</Header>
 
-        {/* <!-- Included payments --> */}
-        <section className="included-payment h-full d-flex pt-3">
-            <div className="container h-full d-flex flex-column gap-2">
-                {cryptoList.map((data, index) => (
-                    <div key={index} className="payment-card d-flex align-items-center justify-content-between rounded-pill">
-                        <div className="d-flex align-items-center gap-3">
-                            <img src={data.img} width="28" className="object-fit-cover" alt="" />
-                            <h3 className="fs-6 fw-medium">
-                                {data.title} {data.subtitle && ( <span> {data.subtitle}</span> )}
+        <section className="flex-1 mt-4">
+            <div className="container px-4 flex flex-col gap-2">
+                {INITIAL_CRYPTO_LIST.map((data) => (
+                    <div key={data.id} className="flex items-center justify-between bg-(--btn-secondary-bg) p-3 rounded-full">
+                        <div className="flex items-center gap-3">
+                            <img src={data.img} className="w-10 h-10 object-cover rounded-full shrink-0" alt="" />
+                            <h3 className="text-base font-medium text-(--text-main)">
+                                {data.title} {data.subtitle && (<span className="text-(--grey)"> {data.subtitle}</span>)}
                             </h3>
                         </div>
-                        <div className="form-checkbox flex-shrink-0 rounded-pill position-relative overflow-hidden">
+                        <label className="shrink-0 relative cursor-pointer w-[50px] h-[30px] rounded-full overflow-hidden flex items-center bg-[#2B2D31] has-checked:bg-[#1AA179] transition-colors">
                             <input
                                 type="checkbox"
                                 onChange={() => toggleSelect(data.id)}
-                                checked={data.selected}
-                                className="position-absolute start-0 top-0 w-100 h-100"
+                                checked={selectedIds.includes(data.id)}
+                                className="absolute opacity-0 w-0 h-0 peer"
+                                aria-label={`Toggle ${data.title}`}
                             />
-                            <span className="rounded-pill position-absolute"></span>
-                        </div>
+                            <span className="w-6 h-6 rounded-full bg-white absolute left-1 shadow-sm transition-transform peer-checked:translate-x-5"></span>
+                        </label>
                     </div>
                 ))}
             </div>
         </section>
-        {/* <!-- Included payments end --> */}
     </div>)
 }

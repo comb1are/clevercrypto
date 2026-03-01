@@ -2,41 +2,52 @@ import IMG from "../../../assets/images";
 import Header from "../../../components/Header";
 import MainBtn from "../../../components/UI/MainBtn";
 
-export default function BusinessPlatformAdd () {
-    return (<div className="wrapper d-flex flex-column justify-content-between">
+export default function BusinessPlatformAdd() {
+    return (<div className="flex flex-col min-h-screen pb-[100px]">
         <Header type="inner" leftLink="/business" leftLinkIcon="">Добавить площадку</Header>
 
-        {/* <!-- Profile settings --> */}
-        <section className="profile-settings h-full d-flex pt-3">
-            <div className="container h-full d-flex flex-column justify-content-between gap-3">
-                <div className="d-flex flex-column align-items-center gap-3">
-                    <div className="avatar-logo flex-shrink-0 rounded-circle overflow-hidden">
-                        <img src={IMG.businessLogo2} className="w-100 h-100 object-fit-cover" alt="" />
+        <section className="flex-1 flex mt-4">
+            <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
+                <div className="flex flex-col gap-8 w-full">
+                    {/* Аватар */}
+                    <div className="flex flex-col items-center gap-4 w-full">
+                        <div className="shrink-0 rounded-full overflow-hidden w-[80px] h-[80px]">
+                            <img src={IMG.businessLogo2} className="w-full h-full object-cover" alt="" />
+                        </div>
+                        <div className="relative">
+                            <input type="file" className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                            <MainBtn theme="link" size="sm" className="relative z-5 text-[#367DF0] px-[20px] py-[9px] bg-(--blue-bg)  rounded-[18px] text-sm">Загрузить аватар</MainBtn>
+                        </div>
                     </div>
-                    <div className="select-logo position-relative">
-                        <input type="file" name="" id="" className="position-absolute top-0 start-0 w-100 h-100 opacity-0" />
-                        <MainBtn theme="link" size="sm">Загрузить аватар</MainBtn>
-                    </div>
-                    <div className="w-100">
-                        <label className="mb-2">ID</label>
-                        <input type="text" placeholder="Введите ID магазина" className="px-4 fs-6 form-inp border-0" />
-                    </div>
-                    <div className="w-100">
-                        <label className="mb-2">API Token</label>
-                        <input type="text" placeholder="Введите API token" className="px-4 fs-6 form-inp border-0" />
-                    </div>
-                    <div className="w-100">
-                        <label className="mb-2">Ссылка для уведомлений</label>
-                        <input type="text" placeholder="Введите ссылку для уведомлений" className="px-4 fs-6 form-inp border-0" />
-                    </div>
-                    <div className="w-100">
-                        <label className="mb-2">Ссылка для перенаправления после оплаты</label>
-                        <input type="text" placeholder="Введите ссылку перенаправления" className="px-4 fs-6 form-inp border-0" />
+
+                    {/* Поля ввода */}
+                    <div className="w-full flex flex-col gap-6">
+                        <div className="w-full flex flex-col">
+                            <p className="text-(--grey) mb-1.5 text-sm">ID магазина</p>
+                            <input type="text" placeholder="Введите ID магазина" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl outline-none text-(--text-main) placeholder-(--grey)" />
+                        </div>
+
+                        <div className="w-full flex flex-col">
+                            <p className="text-(--grey) mb-1.5 text-sm">API token</p>
+                            <input type="text" placeholder="Введите API token" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl outline-none text-(--text-main) placeholder-(--grey)" />
+                        </div>
+
+                        <div className="w-full flex flex-col">
+                            <p className="text-(--grey) mb-1.5 text-sm">Ссылка для уведомлений</p>
+                            <input type="text" placeholder="Введите ссылку для уведомлений" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl outline-none text-(--text-main) placeholder-(--grey)" />
+                        </div>
+
+                        <div className="w-full flex flex-col">
+                            <p className="text-(--grey) mb-1.5 text-sm">Ссылка перенаправления</p>
+                            <input type="text" placeholder="Введите ссылку перенаправления" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl outline-none text-(--text-main) placeholder-(--grey)" />
+                        </div>
                     </div>
                 </div>
-                <MainBtn theme="neutral" className="fw-medium">Добавить магазин</MainBtn>
+
+                <div className="w-full mt-auto pt-4">
+                    <MainBtn theme="neutral" className="w-full font-medium justify-center text-center py-[14px] bg-(--text-main) text-(--bg-main) rounded-2xl">Добавить площадку</MainBtn>
+                </div>
             </div>
         </section>
-        {/* <!-- Profile settings end --> */}
     </div>)
 }

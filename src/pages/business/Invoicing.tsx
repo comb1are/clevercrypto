@@ -1,40 +1,40 @@
 import Header from "../../components/Header";
 import MainBtn from "../../components/UI/MainBtn";
 
-export default function BusinessInvoicing () {
-    return (<div className="wrapper d-flex flex-column justify-content-between">
+export default function BusinessInvoicing() {
+    return (<div className="flex flex-col min-h-screen pb-[100px]">
         <Header type="inner" leftLink="/business" leftLinkIcon="">Выставление счёта</Header>
 
-        {/* <!-- Business Invoicing --> */}
-        <section className="invoicing h-full d-flex">
-            <div className="container h-full d-flex flex-column justify-content-between pt-3 gap-4">
-                <div className="w-100 d-flex flex-column gap-3">
-                    <div className="w-100">
-                        <label className="mb-2">Номер заказа</label>
-                        <input type="text" className="px-4 fs-6 border-0 form-inp" placeholder="Введите номер заказа" />
+        <section className="flex-1 flex mt-4">
+            <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
+                <div className="flex flex-col gap-8 w-full">
+                    <div className="w-full flex  flex-col">
+                        <p className="text-(--grey) mb-1.5 text-sm">Номер заказа</p>
+                        <input type="text" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl outline-none text-(--text-main) placeholder-(--grey)" placeholder="Введите номер заказа" />
                     </div>
-                    <div className="w-100">
-                        <label className="mb-2">Сумма платежа</label>
-                        <div className="form-price position-relative">
-                            <input type="text" placeholder="10" className="position-relative w-100 px-4 fs-6" inputMode="numeric" pattern="[0-9]*" />
-                            <p className="px-3 position-absolute position-absolute end-0 top-50 translate-middle-y d-flex align-items-center fs-6">USDT</p>
+                    <div className="w-full relative flex flex-col">
+                        <p className="text-(--grey) mb-1.5 text-sm">Сумма платежа</p>
+                        <div className="w-full relative flex">
+                            <input type="text" placeholder="0" className="w-full px-4 py-[14px] pr-[100px] text-base bg-(--btn-secondary-bg) text-(--text-main) placeholder-(--grey) rounded-2xl outline-none" inputMode="numeric" pattern="[0-9]*" />
+                            <p className="px-4 absolute right-0 top-1/2 -translate-y-1/2 h-[70%] flex items-center text-base text-(--text-main) before:content-[''] before:w-px before:h-full before:bg-(--border-secondary) before:mr-4">USDT</p>
                         </div>
                     </div>
-                    <div className="w-100">
-                        <label className="mb-2">Редирект URL</label>
-                        <input type="url" className="px-4 fs-6 border-0 form-inp" placeholder="https://example.com" />
+                    <div className="w-full flex flex-col justify-between ">
+                        <p className="text-(--grey) mb-1.5 text-sm">Редирект URL</p>
+                        <input type="url" className="w-full text-base px-4 py-[14px] bg-(--btn-secondary-bg) rounded-2xl border-0 outline-none text-(--text-main) placeholder-(--grey)" placeholder="https://example.com" />
                     </div>
-                    <div className="w-100">
-                        <label className="mb-2">Проверять со скидкой</label>
-                        <div className="form-price position-relative">
-                            <input type="text" placeholder="0" className="position-relative w-100 px-4 fs-6" inputMode="numeric" pattern="[0-9]*" />
-                            <p className="px-3 position-absolute position-absolute end-0 top-50 translate-middle-y d-flex align-items-center fs-6">%</p>
+                    <div className="w-full mt-2">
+                        <p className="text-sm text-(--grey) mb-1.5">Продавать со скидкой</p>
+                        <div className="relative w-full">
+                            <input type="text" placeholder="0" className="w-full px-4 py-[14px] pr-[80px] text-base bg-(--btn-secondary-bg) text-(--text-main) placeholder-(--grey) rounded-2xl outline-none" inputMode="numeric" pattern="[0-9]*" />
+                            <p className="px-4 absolute right-0 top-1/2 -translate-y-1/2 h-[70%] flex items-center text-base text-(--text-main) before:content-[''] before:w-px before:h-full before:bg-(--border-secondary) before:mr-4">%</p>
                         </div>
                     </div>
                 </div>
-                <MainBtn theme="primary" className="fw-medium">Создать счёт</MainBtn>
+                <div className="w-full mt-auto pt-4">
+                    <MainBtn to="/business/created" theme="primary" className="w-full font-medium justify-center text-center py-[14px] bg-(--bg-green) text-[#282828] rounded-2xl">Создать счёт</MainBtn>
+                </div>
             </div>
         </section>
-        {/* <!-- Business Invoicing end --> */}
     </div>)
 }

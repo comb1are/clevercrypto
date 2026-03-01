@@ -48,7 +48,7 @@ export default function Header({
                                 <img src={isDark ? IMG.settingsDark : IMG.settings} alt="" />
                             </MainBtn>
                         ) : rightLinkType === 'search' ? (
-                            <MainBtn to='#' theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)] !rounded-full flex justify-center items-center'>
+                            <MainBtn to='/' theme='secondary' className='!w-10 !h-10 !p-0 bg-[var(--btn-secondary-bg)] !rounded-full flex justify-center items-center'>
                                 <img src={isDark ? IMG.searchIconDark : IMG.searchIcon} alt="" />
                             </MainBtn>
                         ) : (<></>)}

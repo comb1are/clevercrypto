@@ -6,138 +6,144 @@ import IconOverview83 from "../../../components/Icons/IconOverview83";
 import IconOverview84 from "../../../components/Icons/IconOverview84";
 import IconOverview85 from "../../../components/Icons/IconOverview85";
 import IconOverview86 from "../../../components/Icons/IconOverview86";
+import IconBank2 from "../../../components/Icons/IconBank2";
+import { useTheme } from "../../../hooks/useTheme";
+export default function BusinessStoreOverview() {
 
-export default function BusinessStoreOverview () {
-    return (<div className="wrapper">
+    const isDark = useTheme();
+    return (<div className="flex flex-col min-h-screen pb-[100px]">
         <Header type="inner" leftLink="/business">Обзор магазина</Header>
 
-        {/* <!-- Store review --> */}
-        <section className="store-review position-relative">
-            <div className="container pt-3">
-                <Alert type="red" className="mb-2">
-                    <img src={IMG.alertCircle} alt="" className="flex-shrink-0" />
-                    <p>Будьте бдительны! На магазин недавно был открыт спор. <a href="#">Посмотреть детали спора...</a></p>
+        <section className="relative pt-4 flex-1">
+            <div className="container px-4">
+
+                <Alert type="red" className="mb-3 flex items-center gap-3 rounded-[14px] p-3 text-sm">
+                    <img src={IMG.alertCircle} alt="" className="shrink-0 mt-0.5" />
+                    <p className="text-[#FF4D4F]">Будьте бдительны! На магазин недавно был открыт спор. <a href="#" className="text-blue-500">Посмотреть детали спора...</a></p>
                 </Alert>
-                <div className="store-review__card d-flex flex-column align-items-start gap-3 p-3 mb-4">
-                    <div className="d-flex align-items-center gap-3">
-                        <img src={IMG.businessLogo2} width="44" alt="" className="flex-shrink-0 rounded-circle" />
-                        <div className="d-flex flex-column gap-2">
-                            <div className="store-review__card-name d-flex align-items-center fs-6">
-                                <b className="fw-medium">FunPay</b>
-                                funpay.com
+
+                <div className="flex flex-col items-start gap-4 p-4 mb-5 bg-(--btn-secondary-bg) rounded-2xl">
+                    <div className="flex items-center gap-3">
+                        <img src={IMG.businessLogo2} width="44" alt="" className="shrink-0 rounded-full w-11 h-11 object-cover" />
+                        <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-2 text-base text-(--text-main)">
+                                <b className="font-medium text-lg">FunPay</b>
+                                <span className="text-(--grey)">funpay.com</span>
                             </div>
-                            <div className="store-review__card-id">ID: #194205</div>
+                            <div className="text-sm text-(--grey)">ID: #194205</div>
                         </div>
                     </div>
-                    <div className="w-100 d-flex flex-column gap-2">
-                        <h4 className="fs-6">Описание</h4>
-                        <p className="fs-6">Potter ipsum wand elf parchment wingardium. Mellow veil stunning inches ministry-of-magic again goblet stunning</p>
+
+                    <div className="w-full flex flex-col gap-2">
+                        <h4 className="text-sm font-medium text-(--text-main)">Описание</h4>
+                        <p className="text-sm text-(--grey) leading-relaxed">Potter ipsum wand elf parchment wingardium. Mellow veil stunning inches ministry-of-magic again goblet stunning</p>
                     </div>
-                    <div className="d-flex align-items-center justify-content-start gap-2">
-                        <Alert type="red" className="gap-2 rounded-pill">
-                            <img src={IMG.errorIcon} height="20" alt="" className="flex-shrink-0" />
-                            <span>Заблокирован</span>
+
+                    <div className="flex items-center justify-start gap-2 w-full">
+                        <Alert type="red" className="flex items-center px-2 py-1 rounded-full">
+                            <img src={IMG.errorIcon || IMG.timesRedCircle} height="16" alt="" className="shrink-0 w-4 h-4" />
+                            <span className="text-sm text-[#FF4D4F] ">Заблокирован</span>
                         </Alert>
-                        <div className="business-link__alert rounded-pill m-0">Цифровые товары</div>
+                        <span className=" text-sm bg-(--blue-bg) text-blue-500 px-3 py-1 rounded-full">Цифровые товары</span>
                     </div>
-                    <MainBtn theme="neutral" className="fw-medium">
-                        <img src={IMG.storeReviewCardBtnIcon} alt="" className="flex-shrink-0" />
-                        <span>Изменить процентную ставку</span>
+
+                    <MainBtn theme="neutral" className="w-full justify-center flex items-center gap-2 py-[14px] bg-(--btn-third-bg) text-(--text-main) rounded-2xl mt-1">
+                        <img src={IMG.storeReviewCardBtnIcon} alt="" className="shrink-0" />
+                        <span className="font-medium">Изменить процентную ставку</span>
                     </MainBtn>
-                    <MainBtn theme="neutral" className="fw-medium">Разблокировать магазин</MainBtn>
+
+                    <MainBtn theme="neutral" className="w-full justify-center flex items-center gap-2 py-[14px] bg-(--btn-third-bg) text-(--text-main) rounded-2xl font-medium">Разблокировать магазин</MainBtn>
                 </div>
-                <div className="title fw-medium lh-1 mb-3">Статистика</div>
-                <div className="d-flex flex-column gap-2 w-100 mb-4">
-                    <div className="row g-2">
-                        <div className="col-6">
-                            <div className="statistica-card d-flex flex-column gap-3 p-3">
-                                <div className="d-flex align-items-center">
-                                    <img src={IMG.statisticaCardIcon1} alt="" className="flex-shrink-0" />
-                                    <p className="fs-6 ps-2 ms-1">Общ. конверсия</p>
-                                </div>
-                                <div className="d-flex align-items-center gap-2">
-                                    <IconOverview86 />
-                                    <b className="fw-medium">70%</b>
-                                </div>
+
+                <div className="font-medium font-nagel text-2xl leading-none mb-4 text-(--text-main)">Статистика</div>
+
+                <div className="flex flex-col gap-2 w-full mb-6">
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="bg-(--btn-secondary-bg) rounded-2xl p-4 flex flex-col gap-3">
+                            <div className="flex items-center gap-2 text-sm text-(--text-main)">
+                                <img src={IMG.statisticaCardIcon1} alt="" className="shrink-0" />
+                                <p>Общ. конверсия</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <IconOverview86 />
+                                <b className="font-medium text-lg text-(--text-main)">70%</b>
                             </div>
                         </div>
-                        <div className="col-6">
-                            <div className="statistica-card d-flex flex-column gap-3 p-3">
-                                <div className="d-flex align-items-center">
-                                    <img src={IMG.statisticaCardIcon2} alt="" className="flex-shrink-0" />
-                                    <p className="fs-6 ps-2 ms-1">Криптовалюта</p>
-                                </div>
-                                <div className="d-flex align-items-center gap-2">
-                                    <IconOverview85 />
-                                    <b className="fw-medium">70%</b>
-                                </div>
+                        <div className="bg-(--btn-secondary-bg) rounded-2xl p-4 flex flex-col gap-3">
+                            <div className="flex items-center gap-2 text-sm text-(--text-main)">
+                                <img src={IMG.statisticaCardIcon2} alt="" className="shrink-0" />
+                                <p>Криптовалюта</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <IconOverview85 />
+                                <b className="font-medium text-lg text-(--text-main)">70%</b>
                             </div>
                         </div>
-                        <div className="col-6">
-                            <div className="statistica-card d-flex flex-column gap-3 p-3">
-                                <div className="d-flex align-items-center">
-                                    <img src={IMG.statisticaCardIcon3} alt="" className="flex-shrink-0" />
-                                    <p className="fs-6 ps-2 ms-1">Оплата картой</p>
-                                </div>
-                                <div className="d-flex align-items-center gap-2">
-                                    <IconOverview84 />
-                                    <b className="fw-medium">70%</b>
-                                </div>
+                        <div className="bg-(--btn-secondary-bg) rounded-2xl p-4 flex flex-col gap-3">
+                            <div className="flex items-center gap-2 text-sm text-(--text-main)">
+                                <img src={IMG.statisticaCardIcon3} alt="" className="shrink-0" />
+                                <p>Оплата картой</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <IconOverview84 />
+                                <b className="font-medium text-lg text-(--text-main)">70%</b>
                             </div>
                         </div>
-                        <div className="col-6">
-                            <div className="statistica-card d-flex flex-column gap-3 p-3">
-                                <div className="d-flex align-items-center">
-                                    <img src={IMG.statisticaCardIcon4} alt="" className="flex-shrink-0" />
-                                    <p className="fs-6 ps-2 ms-1">СБП</p>
-                                </div>
-                                <div className="d-flex align-items-center gap-2">
-                                    <IconOverview83 />
-                                    <b className="fw-medium">70%</b>
-                                </div>
+                        <div className="bg-(--btn-secondary-bg) rounded-2xl p-4 flex flex-col gap-3">
+                            <div className="flex items-center gap-2 text-sm text-(--text-main)">
+                                <img src={IMG.statisticaCardIcon4} alt="" className="shrink-0" />
+                                <p>СБП</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <IconOverview83 />
+                                <b className="font-medium text-lg text-(--text-main)">70%</b>
                             </div>
                         </div>
                     </div>
-                    <div className="rating-card d-flex align-items-center justify-content-between py-2 pe-2 ps-3">
-                        <p className="fs-6">Оценки</p>
-                        <ul className="d-flex gap-2">
-                            <li className="alert-teal d-flex align-items-center gap-2">
-                                <img src={IMG.likeGreen} height="20" alt="" className="flex-shrink-0" />
-                                <span className="fs-6 fw-medium">2 451</span>
-                            </li>
-                            <li className="alert-red d-flex align-items-center gap-2">
-                                <img src={IMG.alertRed} height="20" alt="" className="flex-shrink-0" />
-                                <span className="fs-6 fw-medium">1</span>
-                            </li>
-                        </ul>
+
+                    <div className="flex items-center justify-between py-3 pr-3 pl-4 bg-(--btn-secondary-bg) rounded-2xl mt-2">
+                        <p className="text-base text-(--text-main)">Оценки</p>
+                        <div className="flex gap-2">
+                            <Alert type="teal" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full">
+                                <img src={IMG.likeGreen} height="16" alt="" className="shrink-0" />
+                                <span className="text-sm font-medium">2 451</span>
+                            </Alert>
+                            <Alert type="red" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full">
+                                <img src={IMG.alertRed} height="16" alt="" className="shrink-0" />
+                                <span className="text-sm font-medium">1</span>
+                            </Alert>
+                        </div>
                     </div>
-                    <a href="#" className="w-100 d-flex align-items-center justify-content-center btn-red md">
-                        <img src={IMG.alertRed} alt="" className="flex-shrink-0" />
-                        <span>Открыть спор</span>
-                    </a>
+
+                    <MainBtn to="#" className="py-2 w-full justify-center flex items-center gap-2 bg-[#DC35451A] text-[#DC3545] hover:bg-[#DC3545]/20 rounded-2xl mt-1 transition-colors">
+                        <img src={IMG.alertRed} alt="" className="shrink-0" />
+                        <span className="font-medium">Открыть спор</span>
+                    </MainBtn>
                 </div>
-                <div className="title fw-medium lh-1 mb-3">Открытые споры</div>
-                <div className="disputes-card d-flex flex-column align-items-start gap-3 p-3">
-                    <div className="disputes-card__head d-flex align-items-center">
-                        <img src={IMG.businessLogo3} width="34" height="34" alt="" className="object-fit-cover rounded-circle" />
-                        <h3 className="fs-6 fw-medium">Kupikod</h3>
-                        <div className="alert-gray d-flex align-items-center">
-                            <img src={IMG.bank1} alt="" className="flex-shrink-0" />
-                            <img src={IMG.bank2} alt="" className="flex-shrink-0" />
+
+                <div className="font-medium font-nagel text-2xl leading-none mb-4 text-(--text-main)">Открытые споры</div>
+
+                <div className="flex flex-col items-start gap-3 p-4 bg-(--btn-secondary-bg) rounded-2xl mb-4">
+                    <div className="flex items-center gap-3 w-full">
+                        <img src={IMG.businessLogo3} width="34" height="34" alt="" className="object-cover rounded-full shrink-0 w-[34px] h-[34px]" />
+                        <h3 className="text-base font-medium text-(--text-main)">Kupikod</h3>
+                        <div className="ml-auto bg-(--intro-btn-bg) px-2 py-1 rounded-full flex gap-1 items-center">
+                            <img src={IMG.bank1} alt="" className="shrink-0 h-4" />
+                            <IconBank2 className="shrink-0 h-4 " {...(isDark ? { fill: "#fff" } : "")} />
                         </div>
                     </div>
-                    <div className="alert-red d-flex align-items-center gap-2">
-                        <img src={IMG.alertRed} height="20" alt="" className="flex-shrink-0" />
-                        <span className="fs-6">Платеж не зачислен</span>
+                    <div className="flex items-center gap-2 py-1">
+                        <img src={IMG.alertRed} height="16" alt="" className="shrink-0" />
+                        <span className="text-sm font-medium text-[#FF4D4F]">Платеж не зачислен</span>
                     </div>
-                    <p className="w-100 fs-6">Potter ipsum wand elf parchment wingardium. Mellow veil stunning inches ministry-of-magic again goblet stunning. Ground troll dervish daisies bedroom fawkes tonight teacup creature.</p>
-                    <ul className="w-100 d-flex align-items-center justify-content-between">
+                    <p className="w-full  text-(--grey) leading-relaxed">Potter ipsum wand elf parchment wingardium. Mellow veil stunning inches ministry-of-magic again goblet stunning. Ground troll dervish daisies bedroom fawkes tonight teacup creature.</p>
+                    <ul className="w-full flex items-center justify-between  pt-3 mt-1 text-(--grey)">
                         <li>4 дек. 2024</li>
                         <li>ID: #194205</li>
                     </ul>
                 </div>
+
             </div>
         </section>
-        {/* <!-- Store review end --> */}
     </div>)
 }

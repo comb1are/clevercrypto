@@ -2,12 +2,14 @@ import React from 'react';
 
 interface IconAML32Props extends React.SVGProps<SVGSVGElement> {
     percent?: number;      // Процент заполнения (от 0 до 100)
-    emptyColor?: string;   // Цвет серого фона кольца
+    emptyColor?: string;
+    reverse?: boolean;   // Цвет серого фона кольца
 }
 
 export default function IconAML32({
     percent = 0,
     emptyColor = "#E9ECEF",
+    reverse = false,
     className,
     ...props
 }: IconAML32Props) {
@@ -15,13 +17,20 @@ export default function IconAML32({
     const safePercent = Math.max(0, Math.min(100, percent));
 
 
-    const getFillColor = (p: number) => {
-        if (p > 66) return "#DC3545"; // Красный
-        if (p > 33) return "#FFC107"; // Оранжевый
-        return "#20C997";            // Зеленый
+    const getFillColor = (p: number, reverse: boolean) => {
+        if (reverse === false) {
+            if (p > 66) return "#DC3545"; // Красный
+            if (p > 33) return "#FFC107"; // Оранжевый
+            return "#20C997";
+        } else {
+            if (p < 33) return "#DC3545"; // Красный
+            if (p < 66) return "#FFC107"; // Оранжевый
+            return "#20C997";  // Зеленый
+        }
+
     };
 
-    const currentColor = getFillColor(safePercent);
+    const currentColor = getFillColor(safePercent, reverse);
 
 
     const radius = 17;
