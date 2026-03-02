@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { store } from "./store";
 
 // Fonts
 import "./assets/fonts/nebulas/stylesheet.css";
@@ -16,8 +18,10 @@ import "./assets/scss/style.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MemoryRouter initialEntries={['/business/platform/overview']}>
-      <App />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={['/home']}>
+        <App />
+      </MemoryRouter>
+    </Provider>
   </React.StrictMode>
 );
