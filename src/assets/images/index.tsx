@@ -141,8 +141,10 @@ import warningCircleGray from './warning-circle-gray.svg';
 import warningCircleGrayDark from './warning-circle-gray-dark.svg';
 import paymentCrypt1 from './payment-crypto-1.svg';
 import messageIcon from './message-icon.svg';
+import Eclipse from './rainboweclipse.svg';
 import searchIcon2 from './search-icon-2.svg'
 import searchIcon2Dark from './search-icon-2-dark.svg';
+import cleverbg from './cleverbg.jpg';
 import paymentCrypto1 from './payment-crypto-1.svg';
 import paymentCrypto2 from './payment-crypto-2.svg';
 import paymentCrypto3 from './payment-crypto-3.svg';
@@ -203,6 +205,7 @@ const IMG = {
     cryptoUsdcoin,
     cryptAvax,
     cryptoRipple,
+    cleverbg,
     cleverCardLogo1,
     operationMonthIcon1,
     navsIcon1,
@@ -316,6 +319,7 @@ const IMG = {
     messageIcon,
     searchIcon2,
     searchIcon2Dark,
+    Eclipse,
     paymentCrypto1,
     paymentCrypto2,
     paymentCrypto3,

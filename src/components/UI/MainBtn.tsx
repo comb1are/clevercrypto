@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Define button appearance types
+
 type Theme = "primary" | "secondary" | "space" | "neutral" | "link" | "red" | "linear";
 type Size = "" | "sm" | "md";
 
@@ -15,7 +15,7 @@ interface MainBtnProps {
     onClick?: () => void;
 }
 
-/** Utility: join multiple class names safely */
+
 const cn = (...classes: Array<string | false | null | undefined>) =>
     classes.filter(Boolean).join(" ");
 
@@ -28,10 +28,10 @@ export default function MainBtn({
     disabled,
     onClick,
 }: MainBtnProps) {
-    // Common button base classes
+    
     const base = "";
 
-    // Theme variations
+    
     const themeClasses: Record<Theme, string> = {
         primary: "",
         secondary: "",
@@ -42,10 +42,10 @@ export default function MainBtn({
         linear: "",
     };
 
-    // Build final className dynamically
+    
     const finalClass = cn(base, themeClasses[theme], size, className, disabled && "disabled");
 
-    // Render <Link> or <button> based on `to` prop
+    
     return to ? (
         <Link to={to} className={finalClass} aria-disabled={disabled}>
             {children}

@@ -7,11 +7,7 @@ const STATUS_MAP: Record<string, PaymentStatus> = {
     CANCEL: PaymentStatus.Cancelled,
 };
 
-/**
- * Paranoid mapper: DTO → Frontend Model.
- * Маппит строковые статусы в enum с fallback на Unknown.
- * Все поля защищены optional chaining и fallback-значениями.
- */
+
 export function mapPaymentFromDTO(dto: PaymentDataDTO): Payment {
     const rawStatus = String(dto?.status ?? '').toUpperCase();
 

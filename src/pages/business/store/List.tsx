@@ -12,6 +12,8 @@ import IconList82 from "../../../components/Icons/IconList82";
 import IconAML32 from "../../../components/Icons/IconAML32";
 import { useTheme } from "../../../hooks/useTheme";
 import clsx from "clsx";
+import { useGetStoresQuery } from "../../../store/api/businessApi";
+import DotsLoader from "../../../components/DotsLoader";
 
 const NAV_TABS = [
     { id: 'all', label: 'Все' },
@@ -20,21 +22,26 @@ const NAV_TABS = [
     { id: 'blocked', label: 'Заблокированные' },
 ];
 
-const STORES_LIST = [
-    { id: 's1', type: 'simple', name: 'Kupikod', domain: 'kupikod.com', badge: 'Цифровые товары', status: 'approved', logo: IMG.businessLogo3, hasError: false, iconRight: <IconList82 /> },
-    { id: 's2', type: 'simple', name: 'Kupikod', domain: 'kupikod.com', badge: 'Цифровые товары', status: 'blocked', logo: IMG.businessLogo3, hasError: true, iconRight: <IconList81 /> },
-    { id: 's3', type: 'simple', name: 'FunPay', domain: 'funpay.com', badge: 'Цифровые товары', status: 'blocked', logo: IMG.businessLogo2, hasError: true, iconRight: <IconList80 /> },
-    { id: 's4', type: 'detailed', name: 'Kupikod', domain: 'kupikod.com', badge: 'Цифровые товары', status: 'approved', logo: IMG.businessLogo3, percent: 70, conversionIcon: <IconList78 />, iconRight: <IconList79 /> },
-    { id: 's5', type: 'detailed', name: 'Kupikod', domain: 'kupikod.com', badge: 'Цифровые товары', status: 'pending', logo: IMG.businessLogo3, percent: 70, conversionIcon: <IconList76 />, iconRight: <IconList77 /> },
-];
+
+const ICON_RIGHT_SIMPLE = [<IconList82 />, <IconList81 />, <IconList80 />];
+const ICON_RIGHT_DETAILED = [<IconList79 />, <IconList77 />];
+const ICON_CONVERSION = [<IconList78 />, <IconList76 />];
+
+const LOGO_MAP: Record<string, string> = {
+    'Kupikod': IMG.businessLogo3,
+    'FunPay': IMG.businessLogo2,
+};
 
 export default function BusinessStoreList() {
     const isDark = useTheme();
     const [activeTab, setActiveTab] = useState(NAV_TABS[0].id);
+    const { data: stores, isLoading, isError } = useGetStoresQuery();
+
+    const storeList = stores ?? [];
 
     const filteredStores = activeTab === 'all'
-        ? STORES_LIST
-        : STORES_LIST.filter(store => store.status === activeTab);
+        ? storeList
+        : storeList.filter(store => store.status === activeTab);
 
     return (<div className="flex flex-col min-h-screen pb-[100px]">
         <Header type="inner" leftLink="/business" rightLinkType="search">Список магазинов</Header>
@@ -69,58 +76,71 @@ export default function BusinessStoreList() {
                     </ul>
                 </div>
 
-                <div className="flex flex-col gap-2 w-full">
-                    {filteredStores.length > 0 ? filteredStores.map((store) => {
-                        if (store.type === 'simple') {
-                            return (
-                                <Link key={store.id} to={'#'} className="w-full flex items-center justify-between p-3 gap-3 bg-(--btn-third-bg) rounded-2xl hover:bg-white/10 transition-colors">
-                                    <img src={store.logo} alt={store.name} className="shrink-0 rounded-full w-10 h-10 object-cover" />
+                {isLoading && (
+                    <div className="flex items-center justify-center py-10">
+                        <DotsLoader />
+                    </div>
+                )}
 
-                                    <div className="flex flex-col items-start gap-1 flex-1">
-                                        <div className="flex items-center gap-2 text-base text-(--text-main)">
-                                            <b className="font-medium text-lg">{store.name}</b>
-                                            <span className="text-(--grey)">{store.domain}</span>
-                                            {store.hasError && (
-                                                <img src={IMG.errorIcon || IMG.timesRedCircle} alt="Error" className="shrink-0 w-4 h-4 ml-1" />
-                                            )}
-                                        </div>
-                                        <span className="bg-(--blue-bg) text-sm text-[#367DF0] px-3 py-1 rounded-full">{store.badge}</span>
-                                    </div>
+                {isError && (
+                    <div className="text-center py-10 text-[#FF4D4F]">Ошибка загрузки данных</div>
+                )}
 
-                                    <div className="shrink-0 text-[#ADB5BD]">
-                                        {store.iconRight}
-                                    </div>
-                                </Link>
-                            );
-                        } else {
-                            return (
-                                <Link key={store.id} to={'#'} className="w-full flex flex-col gap-3 p-4 bg-(--btn-third-bg) rounded-2xl hover:bg-white/10 transition-colors">
-                                    <div className="w-full flex items-center justify-between gap-3">
-                                        <img src={store.logo} alt={store.name} className="shrink-0 rounded-full w-10 h-10 object-cover" />
+                {!isLoading && !isError && (
+                    <div className="flex flex-col gap-2 w-full">
+                        {filteredStores.length > 0 ? filteredStores.map((store, index) => {
+                            if (store.type === 'simple') {
+                                return (
+                                    <Link key={store.id} to={'#'} className="w-full flex items-center justify-between p-3 gap-3 bg-(--btn-third-bg) rounded-2xl hover:bg-white/10 transition-colors">
+                                        <img src={LOGO_MAP[store.name] ?? IMG.businessLogo3} alt={store.name} className="shrink-0 rounded-full w-10 h-10 object-cover" />
+
                                         <div className="flex flex-col items-start gap-1 flex-1">
                                             <div className="flex items-center gap-2 text-base text-(--text-main)">
                                                 <b className="font-medium text-lg">{store.name}</b>
                                                 <span className="text-(--grey)">{store.domain}</span>
+                                                {store.hasError && (
+                                                    <img src={IMG.errorIcon || IMG.timesRedCircle} alt="Error" className="shrink-0 w-4 h-4 ml-1" />
+                                                )}
                                             </div>
                                             <span className="bg-(--blue-bg) text-sm text-[#367DF0] px-3 py-1 rounded-full">{store.badge}</span>
                                         </div>
-                                        <div className="shrink-0 text-[#ADB5BD]">
-                                            {store.iconRight}
-                                        </div>
-                                    </div>
 
-                                    <div className="w-full flex items-center justify-between border-t border-(--border-secondary) pt-3">
-                                        <div className="text-sm text-(--text-main)">Конверсия оплаты</div>
-                                        <div className="flex items-center gap-2">
-                                            <IconAML32 percent={store.percent as number} emptyColor={isDark ? "#343A40" : "#E9ECEF"} reverse={true} />
-                                            <b className="text-base font-medium text-(--text-main)">{store.percent} %</b>
+                                        <div className="shrink-0 text-[#ADB5BD]">
+                                            {ICON_RIGHT_SIMPLE[index % ICON_RIGHT_SIMPLE.length]}
                                         </div>
-                                    </div>
-                                </Link>
-                            );
-                        }
-                    }) : <p className="text-sm text-(--grey) text-center py-2">Нет магазинов</p>}
-                </div>
+                                    </Link>
+                                );
+                            } else {
+                                const detailedIndex = index % ICON_RIGHT_DETAILED.length;
+                                return (
+                                    <Link key={store.id} to={'#'} className="w-full flex flex-col gap-3 p-4 bg-(--btn-third-bg) rounded-2xl hover:bg-white/10 transition-colors">
+                                        <div className="w-full flex items-center justify-between gap-3">
+                                            <img src={LOGO_MAP[store.name] ?? IMG.businessLogo3} alt={store.name} className="shrink-0 rounded-full w-10 h-10 object-cover" />
+                                            <div className="flex flex-col items-start gap-1 flex-1">
+                                                <div className="flex items-center gap-2 text-base text-(--text-main)">
+                                                    <b className="font-medium text-lg">{store.name}</b>
+                                                    <span className="text-(--grey)">{store.domain}</span>
+                                                </div>
+                                                <span className="bg-(--blue-bg) text-sm text-[#367DF0] px-3 py-1 rounded-full">{store.badge}</span>
+                                            </div>
+                                            <div className="shrink-0 text-[#ADB5BD]">
+                                                {ICON_RIGHT_DETAILED[detailedIndex]}
+                                            </div>
+                                        </div>
+
+                                        <div className="w-full flex items-center justify-between border-t border-(--border-secondary) pt-3">
+                                            <div className="text-sm text-(--text-main)">Конверсия оплаты</div>
+                                            <div className="flex items-center gap-2">
+                                                <IconAML32 percent={store.percent ?? 0} emptyColor={isDark ? "#343A40" : "#E9ECEF"} reverse={true} />
+                                                <b className="text-base font-medium text-(--text-main)">{store.percent} %</b>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                );
+                            }
+                        }) : <p className="text-sm text-(--grey) text-center py-2">Нет магазинов</p>}
+                    </div>
+                )}
 
             </div>
         </section>

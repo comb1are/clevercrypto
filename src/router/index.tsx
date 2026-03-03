@@ -1,6 +1,7 @@
 import { Navigate, Outlet, type RouteObject } from "react-router-dom";
 
 import { lazy } from "react";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const Intro = lazy(() => import("../pages/Intro"));
 const Login = lazy(() => import("../auth/Login"));
@@ -46,92 +47,100 @@ const PayingSuccess = lazy(() => import("../pages/paying/Success.tsx"));
 const PayingFaild = lazy(() => import("../pages/paying/Faild.tsx"));
 
 const routes: RouteObject[] = [
+    
     { path: '/', element: <Intro /> },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
     { path: "/anons", element: <Anons /> },
-    { path: "/home", element: <Home /> },
-    { path: "/funds", element: <Funds /> },
-    { path: "/withdraw", element: <Withdraw /> },
+
+    
     {
-        path: '/check',
-        element: <div><Outlet /></div>,
+        element: <ProtectedRoute />,
         children: [
-            { index: true, element: <Navigate to="aml" replace /> },
-            { path: "aml", element: <AML /> },
-            { path: "pay", element: <Pay /> },
-            { path: "load", element: <Load /> },
-            { path: "result", element: <Result /> },
-        ]
-    },
-    {
-        path: '/wallet',
-        element: <div><Outlet /></div>,
-        children: [
-            { index: true, element: <Wallet /> },
-            { path: "my", element: <My /> },
-            { path: "import", element: <Import /> },
-            { path: ":id", element: <WalletId /> },
-            { path: "export", element: <WalletExport /> },
-        ]
-    },
-    {
-        path: '/profile',
-        element: <div><Outlet /></div>,
-        children: [
-            { index: true, element: <Profile /> },
-            { path: "settings", element: <ProfileSettings /> },
-            { path: "security", element: <ProfileSecurity /> },
-            { path: "devices", element: <ProfileDevices /> },
-            { path: "tarifs", element: <ProfileTarifs /> },
-            { path: "payment", element: <ProfilePayment /> },
-        ]
-    },
-    {
-        path: '/business',
-        element: <div><Outlet /></div>,
-        children: [
-            { index: true, element: <Business /> },
+            { path: "/home", element: <Home /> },
+            { path: "/funds", element: <Funds /> },
+            { path: "/withdraw", element: <Withdraw /> },
             {
-                path: "store",
+                path: '/check',
                 element: <div><Outlet /></div>,
                 children: [
-                    { index: true, element: <BusinessStore /> },
-                    { path: 'list', element: <BusinessStoreList /> },
-                    { path: 'overview', element: <BusinessStoreOverview /> },
+                    { index: true, element: <Navigate to="aml" replace /> },
+                    { path: "aml", element: <AML /> },
+                    { path: "pay", element: <Pay /> },
+                    { path: "load", element: <Load /> },
+                    { path: "result", element: <Result /> },
                 ]
             },
-            { path: "invoicing", element: <BusinessInvoicing /> },
-            { path: "created", element: <BusinessCreated /> },
-            { path: "settings", element: <BusinessSettings /> },
-            { path: "included", element: <BusinessIncluded /> },
             {
-                path: 'platform',
+                path: '/wallet',
                 element: <div><Outlet /></div>,
                 children: [
-                    { index: true, element: <Navigate to="settings" replace /> },
-                    { path: 'settings', element: <BusinessPlatformSettings /> },
-                    { path: 'add', element: <BusinessPlatformAdd /> },
-                    { path: 'list', element: <BusinessPlatformList /> },
-                    { path: 'overview', element: <BusinessPlatformOverview /> },
+                    { index: true, element: <Wallet /> },
+                    { path: "my", element: <My /> },
+                    { path: "import", element: <Import /> },
+                    { path: ":id", element: <WalletId /> },
+                    { path: "export", element: <WalletExport /> },
                 ]
             },
-            { path: "payments", element: <BusinessPayments /> },
-        ]
+            {
+                path: '/profile',
+                element: <div><Outlet /></div>,
+                children: [
+                    { index: true, element: <Profile /> },
+                    { path: "settings", element: <ProfileSettings /> },
+                    { path: "security", element: <ProfileSecurity /> },
+                    { path: "devices", element: <ProfileDevices /> },
+                    { path: "tarifs", element: <ProfileTarifs /> },
+                    { path: "payment", element: <ProfilePayment /> },
+                ]
+            },
+            {
+                path: '/business',
+                element: <div><Outlet /></div>,
+                children: [
+                    { index: true, element: <Business /> },
+                    {
+                        path: "store",
+                        element: <div><Outlet /></div>,
+                        children: [
+                            { index: true, element: <BusinessStore /> },
+                            { path: 'list', element: <BusinessStoreList /> },
+                            { path: 'overview', element: <BusinessStoreOverview /> },
+                        ]
+                    },
+                    { path: "invoicing", element: <BusinessInvoicing /> },
+                    { path: "created", element: <BusinessCreated /> },
+                    { path: "settings", element: <BusinessSettings /> },
+                    { path: "included", element: <BusinessIncluded /> },
+                    {
+                        path: 'platform',
+                        element: <div><Outlet /></div>,
+                        children: [
+                            { index: true, element: <Navigate to="settings" replace /> },
+                            { path: 'settings', element: <BusinessPlatformSettings /> },
+                            { path: 'add', element: <BusinessPlatformAdd /> },
+                            { path: 'list', element: <BusinessPlatformList /> },
+                            { path: 'overview', element: <BusinessPlatformOverview /> },
+                        ]
+                    },
+                    { path: "payments", element: <BusinessPayments /> },
+                ]
+            },
+            {
+                path: '/paying',
+                element: <div><Outlet /></div>,
+                children: [
+                    { index: true, element: <Paying /> },
+                    { path: "by-card", element: <PayingByCard /> },
+                    { path: "by-crypto", element: <PayingByCrypto /> },
+                    { path: "select", element: <PayingSelect /> },
+                    { path: "send", element: <PayingSend /> },
+                    { path: "success", element: <PayingSuccess /> },
+                    { path: "faild", element: <PayingFaild /> },
+                ]
+            },
+        ],
     },
-    {
-        path: '/paying',
-        element: <div><Outlet /></div>,
-        children: [
-            { index: true, element: <Paying /> },
-            { path: "by-card", element: <PayingByCard /> },
-            { path: "by-crypto", element: <PayingByCrypto /> },
-            { path: "select", element: <PayingSelect /> },
-            { path: "send", element: <PayingSend /> },
-            { path: "success", element: <PayingSuccess /> },
-            { path: "faild", element: <PayingFaild /> },
-        ]
-    }
 ];
 
 export default routes;

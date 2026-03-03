@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface IconAML32Props extends React.SVGProps<SVGSVGElement> {
-    percent?: number;      // Процент заполнения (от 0 до 100)
+    percent?: number;      
     emptyColor?: string;
-    reverse?: boolean;   // Цвет серого фона кольца
+    reverse?: boolean;   
 }
 
 export default function IconAML32({
@@ -19,13 +19,13 @@ export default function IconAML32({
 
     const getFillColor = (p: number, reverse: boolean) => {
         if (reverse === false) {
-            if (p > 66) return "#DC3545"; // Красный
-            if (p > 33) return "#FFC107"; // Оранжевый
+            if (p > 66) return "#DC3545"; 
+            if (p > 33) return "#FFC107"; 
             return "#20C997";
         } else {
-            if (p < 33) return "#DC3545"; // Красный
-            if (p < 66) return "#FFC107"; // Оранжевый
-            return "#20C997";  // Зеленый
+            if (p < 33) return "#DC3545"; 
+            if (p < 66) return "#FFC107"; 
+            return "#20C997";  
         }
 
     };
@@ -45,7 +45,7 @@ export default function IconAML32({
             height="22"
             viewBox="0 0 44 44"
         >
-            {/* Фоновое кольцо */}
+            
             <circle
                 strokeWidth="8"
                 stroke={emptyColor}

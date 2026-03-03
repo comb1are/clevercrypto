@@ -9,7 +9,7 @@ export default function Import() {
     return (<div className="flex flex-col min-h-screen pb-10">
         <Header type="inner" leftLink="/home" leftLinkIcon="">Импорт кошелька</Header>
 
-        {/* <!-- Import wallet --> */}
+        
         <section className="import-wallet flex-1 flex px-3 mt-4">
             <div className="container flex flex-col justify-start gap-3 w-full">
                 <div className="w-full flex flex-col gap-4">
@@ -28,7 +28,7 @@ export default function Import() {
                 </div>
             </div>
         </section>
-        {/* <!-- Import wallet end --> */}
+        
 
         <div className="px-4 mt-auto">
             <MainBtn theme="neutral" className="w-full font-medium bg-(--text-main) text-(--bg-main) flex justify-center items-center gap-3 py-3 rounded-[18px]">

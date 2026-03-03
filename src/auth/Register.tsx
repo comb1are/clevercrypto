@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { IMaskInput } from "react-imask";
 import AuthLayout from "./AuthLayout";
 import IMG from "../assets/images";
 import MainBtn from "../components/UI/MainBtn";
 import IMask from "imask";
+import { useRegisterMutation } from "../store/api/authApi";
+import { registerSchema } from "../store/validation/schemas";
 
 type Status = "" | "password" | "smsCode";
 
-export default function Login() {
+export default function Register() {
+    const navigate = useNavigate();
     const [status, setStatus] = useState<Status>("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -16,6 +20,9 @@ export default function Login() {
     const [isPhone, setIsPhone] = useState(false);
     const [btnDisabled, setBtnDisabled] = useState(true);
     const inputRef = useRef<HTMLInputElement | null>(null);
+
+    const [register, { isLoading: isRegisterLoading }] = useRegisterMutation();
+    const [validationError, setValidationError] = useState<string | null>(null);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\+7[\d\s()-]*$/;
@@ -36,6 +43,25 @@ export default function Login() {
         const validEmail = emailRegex.test(email);
         setBtnDisabled(!(validPhone || validEmail));
     }, [email, phone]);
+
+    const handleRegister = async () => {
+        setValidationError(null);
+        const credential = isPhone ? `+7${phone}` : email;
+
+        
+        const result = registerSchema.safeParse({ email: credential, password, smsCode });
+        if (!result.success) {
+            setValidationError(result.error.errors[0]?.message ?? 'Ошибка валидации');
+            return;
+        }
+
+        try {
+            await register({ email: result.data.email, password: result.data.password }).unwrap();
+            navigate('/home', { replace: true });
+        } catch (err) {
+            console.error('[REGISTER] Error:', err);
+        }
+    };
 
     return (
         <AuthLayout>
@@ -63,6 +89,9 @@ export default function Login() {
                     <SMSCodeStep
                         smsCode={smsCode}
                         setSmsCode={setSmsCode}
+                        onRegister={handleRegister}
+                        isLoading={isRegisterLoading}
+                        validationError={validationError}
                     />
                 ),
             }[status]}
@@ -70,7 +99,7 @@ export default function Login() {
     );
 }
 
-/* STEP 1 */
+
 interface EmailStepProps {
     email: string;
     phone: string;
@@ -95,7 +124,7 @@ function EmailStep({
     return (
         <div className="flex flex-col gap-3">
             <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Создать <br /> аккаунт</h2>
-            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Введите Email или номер телефона</p>
+            <p className="text-base tracking-[0.02em] text-(--grey)">Введите Email или номер телефона</p>
 
             {!isPhone ? (
                 <input
@@ -130,7 +159,7 @@ function EmailStep({
     );
 }
 
-/* STEP 2 */
+
 interface PasswordStepProps {
     password: string;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
@@ -141,7 +170,7 @@ function PasswordStep({ password, setPassword, onNext }: PasswordStepProps) {
     return (
         <div className="flex flex-col gap-3">
             <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Придумайте <br /> пароль</h2>
-            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Придумайте пароль для входа в аккаунт</p>
+            <p className="text-base tracking-[0.02em] text-(--grey)">Придумайте пароль для входа в аккаунт</p>
 
             <input
                 type="password"
@@ -158,19 +187,22 @@ function PasswordStep({ password, setPassword, onNext }: PasswordStepProps) {
     );
 }
 
-/* STEP 3 — SMS code verification */
+
 interface SMSCodeStepProps {
     smsCode: string;
     setSmsCode: React.Dispatch<React.SetStateAction<string>>;
+    onRegister: () => void;
+    isLoading: boolean;
+    validationError: string | null;
 }
 
-function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
+function SMSCodeStep({ smsCode, setSmsCode, onRegister, isLoading, validationError }: SMSCodeStepProps) {
     const inputRefs = useRef<HTMLInputElement[]>([]);
     const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
         inputRefs.current.forEach((input) => {
-            IMask(input, { mask: "0" }); // numeric mask
+            IMask(input, { mask: "0" }); 
         });
     }, []);
 
@@ -181,7 +213,7 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
         setSmsCode(fullCode);
         setIsComplete(fullCode.length === inputRefs.current.length && !newValues.includes(""));
 
-        // move to next input automatically
+        
         if (value && index < inputRefs.current.length - 1) {
             inputRefs.current[index + 1].focus();
         }
@@ -193,10 +225,12 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
         }
     };
 
+    const canSubmit = isComplete && !isLoading;
+
     return (
         <div className="flex flex-col gap-3">
             <h2 className="font-nagel font-medium text-[48px] leading-none text-(--text-main)">Введите <br /> код-пароль</h2>
-            <p className="text-base tracking-[0.02em] text-(--additional-gray-600)">Прислали СМС на ваш телефон</p>
+            <p className="text-base tracking-[0.02em] text-(--grey)">Прислали СМС на ваш телефон</p>
 
             <div className="flex w-full gap-3">
                 {[0, 1, 2, 3].map((i) => (
@@ -220,12 +254,15 @@ function SMSCodeStep({ smsCode, setSmsCode }: SMSCodeStepProps) {
 
             <div className="flex flex-col w-full gap-3 mt-4">
                 <MainBtn
-                    disabled={!isComplete}
-                    className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${!isComplete ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`}
-                    onClick={() => { console.log(smsCode) }}
+                    disabled={!canSubmit}
+                    className={`font-medium py-4 transition-colors duration-200 text-(--bg-main) text-center rounded-2xl ${!canSubmit ? 'bg-(--btn-active)' : 'bg-(--btn-main)'}`}
+                    onClick={onRegister}
                 >
-                    Продолжить
+                    {isLoading ? 'Регистрация...' : 'Продолжить'}
                 </MainBtn>
+                {validationError && (
+                    <p className="text-sm text-[#DC3545] text-center">{validationError}</p>
+                )}
             </div>
         </div>
     );

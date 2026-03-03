@@ -41,49 +41,52 @@ export default function Pay() {
                         </Alert>
 
                         <ul className="flex flex-col gap-3">
-                            {MOCK_PLANS.map((plan) => (
-                                <li
-                                    key={plan.id}
-                                    className="relative flex items-center justify-between overflow-hidden rounded-2xl bg-(--bg-card) p-4 border-2 border-transparent transition-colors has-checked:border-(--title-color)"
-                                >
-                                    <input
-                                        type="radio"
-                                        name="pay"
-                                        value={plan.id}
-                                        checked={selectedPlanId === plan.id}
-                                        onChange={() => setSelectedPlanId(plan.id)}
-                                        className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 peer"
-                                    />
-
-                                    <div className="flex items-start gap-3">
-                                        <img
-                                            src={isDark ? IMG.payDocDark : IMG.payDoc}
-                                            className="shrink-0 w-8 h-8"
-                                            alt="Document"
+                            {MOCK_PLANS.map((plan) => {
+                                const isSelected = selectedPlanId === plan.id;
+                                return (
+                                    <li
+                                        key={plan.id}
+                                        className={`relative flex items-center justify-between overflow-hidden rounded-2xl bg-(--bg-card) p-4 border-1 transition-colors border-(--border-secondary)`}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="pay"
+                                            value={plan.id}
+                                            checked={selectedPlanId === plan.id}
+                                            onChange={() => setSelectedPlanId(plan.id)}
+                                            className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 peer"
                                         />
-                                        <div>
-                                            <h3 className="flex items-end gap-1 font-medium leading-none text-xl text-(--text-main)">
-                                                {plan.checks}
-                                                <span className="text-sm font-normal text-(--grey)">проверок</span>
-                                            </h3>
-                                            <div className="flex items-center gap-2 text-sm font-medium mt-1">
-                                                <del className="font-normal text-(--grey)">{plan.oldPrice}</del>
-                                                <span className="text-[#1AA179]">{plan.currentPrice}</span>
+
+                                        <div className="flex items-start gap-3">
+                                            <img
+                                                src={isDark ? IMG.payDocDark : IMG.payDoc}
+                                                className="shrink-0 w-8 h-8"
+                                                alt="Document"
+                                            />
+                                            <div>
+                                                <h3 className="flex items-end gap-1 font-medium leading-none text-xl text-(--text-main)">
+                                                    {plan.checks}
+                                                    <span className="text-sm font-normal text-(--grey)">проверок</span>
+                                                </h3>
+                                                <div className="flex items-center gap-2 text-sm font-medium mt-1">
+                                                    <del className="font-normal text-(--grey)">{plan.oldPrice}</del>
+                                                    <span className="text-[#1AA179]">{plan.currentPrice}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* Кастомный кружок (закрашивается через peer-checked) */}
-                                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--grey) bg-transparent peer-checked:border-(--title-color) peer-checked:bg-(--title-color) transition-all">
-                                        <span className="h-2.5 w-2.5 rounded-full bg-(--bg-card) opacity-0 peer-checked:opacity-100 transition-opacity"></span>
-                                    </div>
-                                </li>
-                            ))}
+                                        
+                                        <div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-1 transition-all border-(--border-secondary)`}>
+                                            <span className={`h-3 w-3 rounded-full bg-[#367DF0] transition-opacity ${isSelected ? 'opacity-100' : 'opacity-0'}`}></span>
+                                        </div>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 
-                    {/* Кнопка теперь тупо не висит в воздухе, а выполняет функцию */}
-                    <MainBtn onClick={handlePayment} className="w-full font-medium">
+                    
+                    <MainBtn onClick={handlePayment} className="w-full font-medium bg-(--bg-green) text-[#282828] py-4 rounded-[18px]">
                         Выбрать и оплатить
                     </MainBtn>
                 </div>

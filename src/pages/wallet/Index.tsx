@@ -15,6 +15,10 @@ import IconIndex58 from "../../components/Icons/IconIndex58";
 import IconIndex59 from "../../components/Icons/IconIndex59";
 import IconIndex60 from "../../components/Icons/IconIndex60";
 import IconIndex61 from "../../components/Icons/IconIndex61";
+import { useGetWalletByIdQuery } from "../../store/api/walletApi";
+import { useAppSelector } from "../../store/hooks";
+import FullScreenLoader from "../../components/FullScreenLoader";
+import DataErrorScreen from "../../components/DataErrorScreen";
 
 type TransactionType = 'deposit' | 'transfer' | 'withdrawal';
 
@@ -27,13 +31,6 @@ interface Transaction {
     type: TransactionType;
 }
 
-const MOCK_WALLETS = [
-    { id: 'w-1', name: 'Bitcoin', ticker: 'BTC', crypto: '1.4919', fiat: '4 491,52' },
-    { id: 'w-2', name: 'Ethereum', ticker: 'ETH', crypto: '14.50', fiat: '45 000,00' },
-    { id: 'w-3', name: 'USDT', ticker: 'USDT', crypto: '1050.00', fiat: '1 050,00' },
-    { id: 'w-4', name: 'Solana', ticker: 'SOL', crypto: '45.2', fiat: '4 520,00' },
-    { id: 'w-5', name: 'TON', ticker: 'TON', crypto: '500', fiat: '1 200,00' },
-];
 
 const TRANSACTION_LIST: Transaction[] = [
     { id: 1, title: 'Bitcoin', subtitle: 'Пополнение', amount: '+1.4919 BTC', usd: '$181,319.56', type: 'deposit' },
@@ -50,6 +47,13 @@ const TRANSACTION_LIST: Transaction[] = [
 export default function Wallet() {
     const isDark = useTheme();
     const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
+    const userId = useAppSelector((state) => state.auth.userId);
+    const { data: wallet, isLoading, isError, refetch } = useGetWalletByIdQuery(userId!, { skip: !userId });
+
+    const coins = wallet?.coins ?? [];
+
+    if (isLoading) return <FullScreenLoader message="Загрузка кошелька..." />;
+    if (isError) return <DataErrorScreen message="Не удалось загрузить данные" onRetry={refetch} />;
 
     const getTransactionUI = (type: TransactionType, isDark: boolean) => {
         switch (type) {
@@ -84,24 +88,25 @@ export default function Wallet() {
 
         <main>
 
-            {/* <!-- Wallet --> */}
+            
             <section className="relative">
                 <div className="absolute left-1/2 top-[185px] z-[-1] h-[465px] w-[588px] translate-x-[calc(-50%+5px)] rotate-180 rounded-full bg-glow-blob opacity-[0.35] blur-[129px]"></div>
                 <div className="">
+
                     <div
                         ref={sliderRef}
                         className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                     >
-                        {MOCK_WALLETS.map((wallet, index) => (
-                            <div key={wallet.id} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
+                        {coins.map((coin, index) => (
+                            <div key={coin.symbol} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
                                 <div className="py-4 flex flex-col items-center gap-3">
-                                    <img src={IMG.cryptoBitcoin} alt={wallet.name} className="rounded-full w-12 h-12" />
+                                    <img src={IMG.cryptoBitcoin} alt={coin.name} className="rounded-full w-12 h-12" />
                                     <h3 className="flex items-end justify-center gap-2 font-medium text-5xl text-center font-nagel">
-                                        {wallet.crypto}
-                                        <span className="font-normal text-3xl">{wallet.ticker}</span>
+                                        {coin.balance}
+                                        <span className="font-normal text-3xl">{coin.symbol}</span>
                                     </h3>
                                     <div className="flex items-center gap-2">
-                                        <Alert type="gray" className="py-1 px-3 gap-2 text-[15px] text-center rounded-full">${wallet.fiat}</Alert>
+                                        <Alert type="gray" className="py-1 px-3 gap-2 text-[15px] text-center rounded-full">${coin.balance.toLocaleString()}</Alert>
                                         <Alert type="teal" className="py-1 px-3 gap-2 text-[15px] text-center rounded-full">
                                             <span>+$149</span>
                                             <IconIndex61 />
@@ -113,13 +118,14 @@ export default function Wallet() {
                         ))}
                     </div>
                     <div className="flex justify-center gap-1.5 mt-1 mb-4">
-                        {MOCK_WALLETS.map((wallet, index) => (
+                        {coins.map((coin, index) => (
                             <div
-                                key={`dot-${wallet.id}`}
+                                key={`dot-${coin.symbol}`}
                                 className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? "bg-(--title-color) w-4" : "bg-(--25-opacity) w-1.5"}`}
                             ></div>
                         ))}
                     </div>
+
                     <div className="grid grid-cols-4 gap-2 mb-4 navigation mx-3 bg-(--bg-card) rounded-[24px] p-3">
                         <div className="">
                             <Link to={'/withdraw'} className="w-full flex flex-col items-center text-center gap-2">
@@ -156,9 +162,9 @@ export default function Wallet() {
                     </div>
                 </div>
             </section>
-            {/* <!-- Wallet end --> */}
+            
 
-            {/* <!-- Transactions --> */}
+            
             <section className="px-4 mt-2 py-4 pt-[20px] rounded-t-4xl bg-(--bg-main)">
                 <div className="container">
                     <h2 className="mb-5 font-medium leading-none font-nagel text-2xl">Транзакции</h2>
@@ -198,7 +204,7 @@ export default function Wallet() {
                     </ul>
                 </div>
             </section>
-            {/* <!-- Transactions end --> */}
+            
 
         </main>
     </div>)

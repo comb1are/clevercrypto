@@ -13,7 +13,7 @@ export default function ProfileTarifs() {
     return (<div className="wrapper flex flex-col justify-between p-0 h-screen overflow-y-auto pb-[100px]">
         <Header type="inner" leftLink="/profile" leftLinkIcon="">Тарифы</Header>
 
-        {/* <!-- Profile tarifs --> */}
+        
         <section className="h-full flex flex-col pt-3 px-4">
             <div className="container h-full flex flex-col items-center mx-auto w-full">
                 <div className="flex items-center justify-center rounded-full overflow-hidden bg-(--btn-secondary-bg) mb-3 shrink-0">
@@ -193,6 +193,6 @@ export default function ProfileTarifs() {
                 </div>
             </div>
         </section>
-        {/* <!-- Profile tarifs end --> */}
+        
     </div>)
 }

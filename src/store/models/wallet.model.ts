@@ -1,10 +1,8 @@
-/**
- * Frontend Model: чистый тип для UI-компонентов.
- * Record<string, CoinDataDTO> развёрнут в массив CoinBalance[].
- */
+
 
 export interface CoinBalance {
     symbol: string;
+    name: string;
     address: string;
     balance: number;
 }

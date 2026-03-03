@@ -5,25 +5,9 @@ import clsx from "clsx";
 import Offcanvas from "../../components/UI/Offcanvas";
 import Alert from "../../components/UI/Alert";
 import MainBtn from "../../components/UI/MainBtn";
-
-interface PaymentListInterface {
-    id: number;
-    icon: string;
-    title: string;
-    date: string;
-    price: string;
-    type?: 'success' | "";
-    warning: boolean;
-}
-
-const PAYMENT_LIST: PaymentListInterface[] = [
-    { id: 1, icon: IMG.paymentCardIcon1, title: 'Ожидает оплаты', date: '4 дек. 2024 16:56', price: '1.28 USDT', type: '', warning: false },
-    { id: 2, icon: IMG.paymentCardIcon2, title: 'Подтверждено', date: '4 дек. 2024 16:56', price: '5.00 USDT', type: 'success', warning: false },
-    { id: 3, icon: IMG.paymentCardIcon3, title: 'Отменено', date: '4 дек. 2024 16:56', price: '10.50 USDT', type: '', warning: true },
-    { id: 4, icon: IMG.paymentCardIcon1, title: 'Ожидает оплаты', date: '4 дек. 2024 16:56', price: '2.10 USDT', type: '', warning: false },
-    { id: 5, icon: IMG.paymentCardIcon4, title: 'Создан', date: '4 дек. 2024 16:56', price: '100.00 USDT', type: '', warning: false },
-
-];
+import { useGetBusinessPaymentsQuery } from "../../store/api/businessApi";
+import type { BusinessPayment } from "../../store/models/business.model";
+import DotsLoader from "../../components/DotsLoader";
 
 const NAV_TABS = [
     { id: 'all', label: 'Все' },
@@ -31,13 +15,23 @@ const NAV_TABS = [
     { id: 'cancelled', label: 'Отмененные' },
 ];
 
+
+const PAYMENT_ICONS: Record<string, string> = {
+    'Ожидает оплаты': IMG.paymentCardIcon1,
+    'Подтверждено': IMG.paymentCardIcon2,
+    'Отменено': IMG.paymentCardIcon3,
+    'Создан': IMG.paymentCardIcon4,
+};
+
 export default function BusinessPayments() {
 
     const [activeTab, setActiveTab] = useState(NAV_TABS[0].id);
+    const [selectedPayment, setSelectedPayment] = useState<BusinessPayment | null>(null);
 
-    const [selectedPayment, setSelectedPayment] = useState<PaymentListInterface | null>(null);
+    const { data: payments, isLoading, isError } = useGetBusinessPaymentsQuery();
+    const paymentList = payments ?? [];
 
-    const filteredPayments = PAYMENT_LIST.filter((payment) => {
+    const filteredPayments = paymentList.filter((payment) => {
         if (activeTab === 'all') return true;
         if (activeTab === 'approved') return payment.type === 'success';
         if (activeTab === 'cancelled') return payment.warning === true;
@@ -50,7 +44,7 @@ export default function BusinessPayments() {
 
             <section className="relative ">
                 <div className="container px-4">
-                    {/* --- ТАБЫ --- */}
+                    
                     <div className="-mx-4 flex flex-col mb-4 border-b border-(--border-secondary)">
                         <ul className="flex items-center gap-2 py-2 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                             {NAV_TABS.map((tab) => {
@@ -58,7 +52,7 @@ export default function BusinessPayments() {
                                 return (
                                     <li key={tab.id} className="shrink-0">
                                         <button
-                                            // Привязываем переключение стейта
+                                            
                                             onClick={() => setActiveTab(tab.id)}
                                             className={clsx(
                                                 "text-(--text-main) flex items-center gap-1.5 px-4 py-[7px] rounded-full transition-colors",
@@ -73,40 +67,52 @@ export default function BusinessPayments() {
                         </ul>
                     </div>
 
-                    <div className="flex flex-col gap-4">
-                        {filteredPayments.map((data) => (
-                            <div
-                                key={data.id}
-                                className="flex items-center justify-between gap-3 p-3 rounded-2xl cursor-pointer transition-colors hover:bg-(--btn-secondary-bg)"
-                                onClick={() => setSelectedPayment(data)}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <img src={data.icon} className="shrink-0 rounded-full w-10 h-10 object-cover" alt="" />
-                                    <div className="flex flex-col">
-                                        <h3 className="font-medium text-base text-(--text-main) flex items-center gap-2">
-                                            {data.title}
-                                            {data.warning && (
-                                                <img src={IMG.alertRed} width="16" alt="Warning" className="shrink-0" />
-                                            )}
-                                        </h3>
-                                        <p className="text-sm text-(--grey)">{data.date}</p>
+                    {isLoading && (
+                        <div className="flex items-center justify-center py-10">
+                            <DotsLoader />
+                        </div>
+                    )}
+
+                    {isError && (
+                        <div className="text-center py-10 text-[#FF4D4F]">Ошибка загрузки данных</div>
+                    )}
+
+                    {!isLoading && !isError && (
+                        <div className="flex flex-col gap-4">
+                            {filteredPayments.map((data) => (
+                                <div
+                                    key={data.id}
+                                    className="flex items-center justify-between gap-3 p-3 rounded-2xl cursor-pointer transition-colors hover:bg-(--btn-secondary-bg)"
+                                    onClick={() => setSelectedPayment(data)}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <img src={PAYMENT_ICONS[data.title] ?? IMG.paymentCardIcon1} className="shrink-0 rounded-full w-10 h-10 object-cover" alt="" />
+                                        <div className="flex flex-col">
+                                            <h3 className="font-medium text-base text-(--text-main) flex items-center gap-2">
+                                                {data.title}
+                                                {data.warning && (
+                                                    <img src={IMG.alertRed} width="16" alt="Warning" className="shrink-0" />
+                                                )}
+                                            </h3>
+                                            <p className="text-sm text-(--grey)">{data.date}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-end text-right">
+                                        <b className={clsx("font-medium text-base", data.type === 'success' ? "text-[#1AA179]" : "text-(--text-main)")}>
+                                            {data.price}
+                                        </b>
+                                        <span className="text-sm text-(--grey)">#{data.id}</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-end text-right">
-                                    <b className={clsx("font-medium text-base", data.type === 'success' ? "text-[#1AA179]" : "text-(--text-main)")}>
-                                        {data.price}
-                                    </b>
-                                    <span className="text-sm text-(--grey)">#{data.id}</span>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
 
-                        {filteredPayments.length === 0 && (
-                            <div className="text-center py-10 text-(--grey)">
-                                Платежей не найдено
-                            </div>
-                        )}
-                    </div>
+                            {filteredPayments.length === 0 && (
+                                <div className="text-center py-10 text-(--grey)">
+                                    Платежей не найдено
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
 

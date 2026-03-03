@@ -6,7 +6,7 @@ import { useTheme } from "../../hooks/useTheme";
 export default function PayingSuccess() {
     const isDark = useTheme();
     return (<div className="flex flex-col min-h-screen">
-        {/* <!-- Payment result --> */}
+        
         <section className="flex flex-col flex-1 pb-24 items-center justify-center relative">
             <div className="container px-4 flex flex-col items-center justify-center gap-3 relative w-full h-full">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[310px] h-[310px] rounded-full -z-10 bg-[radial-gradient(41.76%_41.76%_at_50%_50%,rgba(26,161,121,0.45)_0%,rgba(26,161,121,0)_100%)] pointer-events-none"></div>
@@ -19,7 +19,7 @@ export default function PayingSuccess() {
 
             </div>
         </section>
-        {/* <!-- Payment result end --> */}
+        
 
         <section className="w-full pb-8">
             <div className="w-full px-4 mb-4">

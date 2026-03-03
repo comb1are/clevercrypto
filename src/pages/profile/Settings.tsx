@@ -6,7 +6,7 @@ export default function ProfileSettings() {
     return (<div className="wrapper flex flex-col justify-between p-0 h-screen overflow-y-auto pb-[100px]">
         <Header type="inner" leftLink="/profile" leftLinkIcon="">Основные настройки</Header>
 
-        {/* <!-- Profile settings --> */}
+        
         <section className="h-full flex flex-col pt-3 px-4">
             <div className="container h-full flex flex-col justify-between gap-3 mx-auto">
                 <div className="flex flex-col items-center gap-3">
@@ -33,6 +33,6 @@ export default function ProfileSettings() {
                 <MainBtn theme="neutral" className="font-medium mt-auto mb-4 py-[14px] rounded-[18px] bg-(--text-main) text-(--bg-main) tracking-[4%]">Сохранить изменения</MainBtn>
             </div>
         </section>
-        {/* <!-- Profile settings end --> */}
+        
     </div>)
 }

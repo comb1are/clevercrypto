@@ -24,7 +24,7 @@ export default function PayingSelect() {
 
                     <div className="w-full flex flex-col gap-6">
 
-                        {/* Шапка с мерчантом */}
+                        
                         <div className="flex items-center justify-between pb-3">
                             <div className="flex items-center gap-3">
                                 <MainBtn to="/paying" className="flex shrink-0 items-center justify-center bg-(--btn-secondary-bg) rounded-full w-10 h-10 p-0 transition-colors hover:bg-white/10">
@@ -53,7 +53,7 @@ export default function PayingSelect() {
 
                                         <label
                                             key={method.id}
-                                            className="relative flex items-center justify-between border border-(--border-secondary) rounded-3xl p-5 gap-4 cursor-pointer transition-colors has-checked:border-[#367DF0] bg-(--bg-card)"
+                                            className="relative flex items-center justify-between border border-(--border-secondary) rounded-3xl p-5 gap-4 cursor-pointer transition-colors bg-(--bg-card)"
                                         >
 
                                             <input
@@ -77,8 +77,8 @@ export default function PayingSelect() {
                                             </div>
 
 
-                                            <div className="flex items-center justify-center shrink-0 w-7 h-7 rounded-full border-2 border-(--border-secondary) peer-checked:border-[#367DF0] transition-colors bg-transparent">
-                                                <span className="w-3.5 h-3.5 rounded-full bg-[#367DF0] opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+                                            <div className={`flex items-center justify-center shrink-0 w-7 h-7 rounded-full border-2 transition-colors bg-transparent border-(--border-secondary)`}>
+                                                <span className={`w-3.5 h-3.5 rounded-full transition-opacity ${isSelected ? 'bg-[#367DF0] opacity-100' : 'opacity-0'}`}></span>
                                             </div>
                                         </label>
                                     );

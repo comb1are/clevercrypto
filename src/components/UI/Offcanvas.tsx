@@ -29,12 +29,12 @@ export default function Offcanvas({
         }
     }, [isOpen]);
 
-    // Unmount completely if not open and animation finished
+    
     if (!render && !isOpen) return null;
 
     return (
         <>
-            {/* Backdrop overlay */}
+            
             <div
                 className={clsx(
                     "fixed inset-0 z-[1040] bg-black/50 transition-opacity duration-300",
@@ -43,7 +43,7 @@ export default function Offcanvas({
                 onClick={onClose}
             ></div>
 
-            {/* Modal Body */}
+            
             <div
                 className={clsx(
                     'fixed bottom-0 left-1/2 w-full max-w-[454px] z-[1045] bg-(--bg-main) rounded-t-[24px] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 transform',

@@ -12,7 +12,7 @@ export default function ProfileDevices() {
     return (<div className="wrapper flex flex-col justify-between p-0 h-screen overflow-y-auto pb-[100px]">
         <Header type="inner" leftLink="/profile" leftLinkIcon="">Активные сессии</Header>
 
-        {/* <!-- Profile devices --> */}
+        
         <section className="h-full flex flex-col pt-3 px-4">
             <div className="container h-full flex flex-col gap-4 mx-auto">
                 <div className="w-full flex flex-col gap-3">
@@ -63,6 +63,6 @@ export default function ProfileDevices() {
                 </div>
             </div>
         </section>
-        {/* <!-- Profile devices end --> */}
+        
     </div>)
 }

@@ -109,6 +109,7 @@
         --blue-bg: rgba(69, 140, 255, 0.12);
         --bg-icon-green: rgba(26, 161, 121, 0.12);
 
+
         --black: rgba(15, 16, 18, 1);
         --grey: #6C757D;
         --red-bg: rgba(220, 53, 69, 0.12);
@@ -117,14 +118,9 @@
         --color-surface: var(--bg-main);
         --color-surface-card: var(--bg-card);
         --color-primary: var(--text-main);
-        --font-helvetica: "HelveticaNeue", sans-serif;
-        --font-nagel: "Nagel", sans-serif;
-        --font-nebulas: "Nebulas", sans-serif;
-        --font-sf-compact: "SF Compact Display", sans-serif;
-        --font-sf-display: "SF Pro Display", sans-serif;
-        --font-sf-text: "SFProText", sans-serif;
 
 
+        --nav-border: rgba(233, 236, 239, 1);
         --bg-main: #ffffff;
         --text-main: #282828;
         --bg-secondary: rgba(249, 249, 249, 1);
@@ -158,6 +154,7 @@
         --border-secondary: rgba(52, 58, 64, 1);
         --bg-contrast-btn: rgba(231, 231, 231, 0.12);
 
+        --nav-border: rgba(33, 37, 41, 1);
         --25-opacity: rgba(255, 255, 255, 0.25);
         --header-border: #1F2937;
         --btn-secondary-bg: rgba(255, 255, 255, 0.04);
@@ -186,9 +183,6 @@
 
 @layer utilities {
 
-    .bg-glow-blob {
-        background: radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%);
-    }
 
     .bg-btn-glow {
         background: linear-gradient(270deg, rgba(220, 255, 204, 0.8) 0%, rgba(252, 255, 153, 0.8) 35%, rgba(255, 225, 204, 0.8) 60%, rgba(255, 179, 241, 0.8) 100%);
@@ -196,7 +190,7 @@
     }
 
     .border-glow-blob {
-        background: linear-gradient(var(--text-main), var(--text-main)) padding-box,
+        background: linear-gradient(#fff, #fff) padding-box,
             radial-gradient(70.96% 68.53% at 79.71% 66.24%, rgb(127, 255, 71) 20%, rgb(249, 255, 32) 55%, rgb(255, 218, 192) 80%, rgb(252, 118, 227) 100%) border-box;
         border: 2px solid transparent;
     }
@@ -237,16 +231,9 @@
         }
     }
 
-    --font-helvetica: "HelveticaNeue",
-    sans-serif;
     --font-nagel: "Nagel",
     sans-serif;
     --font-nebulas: "Nebulas",
     sans-serif;
-    --font-sf-compact: "SF Compact Display",
-    sans-serif;
-    --font-sf-display: "SF Pro Display",
-    sans-serif;
-    --font-sf-text: "SFProText",
-    sans-serif;
+
 }

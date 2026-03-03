@@ -8,19 +8,22 @@ import MoneyInput from "../components/UI/MoneyInput";
 import IconFunds3 from "../components/Icons/IconFunds3";
 import IconFunds4 from "../components/Icons/IconFunds4";
 import { useTheme } from "../hooks/useTheme";
-
-const MOCK_WALLETS = [
-    { id: 'btc-1', name: 'Bitcoin', crypto: '1.4919', fiat: '124 492,24', ticker: 'BTC', address: 'bc1qm...3scw' },
-    { id: 'eth-1', name: 'Ethereum', crypto: '14.50', fiat: '45 000,00', ticker: 'ETH', address: '0x123...abcd' },
-    { id: 'usdt-1', name: 'USDT', crypto: '1050.00', fiat: '1 050,00', ticker: 'USDT', address: 'T987...wxyz' },
-    { id: 'sol-1', name: 'Solana', crypto: '45.2', fiat: '4 520,00', ticker: 'SOL', address: 'Sol1...9999' },
-    { id: 'ton-1', name: 'TON', crypto: '500', fiat: '1 200,00', ticker: 'TON', address: 'EQ12...3456' },
-];
+import { useGetWalletByIdQuery } from "../store/api/walletApi";
+import { useAppSelector } from "../store/hooks";
+import FullScreenLoader from "../components/FullScreenLoader";
+import DataErrorScreen from "../components/DataErrorScreen";
 
 export default function Funds() {
     const isDark = useTheme();
     const [phone, setPhone] = useState<string>('');
     const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
+    const userId = useAppSelector((state) => state.auth.userId);
+    const { data: wallet, isLoading, isError, refetch } = useGetWalletByIdQuery(userId!, { skip: !userId });
+
+    const coins = wallet?.coins ?? [];
+
+    if (isLoading) return <FullScreenLoader message="Загрузка кошелька..." />;
+    if (isError) return <DataErrorScreen message="Не удалось загрузить данные" onRetry={refetch} />;
 
     return (
         <div className="flex flex-col min-h-screen pb-10">
@@ -37,24 +40,24 @@ export default function Funds() {
                                 ref={sliderRef}
                                 className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                             >
-                                {MOCK_WALLETS.map((wallet, index) => (
+                                {coins.map((coin, index) => (
                                     <div
-                                        key={wallet.id}
+                                        key={coin.symbol}
                                         ref={(el) => { cardsRef.current[index] = el; }}
                                         className="shrink-0 snap-center w-full"
                                     >
                                         <div className="bg-(--btn-secondary-bg) p-4 rounded-2xl">
                                             <h3 className="flex items-center gap-2 mb-4 text-base text-(--text-main)">
-                                                <img src={IMG.cryptoBitcoin} className="w-6 h-6 shrink-0" alt={wallet.name} />
-                                                {wallet.name}
-                                                <span className="text-sm text-(--grey)">{wallet.address}</span>
+                                                <img src={IMG.cryptoBitcoin} className="w-6 h-6 shrink-0" alt={coin.name} />
+                                                {coin.name}
+                                                <span className="text-sm text-(--grey)">{coin.address.slice(0, 6)}...{coin.address.slice(-4)}</span>
                                             </h3>
                                             <div className="flex justify-between items-end">
                                                 <h2 className="font-medium font-nagel text-4xl leading-none flex items-end gap-2 text-(--text-main)">
-                                                    {wallet.crypto}
-                                                    <span className="font-normal font-nebulas text-lg text-(--grey)">{wallet.ticker}</span>
+                                                    {coin.balance}
+                                                    <span className="font-normal font-nebulas text-lg text-(--grey)">{coin.symbol}</span>
                                                 </h2>
-                                                <p className="text-base font-nebulas text-(--grey)">≈${wallet.fiat}</p>
+                                                <p className="text-base font-nebulas text-(--grey)">≈${coin.balance.toLocaleString()}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,9 +65,9 @@ export default function Funds() {
                             </div>
 
                             <div className="flex justify-center gap-1.5 mt-1">
-                                {MOCK_WALLETS.map((wallet, index) => (
+                                {coins.map((coin, index) => (
                                     <div
-                                        key={`dot-${wallet.id}`}
+                                        key={`dot-${coin.symbol}`}
                                         className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? "bg-(--text-main) w-4" : "bg-(--grey) opacity-50 w-1.5"
                                             }`}
                                     ></div>
@@ -105,7 +108,7 @@ export default function Funds() {
                     </div>
 
                     <div className="mt-6 pb-4">
-                        <MainBtn className="w-full font-medium py-[14px] rounded-2xl bg-[#1AA179] text-black">
+                        <MainBtn className="w-full font-medium py-[14px] rounded-2xl bg-(--bg-green) text-black">
                             Отправить
                         </MainBtn>
                     </div>

@@ -11,7 +11,7 @@ export default function PayingSend() {
     const [isPayingModalOpen, setIsPayingModalOpen] = useState(false);
 
     return (<div className="flex flex-col min-h-screen pb-10">
-        {/* <!-- Paying --> */}
+        
         <section className="flex flex-col flex-1 mt-4">
             <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
                 <div className="w-full flex flex-col gap-4">
@@ -97,7 +97,7 @@ export default function PayingSend() {
                 </div>
             </div>
         </section>
-        {/* <!-- Paying end --> */}
+        
 
         <Offcanvas className="paying-modal" id="payingModal" isOpen={isPayingModalOpen} onClose={() => setIsPayingModalOpen(false)}>
             <div className="container px-4 flex flex-col gap-4">

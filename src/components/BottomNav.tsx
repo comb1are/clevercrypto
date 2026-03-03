@@ -10,7 +10,7 @@ export default function BottomNav() {
 
     const navItems = useMemo(() => [
         { label: "Главная", to: "/home", iconDefault: IMG.navsIcon1, iconDark: IMG.navsIcon1Dark, iconActive: IMG.navsIcon1Active, hasDot: true, isActive: location.pathname.startsWith("/home") },
-        { label: "Платежи", to: "/wallet", iconDefault: IMG.navsIcon2, iconDark: IMG.navsIcon2Dark, iconActive: IMG.navsIcon2Active, hasDot: true, isActive: location.pathname.startsWith("/wallet") },
+        { label: "Платежи", to: "#", iconDefault: IMG.navsIcon2, iconDark: IMG.navsIcon2Dark, iconActive: IMG.navsIcon2Active, hasDot: true, isActive: location.pathname.startsWith("/paying") },
         { label: "Бизнес", to: "/business", iconDefault: IMG.navsIcon3, iconDark: IMG.navsIcon3Dark, iconActive: IMG.navsIcon3Active, hasDot: true, isActive: location.pathname.startsWith("/business") },
         { label: "Профиль", to: "/profile", iconDefault: IMG.navsIcon4, iconDark: IMG.navsIcon4Dark, iconActive: IMG.navsIcon4Active, hasDot: true, isActive: location.pathname.startsWith("/profile") },
     ], [location.pathname]);

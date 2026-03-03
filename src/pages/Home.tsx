@@ -17,30 +17,21 @@ import IconHome14 from "../components/Icons/IconHome14";
 import IconHome15 from "../components/Icons/IconHome15";
 import IconHome16 from "../components/Icons/IconHome16";
 import { useTheme } from "../hooks/useTheme";
-
-const MOCK_TRANSACTIONS = [
-    { id: 'tx-1', amount: '$12 492.59', crypto: '0,106117 BTC' },
-    { id: 'tx-2', amount: '$8 120.00', crypto: '0,068910 BTC' },
-    { id: 'tx-3', amount: '$3 400.12', crypto: '0,028800 BTC' },
-    { id: 'tx-4', amount: '$15 000.00', crypto: '0,127350 BTC' },
-    { id: 'tx-5', amount: '$6 200.50', crypto: '0,052600 BTC' },
-];
-
-const MOCK_CRYPTO = [
-    { id: 'c-1', name: 'Bitcoin', subtitle: '≈$124 492,24', amount: '1.4919 BTC', price: '$181 319,56' },
-    { id: 'c-2', name: 'Ethereum', subtitle: '≈$3 200,00', amount: '14.50 ETH', price: '$46 400,00' },
-    { id: 'c-3', name: 'USDT', subtitle: '≈$1,00', amount: '1050.00 USDT', price: '$1 050,00' },
-    { id: 'c-4', name: 'Solana', subtitle: '≈$100,00', amount: '45.2 SOL', price: '$4 520,00' },
-    { id: 'c-5', name: 'Litecoin', subtitle: '≈$96,75', amount: '3,31 LTC', price: '$320,00' },
-    { id: 'c-6', name: 'Tron', subtitle: '≈$0,12', amount: '5000 TRX', price: '$600,00' },
-    { id: 'c-7', name: 'TON', subtitle: '≈$2,40', amount: '500 TON', price: '$1 200,00' },
-    { id: 'c-8', name: 'BNB', subtitle: '≈$310,00', amount: '2.5 BNB', price: '$775,00' },
-    { id: 'c-9', name: 'Polygon', subtitle: '≈$0,65', amount: '800 MATIC', price: '$520,00' },
-];
+import { useGetWalletByIdQuery } from "../store/api/walletApi";
+import { useAppSelector } from "../store/hooks";
+import FullScreenLoader from "../components/FullScreenLoader";
+import DataErrorScreen from "../components/DataErrorScreen";
 
 export default function Home() {
     const isDark = useTheme();
     const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
+    const userId = useAppSelector((state) => state.auth.userId);
+    const { data: wallet, isLoading, isError, refetch } = useGetWalletByIdQuery(userId!, { skip: !userId });
+
+    const coins = wallet?.coins ?? [];
+
+    if (isLoading) return <FullScreenLoader message="Загрузка кошелька..." />;
+    if (isError) return <DataErrorScreen message="Не удалось загрузить данные кошелька" onRetry={refetch} />;
 
     return (<div className="pb-10 flex flex-col min-h-screen">
         <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
@@ -52,7 +43,7 @@ export default function Home() {
         <main>
 
             <section className="relative">
-                <div className="absolute left-1/2 top-[185px] z-[-1] h-[465px] w-[588px] translate-x-[calc(-50%+5px)] rotate-180 rounded-full bg-glow-blob opacity-[0.35] blur-[129px]"></div>
+                <img src={IMG.Eclipse} className="absolute left-1/2 top-[185px] z-[-1] h-[465px] w-[588px] translate-x-[calc(-50%+5px)]"></img>
                 <div>
                     <div className="overal-balance py-4 flex flex-col items-center gap-3">
                         <p className="text-base text-center text-[#ADB5BD] tracking-[3%]">Общий баланс</p>
@@ -63,7 +54,7 @@ export default function Home() {
                             <span>4%</span>
                         </Alert>
                     </div>
-                    <div className="grid grid-cols-4 gap-2 mb-4 navigation mx-3 bg-(--bg-card) rounded-[24px] p-3">
+                    <div className="grid grid-cols-4 gap-2 mb-4 navigation mx-3 rounded-[24px] p-3">
                         <div>
                             <Link to="/withdraw" className="w-full flex flex-col items-center text-center gap-2">
                                 <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
@@ -89,7 +80,7 @@ export default function Home() {
                             </Link>
                         </div>
                         <div>
-                            <Link to="#" className="w-full flex flex-col items-center text-center gap-2">
+                            <Link to="/wallet" className="w-full flex flex-col items-center text-center gap-2">
                                 <div className="icon flex items-center justify-center w-full bg-(--btn-secondary-bg) py-4 px-6 rounded-[18px]">
                                     {isDark ? <IconHome8 /> : <IconHome9 />}
                                 </div>
@@ -101,8 +92,8 @@ export default function Home() {
                         ref={sliderRef}
                         className="flex w-full overflow-x-auto snap-x snap-mandatory gap-3 pb-3 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                     >
-                        {MOCK_TRANSACTIONS.map((tx, index) => (
-                            <div key={tx.id} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
+                        {coins.slice(0, 5).map((coin, index) => (
+                            <div key={coin.symbol} ref={(el) => { cardsRef.current[index] = el; }} className="shrink-0 snap-center w-full">
                                 <div className="relative flex rounded-[18px] bg-(--bg-main) items-center gap-5 px-4 py-3">
                                     <img
                                         src={isDark ? IMG.alertWhiteIcon1Dark : IMG.alertWhiteIcon1}
@@ -110,7 +101,7 @@ export default function Home() {
                                     />
                                     <div className="flex flex-col pr-8">
                                         <h3 className="text-(--text-main) tracking-[4%] text-sm">Транзакция в процессе</h3>
-                                        <p className="text-[#6C757D] text-sm">{tx.amount} • {tx.crypto}</p>
+                                        <p className="text-[#6C757D] text-sm">${coin.balance.toLocaleString()} • {coin.balance.toFixed(4)} {coin.symbol}</p>
                                         <Link to="#" className="mt-1 items-center gap-1 text-blue-400 tracking-[4%] text-sm">
                                             <span>Перейти</span>
                                         </Link>
@@ -123,9 +114,9 @@ export default function Home() {
                         ))}
                     </div>
                     <div className="flex justify-center gap-1.5 mt-1 mb-4">
-                        {MOCK_TRANSACTIONS.map((tx, index) => (
+                        {coins.slice(0, 5).map((coin, index) => (
                             <div
-                                key={`dot-${tx.id}`}
+                                key={`dot-${coin.symbol}`}
                                 className={`h-1.5 rounded-full transition-all duration-300 ${index === activeIndex ? "bg-(--title-color) w-4" : "bg-(--25-opacity) w-1.5"}`}
                             ></div>
                         ))}
@@ -149,32 +140,37 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="overflow-hidden relative flex items-center justify-between mb-2 bg-(--btn-secondary-bg) rounded-[18px] p-4">
-                    <div className="icon absolute"></div>
-                    <div className="flex items-center gap-4">
+                    <div
+                        className="absolute right-40 top-0 bottom-0 w-[70%] opacity-25 blur-[30px] rotate-180"
+                        style={{ background: 'radial-gradient(52.48% 62.82% at 79.71% 66.24%, #7FFF47 20%, #F9FF20 55%, #FFDAC0 80%, #FC76E3 100%)' }}
+                    />
+                    <div className="flex items-center gap-4 relative z-1">
                         <img src={IMG.cleverCardLogo1} className="shrink-0" alt="" />
                         <div>
                             <h3 className="font-medium text-lg">Clever</h3>
                             <p className="text-[#6C757D]">$1,00</p>
                         </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right relative z-1">
                         <h4 className="text-lg text-(--btn-main) tracking-[3%]">4 491 CLV</h4>
                         <p className="text-[#6C757D]">$4 491,52</p>
                     </div>
                 </div>
+
+                
                 <ul className="flex flex-col gap-4 pb-6">
-                    {MOCK_CRYPTO.map((coin) => (
-                        <li key={coin.id} className="p-4 flex items-center justify-between">
+                    {coins.map((coin) => (
+                        <li key={coin.symbol} className="p-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <img src={IMG.cryptoBitcoin} className="shrink-0" alt="" />
                                 <div>
                                     <h3 className="font-medium text-lg tracking-[3%]">{coin.name}</h3>
-                                    <p className="text-[#6C757D]">{coin.subtitle}</p>
+                                    <p className="text-[#6C757D]">≈${coin.balance.toLocaleString()}</p>
                                 </div>
                             </div>
                             <div className="text-right">
-                                <h4 className="text-lg text-(--btn-main) tracking-[3%]">{coin.amount}</h4>
-                                <p className="text-[#6C757D]">{coin.price}</p>
+                                <h4 className="text-lg text-(--btn-main) tracking-[3%]">{coin.balance} {coin.symbol}</h4>
+                                <p className="text-[#6C757D]">${coin.balance.toLocaleString()}</p>
                             </div>
                         </li>
                     ))}

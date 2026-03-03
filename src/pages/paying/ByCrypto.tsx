@@ -51,14 +51,14 @@ export default function PayingByCrypto() {
 
                         <div className="grid grid-cols-2 gap-2 mt-2">
                             {CRYPTO_LIST.map((data) => (
-                                <label key={data.id} className="flex flex-col w-full h-full relative border border-(--border-secondary) rounded-[24px] p-4 gap-3 transition-colors overflow-hidden cursor-pointer has-checked:border-[#367DF0]">
+                                <label key={data.id} className="flex flex-col w-full h-full relative border border-(--border-secondary) rounded-[24px] p-4 gap-3 transition-colors overflow-hidden cursor-pointer ">
                                     {data.id === 1 && (
                                         <div className="w-[102px] h-[102px] bg-[#367DF01F] rounded-full blur-[20px] absolute -top-[30px] -left-[30px] z-0 pointer-events-none"></div>
                                     )}
                                     <div className="w-full flex items-center justify-between relative z-5">
                                         <img src={data.icon} width={28} alt="" className="shrink-0 w-7 h-7 rounded-full" />
-                                        <div className="flex items-center justify-center shrink-0 rounded-full w-6 h-6 border border-(--border-secondary) transition-colors peer-checked:border-[#367DF0]">
-                                            <span className="w-3 h-3 rounded-full block bg-[#367DF0] opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+                                        <div className={`flex items-center justify-center shrink-0 rounded-full w-6 h-6 border transition-colors border-(--border-secondary)`}>
+                                            <span className={`w-3 h-3 rounded-full block transition-opacity ${selectedId === data.id ? 'bg-[#367DF0] opacity-100' : 'opacity-0'}`}></span>
                                         </div>
                                     </div>
 
@@ -86,7 +86,7 @@ export default function PayingByCrypto() {
                 <div className="w-full flex flex-col gap-3 mt-auto pt-4">
                     <MainBtn
                         theme="neutral"
-                        className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-(--bg-main) py-3 rounded-[18px]"
+                        className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-[#282828] py-3 rounded-[18px]"
                         onClick={() => console.log('Оплата криптой ID:', selectedId)}
                     >Перейти к оплате</MainBtn>
                     <button

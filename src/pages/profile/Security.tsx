@@ -9,7 +9,7 @@ export default function ProfileSecurity() {
     return (<div className="wrapper flex flex-col justify-between p-0 h-screen overflow-y-auto pb-[100px]">
         <Header type="inner" leftLink="/profile" leftLinkIcon="">Безопасность</Header>
 
-        {/* <!-- Profile security --> */}
+        
         <section className="h-full flex flex-col pt-3 px-4">
             <div className="container h-full mx-auto w-full">
                 <div className="font-nagel text-[24px] text-(--title-color) mb-3 pb-1 leading-none">Смена пароля</div>
@@ -67,6 +67,6 @@ export default function ProfileSecurity() {
                 </div>
             </div>
         </section>
-        {/* <!-- Profile security end --> */}
+        
     </div>)
 }

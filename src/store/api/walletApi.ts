@@ -3,10 +3,10 @@ import type { WalletResponseDTO } from '../dto/wallet.dto';
 import type { Wallet } from '../models/wallet.model';
 import { mapWalletFromDTO } from '../mappers/wallet.mapper';
 
-// Simulated delay helper
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Hardcoded fake DTOs for development
+
 const FAKE_WALLET_IDS: number[] = [1, 2, 3];
 
 const FAKE_WALLET_RESPONSE: WalletResponseDTO = {
@@ -22,9 +22,17 @@ const FAKE_WALLET_RESPONSE: WalletResponseDTO = {
     },
 };
 
+
+interface TransferRequestDTO {
+    amount: number;
+    address: string;
+    coin: string;
+    comment?: string;
+}
+
 const walletApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        // TODO: Real endpoint — GET /wallet/get
+        
         getWalletIds: builder.query<number[], void>({
             queryFn: async () => {
                 await delay(1000);
@@ -33,7 +41,7 @@ const walletApi = baseApi.injectEndpoints({
             providesTags: ['Wallet'],
         }),
 
-        // TODO: Real endpoint — GET /wallet/get/{id}
+        
         getWalletById: builder.query<Wallet, number>({
             queryFn: async (id) => {
                 await delay(1000);
@@ -41,8 +49,24 @@ const walletApi = baseApi.injectEndpoints({
             },
             providesTags: (_result, _error, id) => [{ type: 'Wallet', id }],
         }),
+
+        
+        createTransfer: builder.mutation<{ success: boolean }, TransferRequestDTO>({
+            queryFn: async (body) => {
+                await delay(1000);
+                console.log('[FAKE TRANSFER]', body);
+                return { data: { success: true } };
+            },
+            
+            
+            invalidatesTags: ['Wallet'],
+        }),
     }),
 });
 
-export const { useGetWalletIdsQuery, useGetWalletByIdQuery } = walletApi;
+export const {
+    useGetWalletIdsQuery,
+    useGetWalletByIdQuery,
+    useCreateTransferMutation,
+} = walletApi;
 export { walletApi };

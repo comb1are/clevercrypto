@@ -1,7 +1,4 @@
-/**
- * Frontend Model: чистый тип для UI-компонентов.
- * Статус платежа — строгий enum вместо сырой строки.
- */
+
 
 export enum PaymentStatus {
     Paid = 'PAID',

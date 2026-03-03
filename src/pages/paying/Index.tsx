@@ -82,7 +82,7 @@ export default function Paying() {
 
                 <div className="w-full flex flex-col gap-3 mt-auto pt-4">
                     <MainBtn
-                        className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-(--bg-main) py-3 rounded-[18px]"
+                        className="w-full flex items-center justify-center font-medium bg-(--bg-green) text-[#282828] py-3 rounded-[18px]"
                         onClick={() => console.log('Продолжить с типом:', payType)}
                     >Продолжить</MainBtn>
                     <button

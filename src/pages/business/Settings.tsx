@@ -9,7 +9,7 @@ export default function BusinessSettings() {
         <section className="flex-1 flex mt-4">
             <div className="container px-4 flex flex-col flex-1 justify-between gap-4">
                 <div className="flex flex-col gap-8 w-full">
-                    {/* Аватар */}
+                    
                     <div className="flex flex-col items-center gap-4 w-full">
                         <div className="shrink-0 rounded-full overflow-hidden w-[80px] h-[80px]">
                             <img src={IMG.businessLogo2} className="w-full h-full object-cover" alt="" />
@@ -20,7 +20,7 @@ export default function BusinessSettings() {
                         </div>
                     </div>
 
-                    {/* Поля ввода */}
+                    
                     <div className="w-full flex flex-col gap-6">
                         <div className="w-full flex flex-col">
                             <p className="text-(--grey) mb-1.5 text-sm">ID магазина</p>

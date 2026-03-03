@@ -1,11 +1,21 @@
 import type { WalletResponseDTO } from '../dto/wallet.dto';
 import type { Wallet, CoinBalance } from '../models/wallet.model';
 
-/**
- * Paranoid mapper: DTO → Frontend Model.
- * Разворачивает Record<string, CoinDataDTO> в массив CoinBalance[].
- * Пропускает записи с невалидными ключами или данными.
- */
+
+const COIN_NAMES: Record<string, string> = {
+    BTC: 'Bitcoin',
+    ETH: 'Ethereum',
+    USDT: 'USDT',
+    SOL: 'Solana',
+    TRX: 'Tron',
+    TON: 'TON',
+    BNB: 'BNB',
+    MATIC: 'Polygon',
+    AVAX: 'Avalanche',
+    LTC: 'Litecoin',
+};
+
+
 export function mapWalletFromDTO(id: number, dto: WalletResponseDTO): Wallet {
     const rawData = dto?.data ?? {};
     const coins: CoinBalance[] = [];
@@ -16,6 +26,7 @@ export function mapWalletFromDTO(id: number, dto: WalletResponseDTO): Wallet {
         }
         coins.push({
             symbol: String(symbol),
+            name: COIN_NAMES[symbol] ?? String(symbol),
             address: String(coinData?.address ?? ''),
             balance: Number(coinData?.balance) || 0,
         });

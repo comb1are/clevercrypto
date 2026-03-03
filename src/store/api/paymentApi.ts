@@ -3,10 +3,10 @@ import type { PaymentDataDTO, CreatePaymentDTO } from '../dto/payment.dto';
 import type { Payment } from '../models/payment.model';
 import { mapPaymentFromDTO } from '../mappers/payment.mapper';
 
-// Simulated delay helper
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Hardcoded fake DTO for development
+
 const FAKE_PAYMENT_DTO: PaymentDataDTO = {
     id: 123,
     amount: 100.5,
@@ -21,7 +21,7 @@ const FAKE_PAYMENT_DTO: PaymentDataDTO = {
 
 const paymentApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        // TODO: Real endpoint — GET /pay/get/{id}
+        
         getPaymentById: builder.query<Payment, number>({
             queryFn: async (id) => {
                 await delay(1000);
@@ -31,7 +31,7 @@ const paymentApi = baseApi.injectEndpoints({
             providesTags: (_result, _error, id) => [{ type: 'Payment', id }],
         }),
 
-        // TODO: Real endpoint — POST /pay/create
+        
         createPayment: builder.mutation<Payment, CreatePaymentDTO>({
             queryFn: async (body) => {
                 await delay(1000);
@@ -48,7 +48,8 @@ const paymentApi = baseApi.injectEndpoints({
                 };
                 return { data: mapPaymentFromDTO(createdDTO) };
             },
-            invalidatesTags: ['Payment'],
+            
+            invalidatesTags: ['Payment', 'Wallet'],
         }),
     }),
 });
