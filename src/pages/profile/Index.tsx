@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import clsx from "clsx";
 import IconIndex50 from "../../components/Icons/IconIndex50";
 import { useTheme } from "../../hooks/useTheme";
+import { useGetUserQuery } from "../../store/api/userApi";
 
 const LINK_LIST = [
     { id: 1, title: 'Основные настройки', to: '/profile/settings', icon: IMG.profileLink1 },
@@ -18,6 +19,11 @@ const LINK_LIST = [
 
 export default function Profile() {
     const isDark = useTheme();
+    const { data: user } = useGetUserQuery();
+
+    const displayName = user
+        ? `${user.firstName} ${user.lastName}`.trim() || user.email
+        : '...';
 
     return (<div className="p-0 h-screen overflow-y-auto pb-[100px]">
         <BottomNav />
@@ -27,7 +33,7 @@ export default function Profile() {
             <div className="flex flex-col items-center mx-auto px-4">
                 <img src={IMG.avatar} alt="Avatar" className="rounded-full mb-3 w-[80px] h-[80px]" />
                 <div className="w-full flex flex-col items-center mb-3">
-                    <h2 className="font-medium font-nagel text-2xl leading-none text-center">Alex Kaste</h2>
+                    <h2 className="font-medium font-nagel text-2xl leading-none text-center">{displayName}</h2>
                     <MainBtn to="#" theme="linear" size="sm" className="w-auto px-3 py-2 mb-4 mt-4 text-black font-medium bg-btn-glow rounded-[18px]">Обновить тариф</MainBtn>
                 </div>
                 <div className="w-full flex flex-col gap-3 p-5 mb-2 bg-(--btn-profile-bg) border border-(--btn-border-bg) rounded-3xl">

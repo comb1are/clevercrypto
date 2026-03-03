@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function DotsLoader() {
     return (
         <div className="flex items-center justify-center w-fit h-6 shrink-0 text-[#367DF0]">

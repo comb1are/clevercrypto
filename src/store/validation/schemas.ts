@@ -3,9 +3,9 @@ import { z } from 'zod';
 
 const sanitizeString = (val: string) =>
     val
-        .replace(/<[^>]*>/g, '')       
-        .replace(/--/g, '')            
-        .replace(/[;'"\\]/g, '')       
+        .replace(/<[^>]*>/g, '')
+        .replace(/--/g, '')
+        .replace(/[;'"\\]/g, '')
         .trim();
 
 
@@ -45,7 +45,7 @@ export const registerSchema = z.object({
 
 export const transferSchema = z.object({
     amount: z
-        .number({ invalid_type_error: 'Введите число' })
+        .number({ invalid_type_error: 'Введите число' } as any)
         .positive('Сумма должна быть > 0')
         .max(1_000_000, 'Максимум 1 000 000')
         .finite('Некорректная сумма'),
@@ -68,7 +68,7 @@ export const transferSchema = z.object({
 
 export const createPaymentSchema = z.object({
     amount: z
-        .number({ invalid_type_error: 'Введите число' })
+        .number({ invalid_type_error: 'Введите число' } as any)
         .positive('Сумма должна быть > 0')
         .max(10_000_000, 'Максимум 10 000 000'),
     order_id: safeString

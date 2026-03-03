@@ -22,20 +22,53 @@ import { useAppSelector } from "../store/hooks";
 import FullScreenLoader from "../components/FullScreenLoader";
 import DataErrorScreen from "../components/DataErrorScreen";
 
+// ДОБАВЛЕНО: Словарь иконок, чтобы не рендерить везде Биткоин
+const COIN_ICONS: Record<string, string> = {
+    'BTC': IMG.cryptoBitcoin,
+    'ETH': IMG.cryptoEthereum,
+    'USDT': IMG.cryptoTether,
+    'BNB': IMG.cryptoBinancecoin,
+    'TRX': IMG.cryptoTrc20,
+};
+
 export default function Home() {
     const isDark = useTheme();
     const { activeIndex, sliderRef, cardsRef } = useSliderObserver();
-    const userId = useAppSelector((state) => state.auth.userId);
-    const { data: wallet, isLoading, isError, refetch } = useGetWalletByIdQuery(userId!, { skip: !userId });
+    const selectedWalletId = useAppSelector((state) => state.walletState.selectedWalletId);
+
+    // ИСПРАВЛЕНО: передаем 0, если ID нет, чтобы TS не ругался на null!
+    const { data: wallet, isLoading, isError, refetch } = useGetWalletByIdQuery(
+        selectedWalletId ?? 0,
+        { skip: !selectedWalletId }
+    );
 
     const coins = wallet?.coins ?? [];
+
+    // ИСПРАВЛЕНО: Безопасное суммирование (чтобы строки не склеивались в "01.28")
+    const totalBalance = coins.reduce((acc, coin) => acc + (Number(coin.balance) || 0), 0);
 
     if (isLoading) return <FullScreenLoader message="Загрузка кошелька..." />;
     if (isError) return <DataErrorScreen message="Не удалось загрузить данные кошелька" onRetry={refetch} />;
 
+    // ДОБАВЛЕНО: Защита, если кошелек вообще не выбран (юзер только зарегался)
+    // Верстка сохранена в твоем стиле
+    if (!selectedWalletId) {
+        return (
+            <div className="pb-10 flex flex-col min-h-screen">
+                <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
+                    Мой кошелёк
+                </Header>
+                <BottomNav />
+                <main className="flex-1 flex flex-col items-center justify-center px-4">
+                    <p className="text-[#6C757D] text-center">Кошелек не выбран. Перейдите в список кошельков.</p>
+                </main>
+            </div>
+        );
+    }
+
     return (<div className="pb-10 flex flex-col min-h-screen">
         <Header type="inner" leftLinkIcon="hidden" rightLinkType="settings">
-            Мой кошелёк #1
+            Мой кошелёк #{selectedWalletId || '...'}
         </Header>
 
         <BottomNav />
@@ -47,7 +80,8 @@ export default function Home() {
                 <div>
                     <div className="overal-balance py-4 flex flex-col items-center gap-3">
                         <p className="text-base text-center text-[#ADB5BD] tracking-[3%]">Общий баланс</p>
-                        <h3 className="font-medium text-5xl text-center font-nagel">$42 482.59</h3>
+                        {/* ИСПРАВЛЕНО: Выводим реальный баланс вместо хардкода 42 482.59 */}
+                        <h3 className="font-medium text-5xl text-center font-nagel">${totalBalance.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h3>
                         <Alert type="teal" className="gap-2 text-base text-center rounded-full">
                             <span>+$149</span>
                             <IconHome16 />
@@ -101,7 +135,8 @@ export default function Home() {
                                     />
                                     <div className="flex flex-col pr-8">
                                         <h3 className="text-(--text-main) tracking-[4%] text-sm">Транзакция в процессе</h3>
-                                        <p className="text-[#6C757D] text-sm">${coin.balance.toLocaleString()} • {coin.balance.toFixed(4)} {coin.symbol}</p>
+                                        {/* ИСПРАВЛЕНО: Безопасный toFixed (иначе ломается, если баланс — это строка) */}
+                                        <p className="text-[#6C757D] text-sm">${Number(coin.balance).toLocaleString()} • {Number(coin.balance).toFixed(4)} {coin.symbol}</p>
                                         <Link to="#" className="mt-1 items-center gap-1 text-blue-400 tracking-[4%] text-sm">
                                             <span>Перейти</span>
                                         </Link>
@@ -157,20 +192,22 @@ export default function Home() {
                     </div>
                 </div>
 
-                
+
                 <ul className="flex flex-col gap-4 pb-6">
                     {coins.map((coin) => (
                         <li key={coin.symbol} className="p-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <img src={IMG.cryptoBitcoin} className="shrink-0" alt="" />
+                                {/* ИСПРАВЛЕНО: Подтягиваем правильную иконку, класс оставлен твой */}
+                                <img src={COIN_ICONS[coin.symbol] || IMG.cryptoBitcoin} className="shrink-0" alt="" />
                                 <div>
                                     <h3 className="font-medium text-lg tracking-[3%]">{coin.name}</h3>
-                                    <p className="text-[#6C757D]">≈${coin.balance.toLocaleString()}</p>
+                                    {/* ИСПРАВЛЕНО: Безопасный toLocaleString */}
+                                    <p className="text-[#6C757D]">≈${Number(coin.balance).toLocaleString()}</p>
                                 </div>
                             </div>
                             <div className="text-right">
                                 <h4 className="text-lg text-(--btn-main) tracking-[3%]">{coin.balance} {coin.symbol}</h4>
-                                <p className="text-[#6C757D]">${coin.balance.toLocaleString()}</p>
+                                <p className="text-[#6C757D]">${Number(coin.balance).toLocaleString()}</p>
                             </div>
                         </li>
                     ))}

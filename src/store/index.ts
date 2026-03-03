@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import type { Middleware } from '@reduxjs/toolkit';
 import { baseApi } from './api/baseApi';
 import authReducer from './slices/authSlice';
-
+import walletReducer from './slices/walletSlice';
 
 const logoutMiddleware: Middleware = (storeApi) => (next) => (action) => {
     const result = next(action);
@@ -16,6 +16,7 @@ export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
         auth: authReducer,
+        walletState: walletReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(baseApi.middleware, logoutMiddleware),

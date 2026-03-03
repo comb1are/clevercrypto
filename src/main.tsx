@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <Provider store={store}>
-        <MemoryRouter initialEntries={['/wallet/export']}>
+        <MemoryRouter initialEntries={['/wallet/import']}>
           <App />
         </MemoryRouter>
       </Provider>

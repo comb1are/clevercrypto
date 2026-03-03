@@ -1,11 +1,13 @@
 
 
-export enum PaymentStatus {
-    Paid = 'PAID',
-    Waiting = 'WAIT',
-    Cancelled = 'CANCEL',
-    Unknown = 'UNKNOWN',
-}
+export const PaymentStatus = {
+    Paid: 'PAID',
+    Waiting: 'WAIT',
+    Cancelled: 'CANCEL',
+    Unknown: 'UNKNOWN',
+} as const;
+
+export type PaymentStatus = typeof PaymentStatus[keyof typeof PaymentStatus];
 
 export interface Payment {
     id: number;

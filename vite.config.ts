@@ -8,4 +8,18 @@ export default defineConfig({
   build: {
     outDir: 'dist'
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://4clever.io',
+        changeOrigin: true,
+        secure: true,
+        cookieDomainRewrite: {
+          '.4clever.io': 'localhost',
+          '4clever.io': 'localhost'
+        },
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../../components/Header";
 import IMG from "../../../assets/images";
-import IconList76 from "../../../components/Icons/IconList76";
 import IconList77 from "../../../components/Icons/IconList77";
-import IconList78 from "../../../components/Icons/IconList78";
 import IconList79 from "../../../components/Icons/IconList79";
 import IconList80 from "../../../components/Icons/IconList80";
 import IconList81 from "../../../components/Icons/IconList81";
@@ -25,7 +23,6 @@ const NAV_TABS = [
 
 const ICON_RIGHT_SIMPLE = [<IconList82 />, <IconList81 />, <IconList80 />];
 const ICON_RIGHT_DETAILED = [<IconList79 />, <IconList77 />];
-const ICON_CONVERSION = [<IconList78 />, <IconList76 />];
 
 const LOGO_MAP: Record<string, string> = {
     'Kupikod': IMG.businessLogo3,

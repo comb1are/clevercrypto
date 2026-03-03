@@ -1,54 +1,25 @@
 import { baseApi } from './baseApi';
-import type { PaymentDataDTO, CreatePaymentDTO } from '../dto/payment.dto';
+import type { PaymentResponseDTO, CreatePaymentDTO } from '../dto/payment.dto';
 import type { Payment } from '../models/payment.model';
 import { mapPaymentFromDTO } from '../mappers/payment.mapper';
 
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-
-const FAKE_PAYMENT_DTO: PaymentDataDTO = {
-    id: 123,
-    amount: 100.5,
-    order_id: 'ORDER-12345',
-    discount: 5,
-    comment: 'Оплата заказа #12345',
-    callback_url: 'https://your-site.com/callback',
-    status: 'WAIT',
-    address: 'TJCnKsPa7y5okkXvQAidZBzqx3QyQ6sxMW',
-    date_add: '2024-01-01 12:00:00',
-};
-
 const paymentApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        
         getPaymentById: builder.query<Payment, number>({
-            queryFn: async (id) => {
-                await delay(1000);
-                const dto: PaymentDataDTO = { ...FAKE_PAYMENT_DTO, id };
-                return { data: mapPaymentFromDTO(dto) };
-            },
+            query: (id) => `/pay/get/${id}`,
+            transformResponse: (response: PaymentResponseDTO) =>
+                mapPaymentFromDTO(response.data),
             providesTags: (_result, _error, id) => [{ type: 'Payment', id }],
         }),
 
-        
         createPayment: builder.mutation<Payment, CreatePaymentDTO>({
-            queryFn: async (body) => {
-                await delay(1000);
-                const createdDTO: PaymentDataDTO = {
-                    id: Math.floor(Math.random() * 10000),
-                    amount: Number(body.amount) || 0,
-                    order_id: String(body.order_id ?? ''),
-                    discount: Number(body.discount) || 0,
-                    comment: String(body.comment ?? ''),
-                    callback_url: String(body.url_callback ?? ''),
-                    status: 'WAIT',
-                    address: 'TJCnKsPa7y5okkXvQAidZBzqx3QyQ6sxMW',
-                    date_add: new Date().toISOString(),
-                };
-                return { data: mapPaymentFromDTO(createdDTO) };
-            },
-            
+            query: (body) => ({
+                url: '/pay/create',
+                method: 'POST',
+                body,
+            }),
+            transformResponse: (response: PaymentResponseDTO) =>
+                mapPaymentFromDTO(response.data),
             invalidatesTags: ['Payment', 'Wallet'],
         }),
     }),

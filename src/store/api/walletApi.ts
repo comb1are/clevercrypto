@@ -3,25 +3,7 @@ import type { WalletResponseDTO } from '../dto/wallet.dto';
 import type { Wallet } from '../models/wallet.model';
 import { mapWalletFromDTO } from '../mappers/wallet.mapper';
 
-
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-
-const FAKE_WALLET_IDS: number[] = [1, 2, 3];
-
-const FAKE_WALLET_RESPONSE: WalletResponseDTO = {
-    data: {
-        BTC: { address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', balance: 1.4919 },
-        ETH: { address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD0e', balance: 14.5 },
-        USDT: { address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD0e', balance: 1050.0 },
-        SOL: { address: '7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzX7oj5Vht', balance: 45.2 },
-        TRX: { address: 'TJCnKsPa7y5okkXvQAidZBzqx3QyQ6sxMW', balance: 5000.0 },
-        BNB: { address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD0e', balance: 2.5 },
-        MATIC: { address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD0e', balance: 800.0 },
-        AVAX: { address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD0e', balance: 12.3 },
-    },
-};
-
 
 interface TransferRequestDTO {
     amount: number;
@@ -32,33 +14,60 @@ interface TransferRequestDTO {
 
 const walletApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        
         getWalletIds: builder.query<number[], void>({
-            queryFn: async () => {
-                await delay(1000);
-                return { data: FAKE_WALLET_IDS };
+            query: () => '/wallet/get',
+            transformResponse: (response: any) => {
+                // Если прислали тупо массив [1, 2]
+                if (Array.isArray(response)) return response;
+                // Если прислали { data: [1, 2] }
+                if (response && Array.isArray(response.data)) return response.data;
+                // ЕСЛИ ПРИСЛАЛИ { status: "success", wallets: [2] } <--- ТВОЙ КЕЙС
+                if (response && Array.isArray(response.wallets)) return response.wallets;
+
+                return [];
             },
             providesTags: ['Wallet'],
         }),
 
-        
-        getWalletById: builder.query<Wallet, number>({
-            queryFn: async (id) => {
-                await delay(1000);
-                return { data: mapWalletFromDTO(id, FAKE_WALLET_RESPONSE) };
+        createWallet: builder.mutation<{ success: boolean; data?: any }, { words: string }>({
+            query: (body) => ({
+                url: '/wallet/create',
+                method: 'POST',
+                body,
+                responseHandler: 'text',
+            }),
+            transformResponse: (response: string) => {
+                try {
+                    const parsed = JSON.parse(response);
+                    if (parsed.status === 'error') {
+                        throw parsed;
+                    }
+                    return parsed;
+                } catch (e: any) {
+                    // Try to guess if it's an HTML error
+                    if (typeof response === 'string' && response.includes('<html')) {
+                        throw { message: 'Ошибка сервера: неверный формат ответа (502)' };
+                    }
+                    if (e.status === 'error') throw e;
+                    return { success: true };
+                }
             },
+            invalidatesTags: ['Wallet'],
+        }),
+
+        getWalletById: builder.query<Wallet, number>({
+            query: (id) => `/wallet/get/${id}`,
+            transformResponse: (response: WalletResponseDTO, _meta, id) =>
+                mapWalletFromDTO(id, response),
             providesTags: (_result, _error, id) => [{ type: 'Wallet', id }],
         }),
 
-        
         createTransfer: builder.mutation<{ success: boolean }, TransferRequestDTO>({
             queryFn: async (body) => {
                 await delay(1000);
-                console.log('[FAKE TRANSFER]', body);
+                console.log('[STATIC TRANSFER]', body);
                 return { data: { success: true } };
             },
-            
-            
             invalidatesTags: ['Wallet'],
         }),
     }),
@@ -68,5 +77,6 @@ export const {
     useGetWalletIdsQuery,
     useGetWalletByIdQuery,
     useCreateTransferMutation,
+    useCreateWalletMutation,
 } = walletApi;
 export { walletApi };

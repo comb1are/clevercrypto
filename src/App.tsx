@@ -8,27 +8,27 @@ export default function App() {
   useEffect(() => {
     const body = document.body;
 
-    
-    if (window.Telegram?.WebApp) {
-      body.classList.add('telegram'); 
 
-      
-      
-      if (window.Telegram.WebApp.colorScheme === 'dark') {
+    if ((window as any).Telegram?.WebApp) {
+      body.classList.add('telegram');
+
+
+
+      if ((window as any).Telegram.WebApp.colorScheme === 'dark') {
         body.classList.add('dark');
       }
       return;
     }
 
-    
+
     const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (isSystemDark) {
-      body.classList.add('darks');
+      body.classList.add('dark');
     } else {
       body.classList.remove('dark');
     }
 
-    
+
     window.dispatchEvent(new Event('themeChanged'));
 
   }, []);

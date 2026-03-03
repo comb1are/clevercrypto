@@ -26,7 +26,6 @@ export default function Login() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\+7[\d\s()-]*$/;
 
-    
     const handleLoginInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
         setEmail(val);
@@ -38,8 +37,6 @@ export default function Login() {
         }
     }, []);
 
-
-    
     useEffect(() => {
         const validPhone = phone.length === 15;
         const validEmail = emailRegex.test(email);
@@ -50,20 +47,19 @@ export default function Login() {
         setValidationError(null);
         const credential = isPhone ? `+7${phone}` : email;
 
-        
         const result = loginSchema.safeParse({ email: credential, password });
         if (!result.success) {
-            setValidationError(result.error.errors[0]?.message ?? 'Ошибка валидации');
+            setValidationError((result.error as any).errors?.[0]?.message ?? 'Ошибка валидации');
             return;
         }
 
         try {
             await login(result.data).unwrap();
-            
             const from = (location.state as { from?: { pathname: string } })?.from?.pathname || '/home';
             navigate(from, { replace: true });
-        } catch (err) {
-            console.error('[LOGIN] Error:', err);
+        } catch (err: any) {
+            const msg = err?.data?.detail ?? err?.data?.message ?? 'Неверный email или пароль';
+            setValidationError(String(msg));
         }
     };
 
